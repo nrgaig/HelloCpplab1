@@ -12,11 +12,14 @@ void Rational::setNumerator(int num) {
 }
 
 void Rational::setDenominator(int num) {
-    /*
-     * problem wen get 0, the default value of denominator is 0.
-     */
-    if (num <= 0) { return; }
-    denominator = num;
+    if (num == 0) {
+        denominator = 1;
+    }
+    else if (num < 0) {
+        denominator = num * -1;
+        numerator *= -1;
+    } else
+        denominator = num;
 }
 
 int Rational::getNumerator() {
@@ -47,9 +50,16 @@ Rational Rational::add(Rational rat) {
 
 void Rational::reduction() {
     bool flag = true;
+    int tempDn = denominator, tempNum = numerator;
+    if (tempDn < 0){
+        tempDn *= -1;
+    }
+    if (tempNum < 0){
+        tempNum *= -1;
+    }
     while (flag) {
         flag = false;
-        for (int i = 2; i <= min(denominator, numerator); ++i) {
+        for (int i = 2; i <= min(tempNum, tempDn); ++i) {
             if (denominator % i == 0 && numerator % i == 0) {
                 flag = true;
                 numerator /= i;
