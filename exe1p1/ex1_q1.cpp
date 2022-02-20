@@ -1,3 +1,8 @@
+//  Created by Maor Frost 206370231 Itay Oren 318648482
+//  cpp lab - Meir Litman
+//  exercise 1 task 1
+// getting two rational numbers and compare between them an add them and check if they are reduced.
+//
 #include "Rational.h"
 #include <iostream>
 #include <string>
@@ -44,3 +49,19 @@ int main()
 
     return 0;
 }
+//
+//part 1.  set/get
+//enter a rational number:
+//4/12
+//numerator: 4
+//denominator: 12
+//enter a rational number:
+//2/12
+//2/12
+//
+//part 2.  equals
+//The two numbers are different
+//
+//
+//part 3. add
+//4/12+ 2/12= 1/2

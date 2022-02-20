@@ -47,7 +47,7 @@ Rational Rational::add(Rational rat) {
     newNum.reduction();
     return newNum;
 }
-
+//reducing the number to minimal rational number
 void Rational::reduction() {
     for (int i = min(abs(denominator), abs(numerator)); i >= 2; i--) {
         if (denominator % i == 0 && numerator % i == 0) {
