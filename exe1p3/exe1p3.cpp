@@ -35,14 +35,10 @@ int main() {
         p.setY(y);
         if (A.onInOut(p) <= 0)
             caunterA++;
-//        cin >> trash >> x >> trash >> y >> trash;
-//        p.setX(x);
-//        p.setY(y);
+
         if (B.onInOut(p) <= 0)
             caunterB++;
-//        cin >> trash >> x >> trash >> y >> trash;
-//        p.setX(x);
-//        p.setY(y);
+
         if (C.onInOut(p) <= 0)
             caunterC++;
 

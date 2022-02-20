@@ -50,16 +50,9 @@ Rational Rational::add(Rational rat) {
 
 void Rational::reduction() {
     bool flag = true;
-    int tempDn = denominator, tempNum = numerator;
-    if (tempDn < 0){
-        tempDn *= -1;
-    }
-    if (tempNum < 0){
-        tempNum *= -1;
-    }
     while (flag) {
         flag = false;
-        for (int i = 2; i <= min(tempNum, tempDn); ++i) {
+        for (int i = 2; i <= min(abs(denominator), abs(numerator)); ++i) {
             if (denominator % i == 0 && numerator % i == 0) {
                 flag = true;
                 numerator /= i;
