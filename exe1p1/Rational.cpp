@@ -49,15 +49,10 @@ Rational Rational::add(Rational rat) {
 }
 
 void Rational::reduction() {
-    bool flag = true;
-    while (flag) {
-        flag = false;
-        for (int i = 2; i <= min(abs(denominator), abs(numerator)); ++i) {
-            if (denominator % i == 0 && numerator % i == 0) {
-                flag = true;
-                numerator /= i;
-                denominator /= i;
-            }
+    for (int i = min(abs(denominator), abs(numerator)); i >= 2; i--) {
+        if (denominator % i == 0 && numerator % i == 0) {
+            numerator /= i;
+            denominator /= i;
         }
     }
     if (numerator == 0)
