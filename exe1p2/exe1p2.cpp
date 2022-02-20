@@ -9,7 +9,7 @@
 using namespace std;
 
 int main() {
-    float input;
+    float input = 1;
     char name[21];
     bool flag = true, first = true;
     //asking from user to enter details:
@@ -44,9 +44,8 @@ int main() {
             flag = false;
         tempWorker.setIncome(input);
 
-        if (!flag) {
-            cout << "ERROR" << endl;
-        }
+        if (flag) {
+
             if (tempWorker.getIncome() < lowestWork.getIncome() || first) {
                 lowestWork.setID(tempWorker.getID());
                 lowestWork.setName(tempWorker.getName());
@@ -60,7 +59,9 @@ int main() {
                 highestWork.setSalary(tempWorker.getSalary());
                 first = false;
             }
-            first = false;
+        }
+        else
+            cout << "ERROR" << endl;
     }
     cout << "minimum collected: " << lowestWork.getID() << " " << lowestWork.getName() << " " << lowestWork.getIncome()
          << endl << "highest salary: " << highestWork.getID() << " " << highestWork.getName() << " "
