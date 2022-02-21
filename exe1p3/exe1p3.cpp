@@ -7,9 +7,9 @@ using namespace std;
 int main() {
     int x, y, re;
     char trash;
-    Circle A{};
-    Circle B{};
-    Circle C{};
+    Circle A;
+    Circle B;
+    Circle C;
     cout << "enter the center point and radius of 3 circles:" << endl;
     cin >> trash >> x >> trash >> y >> trash >> re;
     A.setCenter(x, y);
@@ -29,8 +29,9 @@ int main() {
     int caunterA=0;
     int caunterB=0;
     int caunterC=0;
-    while (x != 0 && y != 0){
-        cin >> trash >> x >> trash >> y >> trash;
+    while (cin >> trash >> x >> trash >> y >> trash){
+        if (x == 0 && y == 0)
+            break;
         p.setX(x);
         p.setY(y);
         if (A.onInOut(p) <= 0)
