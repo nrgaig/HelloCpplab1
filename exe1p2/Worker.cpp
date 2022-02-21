@@ -1,9 +1,8 @@
-//  Created by Maor Frost 206370231 Itay Oren 318648482
-//  cpp lab - Meir Litman
-//  exercise 1 task 2
-//
-//
-#include <iostream>
+/* Created by Maor Frost 206370231 and Itay Oren 318648482
+ * cpp lab - Meir Litman
+ * exercise 1 task 2
+ * class represents Worker in "Latet Mehalev" association
+ */
 #include "Worker.h"
 #include <cstring>
 
@@ -24,7 +23,7 @@ int Worker::getID() {
 }
 
 void Worker::setName(char workerName[]) {
-    strcpy(name, workerName);
+    strcpy(name, workerName);//copy string from workerName to this->name
 }
 
 char *Worker::getName() {

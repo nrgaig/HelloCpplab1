@@ -1,8 +1,8 @@
-//  Created by Maor Frost 206370231 and Itay Oren 318648482
-//  cpp lab - Meir Litman
-//  exercise 1 task 2
-//
-//
+/* Created by Maor Frost 206370231 and Itay Oren 318648482
+ * cpp lab - Meir Litman
+ * exercise 1 task 2
+ * class Header represents Worker in "Latet Mehalev" association
+ */
 
 #ifndef CPPLAB2_WORKER_H
 #define CPPLAB2_WORKER_H

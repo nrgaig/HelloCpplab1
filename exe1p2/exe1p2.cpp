@@ -1,8 +1,9 @@
-//  Created by Maor Frost 206370231 Itay Oren 318648482
-//  cpp lab - Meir Litman
-//  exercise 1 task 2
-//
-//
+/* Created by Maor Frost 206370231 and Itay Oren 318648482
+ * cpp lab - Meir Litman
+ * exercise 1 task 2
+ * program to manage workers in the association
+ * printing the worker with highest salary and the worker with the lowest income
+ */
 #include <iostream>
 #include "Worker.h"
 
@@ -11,9 +12,14 @@ using namespace std;
 int main() {
     float input = 1;
     char name[21];
+    // flag for checking input correctness
+    // //first to ensure that in the first iteration the details of the
+    // will enter to both objects
     bool flag = true, first = true;
+
+    Worker lowestWorker, highestWorker, tempWorker;
+
     //asking from user to enter details:
-    Worker lowestWork, highestWork, tempWorker;
     cout << "enter details, to end enter 0:" << endl;
 
     while (input != 0)//until 0 is entered do:
@@ -22,34 +28,36 @@ int main() {
         cin >> input;
         if (input == 0)// if enter 0 is entered finnish the loop
             break;
-        if (input < 0)
+        if (input < 0)//if input is negative its illegal
             flag = false;
         tempWorker.setID(input);//if something else is entered it is the Worker id
 
-        cin >> name;
+        cin >> name;// getting worker's name
         tempWorker.setName(name);
 
-        cin >> input;
-        if (input < 0)
+        cin >> input;//getting worker's salary
+        if (input < 0)//if input is negative its illegal
             flag = false;
         tempWorker.setSalary(input);
 
-        cin >> input;//input hours
+        cin >> input;//getting worker's hours
         if (input < 0)
             flag = false;
         tempWorker.setHours(input);
 
-        cin >> input;
-        if (input < 0)
+        cin >> input;//getting worker's income
+        if (input < 0)//if input is negative its illegal
             flag = false;
         tempWorker.setIncome(input);
 
-        if (flag) {
+        if (flag) { // if all input is correct and legal
 
-            if (tempWorker.getIncome() < lowestWork.getIncome() || first) {
-                lowestWork.setID(tempWorker.getID());
-                lowestWork.setName(tempWorker.getName());
-                lowestWork.setIncome(tempWorker.getIncome());
+            // checking if the income is the lowset
+            if (tempWorker.getIncome() < lowestWorker.getIncome() || first) {
+                //if true set temp worker as lowest worker
+                lowestWorker.setID(tempWorker.getID());
+                lowestWorker.setName(tempWorker.getName());
+                lowestWorker.setIncome(tempWorker.getIncome());
             }
             if (tempWorker.salaryCalc() > highestWork.salaryCalc() || first) {
                 highestWork.setID(tempWorker.getID());
@@ -60,10 +68,19 @@ int main() {
                 first = false;
             }
         }
-        else
+        else//if some input is incorrect or illegal print error and get inputs again
             cout << "ERROR" << endl;
     }
-    cout << "minimum collected: " << lowestWork.getID() << " " << lowestWork.getName() << " " << lowestWork.getIncome()
-         << endl << "highest salary: " << highestWork.getID() << " " << highestWork.getName() << " "
-         << highestWork.salaryCalc();
+    //printing  the worker with highest salary and the worker with the lowest income
+    cout << "minimum collected: " << lowestWorker.getID() << " " << lowestWorker.getName() << " " << lowestWorker.getIncome()
+         << endl << "highest salary: " << highestWorker.getID() << " " << highestWorker.getName() << " "
+         << highestWorker.salaryCalc();
+
 }
+/*
+ *
+ *
+ *
+ *
+ *
+ */
