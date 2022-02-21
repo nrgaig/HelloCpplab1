@@ -1,3 +1,8 @@
+//  Created by Maor Frost 206370231 Itay Oren 318648482
+//  cpp lab - Meir Litman
+//  exercise 1 task 1
+//  class header for representing Rational number
+//
 
 
 #ifndef Q1_RATIONAL_H
