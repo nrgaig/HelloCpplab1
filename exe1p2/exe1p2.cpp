@@ -80,9 +80,29 @@ int main() {
 
 }
 /*
- *
- *
- *
- *
- *
- */
+enter details, to end enter 0:
+1
+doron
+35
+120
+6000
+2
+tal
+50
+55
+1400
+3
+maor
+45
+-5
+100
+ERROR
+4
+itay
+30
+120
+800
+0
+minimum collected: 4 itay 800
+highest salary: 1 doron 5550
+*/
