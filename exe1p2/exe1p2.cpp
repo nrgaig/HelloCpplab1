@@ -59,13 +59,15 @@ int main() {
                 lowestWorker.setName(tempWorker.getName());
                 lowestWorker.setIncome(tempWorker.getIncome());
             }
-            if (tempWorker.salaryCalc() > highestWork.salaryCalc() || first) {
-                highestWork.setID(tempWorker.getID());
-                highestWork.setName(tempWorker.getName());
-                highestWork.setIncome(tempWorker.getIncome());
-                highestWork.setHours(tempWorker.getHours());
-                highestWork.setSalary(tempWorker.getSalary());
-                first = false;
+            // checking if the salary is the highest
+            if (tempWorker.salaryCalc() > highestWorker.salaryCalc() || first) {
+                //if true set temp worker as highest worker
+                highestWorker.setID(tempWorker.getID());
+                highestWorker.setName(tempWorker.getName());
+                highestWorker.setIncome(tempWorker.getIncome());
+                highestWorker.setHours(tempWorker.getHours());
+                highestWorker.setSalary(tempWorker.getSalary());
+                first = false; // after the first iteration first becume false
             }
         }
         else//if some input is incorrect or illegal print error and get inputs again
