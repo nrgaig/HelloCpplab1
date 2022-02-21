@@ -11,7 +11,7 @@ using namespace std;
 
 //main function
 int main() {
-    int x, y, re;
+    int x, y, radius;
     char trash;
     Circle A;
     Circle B;
@@ -19,20 +19,21 @@ int main() {
 
     //asking from user to enter circle details
     cout << "enter the center point and radius of 3 circles:" << endl;
-    cin >> trash >> x >> trash >> y >> trash >> re;
+    cin >> trash >> x >> trash >> y >> trash >> radius;
     A.setCenter(x, y);
-    A.setRadius(re);
-    cin >> trash >> x >> trash >> y >> trash >> re;
+    A.setRadius(radius);
+    cin >> trash >> x >> trash >> y >> trash >> radius;
     B.setCenter(x, y);
-    B.setRadius(re);
-    cin >> trash >> x >> trash >> y >> trash >> re;
+    B.setRadius(radius);
+    cin >> trash >> x >> trash >> y >> trash >> radius;
     C.setCenter(x, y);
-    C.setRadius(re);
+    C.setRadius(radius);
+
+    //printing area and perimeter of each circle. asking from user to enter points
     cout << "perimeter: A: "<< A.perimeter()<< " B: " << B.perimeter() << " C: " << C.perimeter() << endl <<
             "area: A: " << A.area() << " B: " << B.area() << " C: " << C.area() << endl
              << "enter points until (0,0):" << endl;
-    x=1;
-    y=1;
+
     Point p;
     int caunterA=0;
     int caunterB=0;
