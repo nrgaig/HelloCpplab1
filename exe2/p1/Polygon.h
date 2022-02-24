@@ -20,15 +20,19 @@ public:
 
     Point *getVertex() const;
 
-    void setVertex(Point *vertex);
-
     int getNumOfVertexes() const;
 
-    void setNumOfVertexes(int numOfVertexes);
+    void addPoint(Point p, int index);
+
+    float perimeter();
+
+    bool equal(Polygon second);
 
 private:
-    Point* vertex;
+    Point *vertex;
     int numOfVertexes;
+
+
 };
 
 
