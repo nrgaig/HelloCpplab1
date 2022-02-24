@@ -6,9 +6,27 @@
 #ifndef HELLOCPPLAB1_POLYGON_H
 #define HELLOCPPLAB1_POLYGON_H
 
+#include "Point.h"
 
 class Polygon {
+public:
+    Polygon();
 
+    Polygon(int x, int y);
+
+    Polygon(Polygon const &copy);
+
+    Point *getVertex() const;
+
+    void setVertex(Point *vertex);
+
+    int getNumOfVertexes() const;
+
+    void setNumOfVertexes(int numOfVertexes);
+
+private:
+    Point* vertex;
+    int num_of_vertexes;
 };
 
 

@@ -4,3 +4,31 @@
  * 
  */
 #include "Polygon.h"
+
+Point *Polygon::getVertex() const {
+    return vertex;
+}
+
+void Polygon::setVertex(Point *vertex) {
+    Polygon::vertex = vertex;
+}
+
+int Polygon::getNumOfVertexes() const {
+    return num_of_vertexes;
+}
+
+void Polygon::setNumOfVertexes(int numOfVertexes) {
+    num_of_vertexes = numOfVertexes;
+}
+
+Polygon::Polygon() {
+
+}
+
+Polygon::Polygon(int x, int y) {
+
+}
+
+Polygon::Polygon(const Polygon &copy) {
+
+}
