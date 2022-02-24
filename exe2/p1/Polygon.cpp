@@ -5,30 +5,44 @@
  */
 #include "Polygon.h"
 
+Polygon::Polygon() { //empty constructor
+    numOfVertexes = 0;
+    vertex = nullptr;
+}
+
+Polygon::Polygon(int vertexesNum) { // constructor
+    vertex = new Point [vertexesNum];
+}
+
+Polygon::Polygon(const Polygon &copy) { // copy constructor
+    numOfVertexes = copy.numOfVertexes;//coppy num of vertexes
+    vertex = new Point [numOfVertexes];//create new ponts array
+
+    for (int i = 0; i < numOfVertexes; ++i) {//copy all points from other array to this->points array
+        vertex[i] = copy.vertex[i];
+    }
+}
+
+Polygon::~Polygon() {// distractor
+
+}
+
 Point *Polygon::getVertex() const {
     return vertex;
 }
 
 void Polygon::setVertex(Point *vertex) {
-    Polygon::vertex = vertex;
+    vertex = vertex;
 }
 
 int Polygon::getNumOfVertexes() const {
-    return num_of_vertexes;
+    return numOfVertexes;
 }
 
 void Polygon::setNumOfVertexes(int numOfVertexes) {
-    num_of_vertexes = numOfVertexes;
+    numOfVertexes = numOfVertexes;
 }
 
-Polygon::Polygon() {
 
-}
 
-Polygon::Polygon(int x, int y) {
 
-}
-
-Polygon::Polygon(const Polygon &copy) {
-
-}

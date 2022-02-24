@@ -7,7 +7,7 @@
 #include <cmath>
 #include "Point.h"
 
-Point::Point() {}//empty constructor
+Point::Point() {x=0,y=0;}//empty constructor
 
 Point::Point(int inX, int inY)  {//constructor
     x=inX;
@@ -15,8 +15,8 @@ Point::Point(int inX, int inY)  {//constructor
 }
 
 Point::Point(const Point &copy) {//copy constructor
-    Point::x=copy.x;
-    Point::y=copy.y;
+    x=copy.x;
+    y=copy.y;
 }
 
 float Point::distance(Point point) {

@@ -12,9 +12,11 @@ class Polygon {
 public:
     Polygon();
 
-    Polygon(int x, int y);
+    Polygon(int vertexesNum);
 
     Polygon(Polygon const &copy);
+
+    virtual ~Polygon();
 
     Point *getVertex() const;
 
@@ -26,7 +28,7 @@ public:
 
 private:
     Point* vertex;
-    int num_of_vertexes;
+    int numOfVertexes;
 };
 
 
