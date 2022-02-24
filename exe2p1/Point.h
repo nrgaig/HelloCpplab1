@@ -1,6 +1,6 @@
 /* Created by Maor Frost 206370231 and Itay Oren 318648482
  * cpp lab - Meir Litman
- * exercise 1 task 3
+ * exercise 2 task 1
  * class header represents Point in plain
  */
 #ifndef HELLOCPPLAB1_POINT_H
@@ -13,7 +13,7 @@ public:
 
     Point(int x, int y);
 
-    Point(Point  &copy);
+    Point(Point const &copy);
 
     int getX() ;
 

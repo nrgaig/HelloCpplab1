@@ -1,6 +1,6 @@
 /* Created by Maor Frost 206370231 and Itay Oren 318648482
  * cpp lab - Meir Litman
- * exercise 1 task 3
+ * exercise 2 task 1
  * class header represents Point in plain
  */
 
@@ -14,9 +14,9 @@ Point::Point(int inX, int inY)  {//constructor
     y=inY;
 }
 
-Point::Point(Point &copy) {//copy constructor
-    Point::x=copy.getX();
-    Point::y=copy.getY();
+Point::Point(const Point &copy) {//copy constructor
+    Point::x=copy.x;
+    Point::y=copy.y;
 }
 
 float Point::distance(Point point) {
