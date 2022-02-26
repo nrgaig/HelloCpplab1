@@ -16,7 +16,7 @@ public:
 
     Polygon(Polygon const &copy);
 
-    virtual ~Polygon();
+     ~Polygon();
 
     Point *getVertex() const;
 
