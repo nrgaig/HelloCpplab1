@@ -6,7 +6,6 @@
  */
 
 #include "Polygon.h"
-#include "Polygon.h"
 #include <iostream>
 #include <cmath>
 
@@ -24,10 +23,6 @@ int main() {
     cout << "enter the point values: " << endl;
     for (int i = 0; i < numOfSides; ++i) {
         cin >> trash >> X >> trash >> Y >> trash;
-        if (X < 0 || Y < 0) {
-            cout << "ERROR" << endl;
-            continue;
-        }
         point.setX(X);
         point.setY(Y);
         polygon1.addPoint(point, i);
@@ -40,20 +35,16 @@ int main() {
     cout << "enter the point values: " << endl;
     for (int i = 0; i < numOfSides; ++i) {
         cin >> trash >> X >> trash >> Y >> trash;
-        if (X < 0 || Y < 0) {
-            cout << "ERROR" << endl;
-            continue;
-        }
         point.setX(X);
         point.setY(Y);
         polygon2.addPoint(point, i);
     }
-    if (polygon1.equal(polygon2)){//if poligon 2 equals to polygon 1 peinr "equal" else preint "not equal"
+    if (polygon1.equal(polygon2)) {//if poligon 2 equals to polygon 1 peinr "equal" else preint "not equal"
         cout << "equal" << endl;
-        cout << round(polygon1.perimeter());
-    }
-    else{
-        cout << "not equal" << endl << round(polygon1.perimeter()) << endl << round(polygon2.perimeter());
+        cout << "perimeter: " << round(polygon1.perimeter()) << endl;
+    } else {
+        cout << "not equal" << endl << "perimeter: " << round(polygon1.perimeter()) << endl << "perimeter: "
+             << round(polygon2.perimeter()) << endl;
 
     }
 

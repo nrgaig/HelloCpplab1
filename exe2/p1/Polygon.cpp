@@ -15,6 +15,7 @@ Polygon::Polygon() { //empty constructor
 }
 
 Polygon::Polygon(int vertexesNum) { // constructor
+    numOfVertexes = vertexesNum;
     vertex = new Point [vertexesNum];
     cout << "in one parameter constructor" << endl;
 }
@@ -52,7 +53,7 @@ float Polygon::perimeter(){
     for (int i = 0; i < numOfVertexes-1; ++i) {
         ans += vertex[i].distance(vertex[i+1]);//sum distance between every two points except between first and last
     }
-    ans += vertex[numOfVertexes].distance(vertex[0]);//addin distance of last and first points
+    ans += vertex[numOfVertexes-1].distance(vertex[0]);//addin distance of last and first points
     return ans;
 }
 
