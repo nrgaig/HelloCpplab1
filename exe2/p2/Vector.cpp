@@ -37,6 +37,7 @@ bool Vector::isPowerOfTwo(int n) {
     }
     return true;
 }
+int Vector::newPowerOfTwo()
 
 int Vector::getCapacity() const {
     return capacity;
@@ -55,22 +56,50 @@ void Vector::print(){
 void Vector::assign(Vector vec) {
     if (capacity != vec.capacity){
         data = new int[vec.capacity];
+        capacity = vec.capacity;
+    }
+    size = vec.size;
+    for (int i = 0; i < size; ++i) {
+        data[i] = vec.data[i];
     }
 }
 
 bool Vector::isEqual(Vector vec) {
-    return false;
+    if (size != vec.size)
+        return false;
+    for (int i = 0; i < size; ++i) {
+        if (data[i] != vec.data[i])
+            return false;
+    }
+    return true;
 }
 
 int &Vector::at(int index) {
-    return ;
+    if (index > size){
+        cout << "ERROR" << endl;
+        return *data;
+    }
+    return *(data+index);
 }
 
 int Vector::scalmul(Vector vec) {
-    return 0;
+    if (size != vec.size){
+        cout << "ERROR" << endl;
+        return -1;
+    }
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += data[i]*vec.data[i];
+    }
+    return sum;
 }
 
 int *Vector::strnewcat(Vector vec) {
+    Vector newVec;
+    newVec.size = size+vec.size;
+    if (!isPowerOfTwo(capacity+vec.capacity)){
+
+    }
     return nullptr;
 }
 
