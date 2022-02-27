@@ -30,6 +30,7 @@ Vector::Vector(Vector const &copy) {
     }
 }
 
+//distractor
 Vector::~Vector() {
     delete[] data; // delete the allocated array
 }
@@ -42,7 +43,7 @@ bool Vector::isPowerOfTwo(int n) { // checking if number is power of 2
             return false;
         n = n / 2;
     }
-    return true;
+    return true;//if the number is devides by 2
 }
 
 int Vector::newPowerOfTwo(int num) { // return new power of two
@@ -57,27 +58,31 @@ int Vector::getCapacity() const {
 int Vector::getSize() const {
     return size;
 }
-void Vector::print(){
-    cout << "capacity: " << capacity << "size: " << size <<  "values: ";
+
+//printing capacity, size and values of vector
+void Vector::print() {
+    cout << "capacity: " << capacity << "size: " << size << "values: ";
     for (int i = 0; i < size; ++i) {
         cout << data[i] << " ";
     }
 }
 
+//coping values from vec to existing Vector
 void Vector::assign(Vector vec) {
     if (capacity != vec.capacity) {//if the capacity is deferment make new array with new capacity
         delete[] data;//deleting old data array (dynamic allocating)
         data = new int[vec.capacity];//allocating new array with vec's capacity
         capacity = vec.capacity;// giving new capacity
     }
-    size = vec.size;
-    for (int i = 0; i < size; ++i) {
+    size = vec.size;// giveing new size
+    for (int i = 0; i < size; ++i) { // copy all the data from other to this
         data[i] = vec.data[i];
     }
 }
 
+//checking if vector is equal to other vector
 bool Vector::isEqual(Vector vec) {
-    if (size != vec.size)
+    if (size != vec.size)// if they difers in size return false
         return false;
     for (int i = 0; i < size; ++i) {//if size equal run on every member in arrays
         if (data[i] != vec.data[i]) // if in some index there are different valiuse return false
@@ -86,14 +91,16 @@ bool Vector::isEqual(Vector vec) {
     return true; // if all the data the same return true
 }
 
+// returns value in index in data array
 int &Vector::at(int index) {
-    if (index > size){
+    if (index > size) { // if index is out of bound, print "error" and return first cell in the data array
         cout << "ERROR" << endl;
         return *data;
     }
     return *(data + index); // return the cell in data
 }
 
+// doing scallar multipling and return the result
 int Vector::scalmul(Vector vec) {
     if (size != vec.size) { // if the size is defrent no multiplation can be done
         cout << "ERROR" << endl;
@@ -123,6 +130,7 @@ Vector Vector::strnewcat(Vector vec) {
     return newVec;//return the new Vector
 }
 
+//clear all values in data array
 void Vector::clear() {
     capacity = 0;
     size = 0;
@@ -131,6 +139,7 @@ void Vector::clear() {
     //TODO moodel will tell us
 }
 
+//delete the last cell in vector array
 void Vector::delLast() {
     if (size == 0) {//if size is 0 print ERROR
         cout << "ERROR" << endl;
@@ -141,6 +150,7 @@ void Vector::delLast() {
     size--;//sizing down
 }
 
+//insert new value into the Vector
 void Vector::insert(int val) {
     if (size == capacity) {//if the vector is full
         capacity *= 2;//make the capacity double in size
