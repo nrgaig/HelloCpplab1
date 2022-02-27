@@ -1,6 +1,8 @@
-//
-// Created by itayo on 26/02/2022.
-//
+/* Created by Maor Frost 206370231 and Itay Oren 318648482
+ * cpp lab - Meir Litman
+ * exercise 2 task 2
+ *
+ */
 
 #ifndef HELLOCPPLAB1_VECTOR_H
 #define HELLOCPPLAB1_VECTOR_H
@@ -16,7 +18,6 @@ public:
     Vector(Vector const &copy);
 
     ~Vector();
-    bool isPowerOfTwo(int n);
 
     int getCapacity() const;
 
@@ -32,7 +33,7 @@ public:
 
     int scalmul(Vector vec);
 
-    int *strnewcat(Vector vec);
+    Vector strnewcat(Vector vec);
 
     void clear();
 
@@ -44,6 +45,8 @@ private:
     int *data; // pointer array
     int capacity; // max size of array
     int size; // num of values in array
+    bool isPowerOfTwo(int n);
+    int newPowerOfTwo(int num);
 };
 
 

@@ -1,3 +1,8 @@
+/* Created by Maor Frost 206370231 and Itay Oren 318648482
+ * cpp lab - Meir Litman
+ * exercise 2 task 2
+ * main function from exercise
+ */
 #include "Vector.h"
 #include <iostream>
 using namespace std;
