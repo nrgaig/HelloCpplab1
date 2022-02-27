@@ -1,7 +1,7 @@
 /* Created by Maor Frost 206370231 and Itay Oren 318648482
  * cpp lab - Meir Litman
  * exercise 2 task 2
- * implement methods to manage vectors
+ * class represent a vector
  */
 #include <iostream>
 #include <cmath>
@@ -61,10 +61,11 @@ int Vector::getSize() const {
 
 //printing capacity, size and values of vector
 void Vector::print() {
-    cout << "capacity: " << capacity << "size: " << size << "values: ";
+    cout << "capacity: " << capacity << " size: " << size << " values: ";
     for (int i = 0; i < size; ++i) {
         cout << data[i] << " ";
     }
+    cout << endl;
 }
 
 //coping values from vec to existing Vector
@@ -93,7 +94,7 @@ bool Vector::isEqual(Vector vec) {
 
 // returns value in index in data array
 int &Vector::at(int index) {
-    if (index > size) { // if index is out of bound, print "error" and return first cell in the data array
+    if (index >= size || index < 0) { // if index is out of bound, print "error" and return first cell in the data array
         cout << "ERROR" << endl;
         return *data;
     }
@@ -132,11 +133,9 @@ Vector Vector::strnewcat(Vector vec) {
 
 //clear all values in data array
 void Vector::clear() {
-    capacity = 0;
     size = 0;
     delete[] data;
     data = nullptr;
-    //TODO moodel will tell us
 }
 
 //delete the last cell in vector array
