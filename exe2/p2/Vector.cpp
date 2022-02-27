@@ -55,7 +55,7 @@ void Vector::print(){
 void Vector::assign(Vector vec) {
     if (capacity != vec.capacity){
         data = new int[vec.capacity];
-    } //TODO here
+    }
 }
 
 bool Vector::isEqual(Vector vec) {
