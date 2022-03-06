@@ -11,3 +11,5 @@ set(CMAKE_CXX_STANDARD 11)
 #add_executable(cpplab2 exe2/p2/Vector.cpp exe2/p2/Vector.h exe2/p2/exe2p2.cpp)
 
 add_executable(cpplab2 exe3/p1/exe3p1.cpp exe3/p1/Rational.cpp exe3/p1/Rational.h)
+#add_executable(cpplab2 exe3/p2/exe3p2.cpp exe3/p2/MyDate.cpp exe3/p2/MyDate.h)
+#add_executable(cpplab2 exe3/p3/exe3p3.cpp exe3/p3/MyString.cpp exe3/p3/MyString.h )
