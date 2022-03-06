@@ -37,8 +37,11 @@ Polygon::~Polygon() {// distractor
 }
 
 Point* Polygon::getVertex() const {
-    Point* temp = new Point [numOfVertexes];
-    return temp;
+    Point* tempVertex = new Point [numOfVertexes];
+    for (int i = 0; i < numOfVertexes; ++i) {
+        tempVertex[i] = vertex[i];
+    }
+    return tempVertex;
 }
 
 int Polygon::getNumOfVertexes() const {
@@ -46,7 +49,7 @@ int Polygon::getNumOfVertexes() const {
 }
 
 void Polygon::addPoint(Point p, int index){
-    vertex[index] = p; // TODO check if work in moodle
+    vertex[index] = p;
 }
 float Polygon::perimeter(){
     float ans = 0;
