@@ -44,6 +44,7 @@ public:
 
   Rational operator/(const Rational &rat) const;
 
+  bool operator>(Rational rat);
 
   bool operator<(const Rational &rhs) const;
 
