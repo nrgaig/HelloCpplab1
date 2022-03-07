@@ -119,36 +119,6 @@ Rational Rational::operator/(const Rational &rat) const
     return Rational();
 }
 
-bool Rational::operator>(Rational rat)
-{
-    return false;
-}
-
-bool Rational::operator<(Rational rat)
-{
-    return false;
-}
-
-bool Rational::operator>=(Rational rat)
-{
-    return false;
-}
-
-bool Rational::operator<=(Rational rat)
-{
-    return false;
-}
-
-bool Rational::operator==(Rational rat)
-{
-    return false;
-}
-
-bool Rational::operator!=(Rational rat)
-{
-    return false;
-}
-
 // reducing the number to minimal rational number
 void Rational::reduction()
 {
@@ -163,4 +133,38 @@ void Rational::reduction()
     }
     if (numerator == 0)
         denominator = 1;
+}
+bool Rational::operator==(const Rational &rhs) const
+{ //==
+    return numerator == rhs.numerator &&
+           denominator == rhs.denominator;
+}
+
+bool Rational::operator!=(const Rational &rhs) const
+{ //!=
+    return !(rhs == *this);
+}
+
+bool Rational::operator<(const Rational &rhs) const
+{ //<
+    if (numerator < rhs.numerator)
+        return true;
+    if (rhs.numerator < numerator)
+        return false;
+    return denominator < rhs.denominator;
+}
+
+bool Rational::operator>(const Rational &rhs) const
+{ //>
+    return rhs < *this;
+}
+
+bool Rational::operator<=(const Rational &rhs) const
+{ //<=
+    return !(rhs < *this);
+}
+
+bool Rational::operator>=(const Rational &rhs) const
+{ //>= if
+    return !(*this < rhs);
 }

@@ -26,6 +26,8 @@ public:
 
   void print() const;
 
+  void reduction();
+
   Rational operator++(int trash); // ++i (adding 1 to this rational number postfix)
 
   Rational &operator++(); // i++ (adding 1 to this rational number prefix)
@@ -44,17 +46,17 @@ public:
 
   bool operator>(Rational rat);
 
-  bool operator<(Rational rat);
+  bool operator<(const Rational &rhs) const;
 
-  bool operator>=(Rational rat);
+  bool operator>(const Rational &rhs) const;
 
-  bool operator<=(Rational rat);
+  bool operator<=(const Rational &rhs) const;
 
-  bool operator==(Rational rat);
+  bool operator>=(const Rational &rhs) const;
 
-  bool operator!=(Rational rat);
+  bool operator==(const Rational &rhs) const;
 
-  void reduction();
+  bool operator!=(const Rational &rhs) const;
 
 private:
   int numerator{};
