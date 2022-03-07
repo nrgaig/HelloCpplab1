@@ -78,6 +78,58 @@ void Rational::reduction() {
         denominator = 1;
 }
 
+Rational Rational::operator++(int trash) {
+    return Rational();
+}
+
+Rational Rational::operator++() {
+    return Rational();
+}
+
+Rational Rational::operator--() {
+    return Rational();
+}
+
+Rational Rational::operator--(int trash) {
+    return Rational();
+}
+
+Rational Rational::operator-(const Rational &rat) const {
+    return Rational();
+}
+
+Rational Rational::operator*(const Rational &rat) const {
+    return Rational();
+}
+
+Rational Rational::operator/(const Rational &rat) const {
+    return Rational();
+}
+
+bool Rational::operator>(Rational rat) {
+    return false;
+}
+
+bool Rational::operator<(Rational rat) {
+    return false;
+}
+
+bool Rational::operator>=(Rational rat) {
+    return false;
+}
+
+bool Rational::operator<=(Rational rat) {
+    return false;
+}
+
+bool Rational::operator==(Rational rat) {
+    return false;
+}
+
+bool Rational::operator!=(Rational rat) {
+    return false;
+}
+
 
 
 
