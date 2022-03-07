@@ -26,11 +26,37 @@ public:
 
     void print() const;
 
-    bool equal(const Rational&) const;
+    bool equal(const Rational &) const;
 
     void reduction();
 
-    Rational operator+(const Rational& rat) const;
+    Rational operator++(int trash);
+
+    Rational operator++();
+
+    Rational operator--(int trash);
+
+    Rational operator--();
+
+    Rational operator+(const Rational &rat) const;
+
+    Rational operator-(const Rational &rat) const;
+
+    Rational operator*(const Rational &rat) const;
+
+    Rational operator/(const Rational &rat) const;
+
+    bool operator>(Rational rat);
+
+    bool operator<(Rational rat);
+
+    bool operator>=(Rational rat);
+
+    bool operator<=(Rational rat);
+
+    bool operator==(Rational rat);
+
+    bool operator!=(Rational rat);
 
 private:
     int numerator{};
