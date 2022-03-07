@@ -4,63 +4,61 @@
   exercise 3 task 1
 ****************************************************/
 
+#ifndef HELLOCPPLAB1_RATIONAL_H
+#define HELLOCPPLAB1_RATIONAL_H
 
-#ifndef Q1_RATIONAL_H
-#define Q1_RATIONAL_H
-
-class Rational {
+class Rational
+{
 public:
-    Rational();
+  Rational();
 
-    Rational(int _numerator, int _denominator);
+  Rational(int _numerator, int _denominator);
 
-    Rational(Rational const &copy);
+  Rational(Rational const &copy);
 
-    void setNumerator(int);
+  void setNumerator(int);
 
-    void setDenominator(int);
+  void setDenominator(int);
 
-    int getNumerator() const;
+  int getNumerator() const;
 
-    int getDenominator() const;
+  int getDenominator() const;
 
-    void print() const;
+  void print() const;
 
-    bool equal(const Rational &) const;
+  Rational operator++(int trash); // ++i (adding 1 to this rational number postfix)
 
-    void reduction();
+  Rational &operator++(); // i++ (adding 1 to this rational number prefix)
 
-    Rational operator++(int trash);
+  Rational operator--(int trash); // --i ( subtract rational number by 1 prefix)
 
-    Rational operator++();
+  Rational &operator--(); // i-- (subtraction rational number by 1 prefix)
 
-    Rational operator--(int trash);
+  Rational operator+(const Rational &rat) const;
 
-    Rational operator--();
+  Rational operator-(const Rational &rat) const;
 
-    Rational operator+(const Rational &rat) const;
+  Rational operator*(const Rational &rat) const;
 
-    Rational operator-(const Rational &rat) const;
+  Rational operator/(const Rational &rat) const;
 
-    Rational operator*(const Rational &rat) const;
+  bool operator>(Rational rat);
 
-    Rational operator/(const Rational &rat) const;
+  bool operator<(Rational rat);
 
-    bool operator>(Rational rat);
+  bool operator>=(Rational rat);
 
-    bool operator<(Rational rat);
+  bool operator<=(Rational rat);
 
-    bool operator>=(Rational rat);
+  bool operator==(Rational rat);
 
-    bool operator<=(Rational rat);
+  bool operator!=(Rational rat);
 
-    bool operator==(Rational rat);
-
-    bool operator!=(Rational rat);
+  void reduction();
 
 private:
-    int numerator{};
-    int denominator{};
+  int numerator{};
+  int denominator{};
 };
 
-#endif //Q1_RATIONAL_H
+#endif // HELLOCPPLAB1_RATIONAL_H
