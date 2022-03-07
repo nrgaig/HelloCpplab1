@@ -53,13 +53,11 @@ void Rational::print() const { // printing Rational number as it in paper (n/d)
 
 }
 
-bool Rational::equal(const Rational& rat) const { //check if other Rational is equals with 'this' number
-    if (rat.denominator == denominator && rat.numerator == numerator)
-        return true;
-    return false;
+bool Rational::equal(const Rational &rat) const { //check if other Rational is equals with 'this' number
+    return (rat.denominator == denominator && rat.numerator == numerator);
 }
 
-Rational Rational::operator+(const Rational& rat) const { // add other Rational to 'this' and return the result
+Rational Rational::operator+(const Rational &rat) const { // add other Rational to 'this' and return the result
     Rational newNum;
     newNum.numerator = rat.numerator * denominator + numerator * rat.denominator;
     newNum.denominator = denominator * rat.denominator;
