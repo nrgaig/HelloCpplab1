@@ -106,31 +106,32 @@ Rational Rational::operator/(const Rational &rat) const {
     return Rational();
 }
 
-bool Rational::operator>(Rational rat) {
-    return false;
+bool Rational::operator==(const Rational &rhs) const {
+    return numerator == rhs.numerator &&
+           denominator == rhs.denominator;
 }
 
-bool Rational::operator<(Rational rat) {
-    return false;
+bool Rational::operator!=(const Rational &rhs) const {
+    return !(rhs == *this);
 }
 
-bool Rational::operator>=(Rational rat) {
-    return false;
+bool Rational::operator<(const Rational &rhs) const {
+    if (numerator < rhs.numerator)
+        return true;
+    if (rhs.numerator < numerator)
+        return false;
+    return denominator < rhs.denominator;
 }
 
-bool Rational::operator<=(Rational rat) {
-    return false;
+bool Rational::operator>(const Rational &rhs) const {
+    return rhs < *this;
 }
 
-bool Rational::operator==(Rational rat) {
-    return false;
+bool Rational::operator<=(const Rational &rhs) const {
+    return !(rhs < *this);
 }
 
-bool Rational::operator!=(Rational rat) {
-    return false;
+bool Rational::operator>=(const Rational &rhs) const {
+    return !(*this < rhs);
 }
-
-
-
-
 
