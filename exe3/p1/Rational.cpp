@@ -104,6 +104,7 @@ Rational Rational::operator-(const Rational &rat) const
     int newNumerator = numerator * rat.denominator - rat.numerator * denominator;
     int newDenominator = denominator * rat.denominator;
     Rational temp(newNumerator, newDenominator);
+    temp.reduction();
     return temp;
 }
 
@@ -111,13 +112,19 @@ Rational Rational::operator*(const Rational &rat) const
 {
     int newNumerator = numerator * rat.numerator;
     int newDenominator = denominator * rat.denominator;
-    return Rational(newNumerator, newDenominator);
+    Rational temp(newNumerator, newDenominator);
+    temp.reduction();
+    return temp;
+
 }
 
 Rational Rational::operator/(const Rational &rat) const
 {
-    return Rational();
-}
+    int newNumerator = numerator * rat.denominator;
+    int newDenominator = denominator * rat.numerator;
+    Rational temp(newNumerator, newDenominator);
+    temp.reduction();
+    return temp;}
 
 // reducing the number to minimal rational number
 void Rational::reduction()
