@@ -21,14 +21,16 @@ public:
     void setDate(int _day, int _month, int _year);
 
     void operator++(int trash); // ++i
+
     void operator++(); // i++
-    void operator= (const MyDate& copy);
 
-    bool operator>(const MyDate& copy);
+    void operator=(const MyDate &copy);
 
-    bool operator<(const MyDate& copy);
+    bool operator>(const MyDate &copy);
 
-    bool operator==(const MyDate& copy);
+    bool operator<(const MyDate &copy);
+
+    bool operator==(const MyDate &copy);
 
     void print();
 };

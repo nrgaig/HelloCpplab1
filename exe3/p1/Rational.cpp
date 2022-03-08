@@ -121,11 +121,15 @@ Rational Rational::operator/(const Rational &rat) const
     return Rational(newNumerator, newDenominator);
 }
 
-bool Rational::operator==(const Rational &rhs) const
-{ //== operator checking if rhs is equal to this Rational
-    return numerator == rhs.numerator &&
-           denominator == rhs.denominator;
+bool Rational::operator==(const Rational& num) const {
+    Rational temp1 = *this;
+    Rational temp2 = num;
+    temp1.reduction();
+    temp2.reduction();
+    return temp1.numerator == temp2.numerator &&
+           temp1.denominator == temp2.denominator;
 }
+
 
 bool Rational::operator!=(const Rational &rhs) const
 { //!= operator checking if rhs is not equal to this Rational
