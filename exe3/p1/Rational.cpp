@@ -115,7 +115,7 @@ Rational Rational::operator*(const Rational &rat) const
 }
 
 Rational Rational::operator/(const Rational &rat) const
-{ // / operator divide other Rational with 'this' and return the result
+{ /* '/' operator divide other Rational with 'this' and return the result */
     int newNumerator = numerator / rat.denominator;
     int newDenominator = denominator / rat.numerator;
     return Rational(newNumerator, newDenominator);
