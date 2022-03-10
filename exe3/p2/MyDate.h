@@ -20,19 +20,25 @@ public:
 
     void setDate(int _day, int _month, int _year);
 
-    void operator++(int trash); // ++i
+    MyDate operator=(const MyDate &rhs);
+    MyDate operator++(int trash);
+    MyDate& operator++();
 
-    void operator++(); // i++
+    bool operator<(const MyDate &rhs) const;
 
-    void operator=(const MyDate &copy);
+    bool operator>(const MyDate &rhs) const;
 
-    bool operator>(const MyDate &copy);
+    bool operator<=(const MyDate &rhs) const;
 
-    bool operator<(const MyDate &copy);
+    bool operator>=(const MyDate &rhs) const;
 
-    bool operator==(const MyDate &copy);
+    bool operator==(const MyDate &rhs) const;
+
+    bool operator!=(const MyDate &rhs) const;
 
     void print();
+
+    void check(int _day, int _month, int _year);
 };
 
 
