@@ -3,7 +3,7 @@
   cpp lab - Meir Litman
   exercise 3 task 2
 ****************************************************/
-#include_next <iostream>
+#include <iostream>
 #include "MyDate.h"
 
 using namespace std;
@@ -48,11 +48,32 @@ MyDate MyDate::operator=(const MyDate &rhs) {
 }
 
 MyDate MyDate::operator++(int trash) {
-    return MyDate();
+    MyDate temp = *this;
+    if (day == 30) {
+        if (month == 12) {
+            day = 1;
+            month = 1;
+            year += 1;
+        } else {
+            day = 1;
+            month += 1;
+        }
+    } else{day+=1;}
+    return temp;
 }
 
 MyDate &MyDate::operator++() {
-
+    if (day == 30) {
+        if (month == 12) {
+            day = 1;
+            month = 1;
+            year += 1;
+        } else {
+            day = 1;
+            month += 1;
+        }
+    } else{day+=1;}
+    return *this;
 }
 
 bool MyDate::operator==(const MyDate &rhs) const {
@@ -66,15 +87,7 @@ bool MyDate::operator!=(const MyDate &rhs) const {
 }
 
 bool MyDate::operator<(const MyDate &rhs) const {
-    if (day < rhs.day)
-        return true;
-    if (rhs.day < day)
-        return false;
-    if (month < rhs.month)
-        return true;
-    if (rhs.month < month)
-        return false;
-    return year < rhs.year;
+
 }
 
 bool MyDate::operator>(const MyDate &rhs) const {

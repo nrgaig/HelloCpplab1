@@ -62,11 +62,10 @@ void Rational::print() const
 { // printing Rational number as it in paper (n/d)
     (denominator == 1) ? cout << numerator : cout << numerator << "/" << denominator;
 }
-
 Rational Rational::operator++(int trash)
 {                                       // ++i (addindg 1 to this rational number postfix)
     Rational temp = *this;              // creating new rational number equal to this Rational
-    temp.numerator += temp.denominator; // adding denominator value to numerator as we adding 1 to the number
+    numerator += denominator; // adding denominator value to numerator as we adding 1 to the number
     return temp;
 }
 
