@@ -46,14 +46,15 @@ void MyDate::setDate(int _day, int _month, int _year) { // update properties' va
         day = rhs.day;      //copy day value
         month = rhs.month;  //copy month value
         year = rhs.year;    //copy year value
+        return *this;
     }
 
     MyDate MyDate::operator++(int trash) {  //(postfix)
         // i++ (increase date by 1 - postfix)
         MyDate tmp = *this;  // creating new MyDate duplication
-        if (day++ > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
+        if (++day > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
             day = 1;
-            if (month++ > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
+            if (++month > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
                 month = 1;
                 year++;
             }
@@ -62,9 +63,9 @@ void MyDate::setDate(int _day, int _month, int _year) { // update properties' va
     }
 
     MyDate &MyDate::operator++() {// ++i (increase date by 1 - prefix)
-        if (day++ > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
+        if (++day > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
             day = 1;
-            if (month++ > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
+            if (++month > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
                 month = 1;
                 year++;
             }
@@ -83,15 +84,24 @@ void MyDate::setDate(int _day, int _month, int _year) { // update properties' va
     }
 
     bool MyDate::operator<(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
-        if (day < rhs.day)          // if  this->day   lessThan rhs.day
-            if (month <= rhs.month) // AND this->month lessThan/equal to rhs.month
-                if (year <= rhs.year)// AND this->year  lessThan/equal to rhs.year
-                    return true;
-        // else if rhs.day lessThan/equal this->day
-        if (month < rhs.month)// AND this->month lessThan rhs.month
+//        if (day < rhs.day)          // if  this->day   lessThan rhs.day
+//            if (month <= rhs.month) // AND this->month lessThan/equal to rhs.month
+//                if (year <= rhs.year)// AND this->year  lessThan/equal to rhs.year
+//                    return true;
+//        // else if rhs.day lessThan/equal this->day
+//        if (month < rhs.month)// AND this->month lessThan rhs.month
+//            return true;
+//// else if rhs' day and month lessThan/equal this->day
+//        return year < rhs.year;//if this->year lessThan rhs.year return true else false
+        if (year < rhs.year)
             return true;
-// else if rhs' day and month lessThan/equal this->day
-        return year < rhs.year;//if this->year lessThan rhs.year return true else false
+        if (year > rhs.year)
+            return false;
+        if (month < rhs.month)
+            return true;
+        if (month > rhs.month)
+            return false;
+        return day < rhs.day;
     }
 
     bool MyDate::operator>(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.

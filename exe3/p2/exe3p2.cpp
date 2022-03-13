@@ -61,7 +61,7 @@ int main() {
                 cin >> day >> trash >> month >> trash >> year;
                 MyDate tempDate(day,month,year);
                 initialDate.print();
-                cout << '>';
+                cout << " > ";
                 tempDate.print();
                 cout <<" : ";
                 initialDate > tempDate ? cout<< "true\n" : cout << "false\n";
@@ -72,7 +72,7 @@ int main() {
                 cin >> day >> trash >> month >> trash >> year;
                 MyDate tempDate(day,month,year);
                 initialDate.print();
-                cout << '<';
+                cout << " < ";
                 tempDate.print();
                 cout <<" : ";
                 initialDate < tempDate ? cout<< "true\n" : cout << "false\n";
