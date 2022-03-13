@@ -10,11 +10,11 @@
 class Rational
 {
 public:
-  Rational();
+  Rational();//empty constructor
 
-  Rational(int _numerator, int _denominator);
+  Rational(int _numerator, int _denominator); //constructor
 
-  Rational(Rational const &copy);
+  Rational(Rational const &copy); //copy constructor
 
   void setNumerator(int);
 
@@ -26,7 +26,7 @@ public:
 
   void print() const;
 
-  void reduction();
+  void reduction(); // reducing the number to minimal rational number
 
   Rational operator++(int trash); // ++i (adding 1 to this rational number postfix)
 
@@ -44,15 +44,15 @@ public:
 
   Rational operator/(const Rational &rat) const;
 
-  bool operator>(Rational rat);
+  //bool operator>(Rational rat);
 
-  bool operator<(const Rational &rhs) const;
+  bool operator<(const Rational &rhs) const; // < operator, check if this smaller than rhs.
 
-  bool operator>(const Rational &rhs) const;
+  bool operator>(const Rational &rhs) const; // > operator, check if this bigger than rhs.
 
-  bool operator<=(const Rational &rhs) const;
+  bool operator<=(const Rational &rhs) const; // <= operator, check if this equal or smaller than rhs.
 
-  bool operator>=(const Rational &rhs) const;
+  bool operator>=(const Rational &rhs) const; // >= operator, check if this equal or bigger than rhs.
 
   bool operator==(const Rational &rhs) const;
 

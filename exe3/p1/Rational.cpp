@@ -34,13 +34,13 @@ void Rational::setNumerator(int num)
 
 void Rational::setDenominator(int num)
 {
-    // if it get denominator 0 it is illegal in math so it set to 1
+    // if it gets denominator 0 it is illegal in math, so it set to 1
     if (num == 0)
     {
         denominator = 1;
     }
     else if (num < 0)
-    { // if it get negative denominator it make it positive and negative the numerator
+    { // if it gets negative denominator it makes it positive and negative the numerator
         denominator = num * -1;
         numerator *= -1;
     }
@@ -59,20 +59,20 @@ int Rational::getDenominator() const
 }
 
 void Rational::print() const
-{ // printing Rational number as it in paper (n/d)
+{ // printing Rational number like it in paper (n/d)
     (denominator == 1) ? cout << numerator : cout << numerator << "/" << denominator;
 }
 
 Rational Rational::operator++(int trash)
-{                                       // ++i (addindg 1 to this rational number postfix)
+{                                       // ++i (adding 1 to this rational number postfix)
     Rational temp = *this;              // creating new rational number equal to this Rational
-    temp.numerator += temp.denominator; // adding denominator value to numerator as we adding 1 to the number
+    temp.numerator += temp.denominator; // adding denominator value to numerator as we're adding 1 to the number
     return temp;
 }
 
 Rational &Rational::operator++()
-{                             // i++ (addindg 1 to this rational number prefix)
-    numerator += denominator; // adding denominator value to numerator as we adding 1 to the number
+{                             // i++ (adding 1 to this rational number prefix)
+    numerator += denominator; // adding denominator value to numerator as we're adding 1 to the number
     return *this;
 }
 
@@ -80,7 +80,7 @@ Rational Rational::operator--(int trash)
 { // --i operator subtract rational number by 1 postfix
 
     Rational temp = *this;    // creating new rational number equal to this Rational
-    numerator -= denominator; // substract denominator value from numerator as we adding 1 to the number
+    numerator -= denominator; // subtract denominator value from numerator as subtract 1 from the number
     return temp;
 }
 
@@ -100,10 +100,11 @@ Rational Rational::operator+(const Rational &rat) const
 }
 
 Rational Rational::operator-(const Rational &rat) const
-{ // - operator substruct other Rational from 'this' and return the result
+{ // - operator subtract other Rational from 'this' and return the result
     int newNumerator = numerator * rat.denominator - rat.numerator * denominator;
     int newDenominator = denominator * rat.denominator;
     Rational temp(newNumerator, newDenominator);
+    temp.reduction();
     return temp;
 }
 
@@ -111,18 +112,18 @@ Rational Rational::operator*(const Rational &rat) const
 { // * operator multiply other Rational with 'this' and return the result
     int newNumerator = numerator * rat.numerator;
     int newDenominator = denominator * rat.denominator;
-    return Rational(newNumerator, newDenominator);
+    return {newNumerator, newDenominator};
 }
 
 Rational Rational::operator/(const Rational &rat) const
 { /* '/' operator divide other Rational with 'this' and return the result */
     int newNumerator = numerator / rat.denominator;
     int newDenominator = denominator / rat.numerator;
-    return Rational(newNumerator, newDenominator);
+    return {newNumerator, newDenominator};
 }
 
-bool Rational::operator==(const Rational& num) const {
-    Rational temp1 = *this;
+bool Rational::operator==(const Rational& num) const {// checking if rational number is equal to this Rational
+    Rational temp1 = *this; //
     Rational temp2 = num;
     temp1.reduction();
     temp2.reduction();
@@ -137,7 +138,7 @@ bool Rational::operator!=(const Rational &rhs) const
 }
 
 bool Rational::operator<(const Rational &rhs) const
-{ // < operator, check if this small then rhs.
+{ // < operator, check if this smaller than rhs.
     if (numerator < rhs.numerator)
         return true;
     if (rhs.numerator < numerator)
@@ -146,17 +147,17 @@ bool Rational::operator<(const Rational &rhs) const
 }
 
 bool Rational::operator>(const Rational &rhs) const
-{ // > operator, check if this big then rhs.
+{ // > operator, check if this bigger than rhs.
     return rhs < *this;
 }
 
 bool Rational::operator<=(const Rational &rhs) const
-{ // <= operator, check if this equal or small then rhs.
+{ // <= operator, check if this equal or smaller than rhs.
     return !(rhs < *this);
 }
 
 bool Rational::operator>=(const Rational &rhs) const
-{ // >= operator, check if this equal or big then rhs.
+{ // >= operator, check if this equal or bigger than rhs.
     return !(*this < rhs);
 }
 

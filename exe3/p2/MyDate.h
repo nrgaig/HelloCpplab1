@@ -14,13 +14,13 @@ private:
     int month;
     int year;
 public:
-    MyDate(int _day = 1, int _month = 1, int _year = 1920);
+    explicit MyDate(int _day = 1, int _month = 1, int _year = 1920); // constructor
 
-    MyDate(const MyDate &copy);
+    MyDate(const MyDate &copy); // copy constructor
 
-    void setDate(int _day, int _month, int _year);
+    void setDate(int _day, int _month, int _year); //
 
-    MyDate operator=(const MyDate &rhs);
+    MyDate &operator=(const MyDate &rhs);
     MyDate operator++(int trash);
     MyDate& operator++();
 
@@ -36,7 +36,7 @@ public:
 
     bool operator!=(const MyDate &rhs) const;
 
-    void print();
+    void print() const;
 
     void check(int _day, int _month, int _year);
 };
