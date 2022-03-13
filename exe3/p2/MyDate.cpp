@@ -29,16 +29,16 @@ void MyDate::check(int _day, int _month, int _year) {
     } else day = _day;
     if (_month < 1 || _month > 12) {
         cout << "Error month" << endl;
-        _month = 1;
+        month = 1;
     } else month = _month;
     if (_year < 1920) {
         cout << "Error year" << endl;
-        _year = 1920;
+        year = 1920;
     } else year = _year;
 }
 
 void MyDate::print() {
-    cout << day << '/' << month << '/' << year << endl;
+    cout << day << '/' << month << '/' << year;
 }
 
 MyDate MyDate::operator=(const MyDate &rhs) {
@@ -58,7 +58,7 @@ MyDate MyDate::operator++(int trash) {
             day = 1;
             month += 1;
         }
-    } else{day+=1;}
+    } else { day += 1; }
     return temp;
 }
 
@@ -72,7 +72,7 @@ MyDate &MyDate::operator++() {
             day = 1;
             month += 1;
         }
-    } else{day+=1;}
+    } else { day += 1; }
     return *this;
 }
 
@@ -87,7 +87,18 @@ bool MyDate::operator!=(const MyDate &rhs) const {
 }
 
 bool MyDate::operator<(const MyDate &rhs) const {
-
+    if (year < rhs.year)
+        return true;
+    if (year > rhs.year)
+        return false;
+    if (month < rhs.month)
+        return true;
+    if (month > rhs.month)
+        return false;
+    if (day < rhs.day)
+        return true;
+    else
+        return false;
 }
 
 bool MyDate::operator>(const MyDate &rhs) const {

@@ -21,8 +21,10 @@ public:
     void setDate(int _day, int _month, int _year);
 
     MyDate operator=(const MyDate &rhs);
+
     MyDate operator++(int trash);
-    MyDate& operator++();
+
+    MyDate &operator++();
 
     bool operator<(const MyDate &rhs) const;
 
