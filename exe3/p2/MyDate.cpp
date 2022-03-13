@@ -3,13 +3,13 @@
   cpp lab - Meir Litman
   exercise 3 task 2
 ****************************************************/
-#include_next <iostream>
+#include <iostream>
 #include "MyDate.h"
 
 using namespace std;
 
 MyDate::MyDate(int _day, int _month, int _year) {// constructor
-    this->check(_day, _month, _year); // TODO
+    this->check(_day, _month, _year);
 }
 
 MyDate::MyDate(const MyDate &copy) {// copy constructor
@@ -29,19 +29,19 @@ void MyDate::check(int _day, int _month, int _year) { //checking if values is va
     } else day = _day;
     if (_month < 1 || _month > 12) {// checking if month value is invalid. otherwise, it set it.
         cout << "Error month" << endl;
-        _month = 1;
+        month = 1;
     } else month = _month;
     if (_year < 1920) {// checking if year value is invalid. otherwise, it set it.
         cout << "Error year" << endl;
-        _year = 1920;
+        year = 1920;
     } else year = _year;
 }
 
 void MyDate::print() const { // printing date in format dd/mm/yy
-    cout << day << '/' << month << '/' << year << endl;
+    cout << day << '/' << month << '/' << year;
 }
 
-MyDate & MyDate::operator=(const MyDate &rhs) {// Assigning operator - coping values from 'rhs' to 'this'.
+MyDate &MyDate::operator=(const MyDate &rhs) {// Assigning operator - coping values from 'rhs' to 'this'.
     day = rhs.day;      //copy day value
     month = rhs.month;  //copy month value
     year = rhs.year;    //copy year value
@@ -49,22 +49,22 @@ MyDate & MyDate::operator=(const MyDate &rhs) {// Assigning operator - coping va
 
 MyDate MyDate::operator++(int trash) //(postfix)
 {                       // ++i (increase date by 1 - postfix)
-    MyDate tmp =*this;  // creating new MyDate duplication
-    if(tmp.day++>30){// if adding 1 to day value is not in bound, day is the 1st and increase month value
-        tmp.day=1;
-        if(tmp.month++>12){ // if adding 1 to mount value is not in bound, month is 1 and increase year value
-            tmp.month=1;
+    MyDate tmp = *this;  // creating new MyDate duplication
+    if (tmp.day++ > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
+        tmp.day = 1;
+        if (tmp.month++ > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
+            tmp.month = 1;
             tmp.year++;
         }
     }
     return tmp;
 }
 
-MyDate &MyDate::operator++() {// i++ (aincrease date by 1 - prefix)
-    if(day++>30){// if adding 1 to day value is not in bound, day is the 1st and increase month value
-        day=1;
-        if(month++>12){ // if adding 1 to mount value is not in bound, month is 1 and increase year value
-            month=1;
+MyDate &MyDate::operator++() {// i++ (increase date by 1 - prefix)
+    if (day++ > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
+        day = 1;
+        if (month++ > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
+            month = 1;
             year++;
         }
     }
@@ -84,7 +84,7 @@ bool MyDate::operator!=(const MyDate &rhs) const {// check if ths is NOT same da
 bool MyDate::operator<(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
     if (day < rhs.day)          // if  this->day   lessThan rhs.day
         if (month <= rhs.month) // AND this->month lessThan/equal to rhs.month
-            if(year <= rhs.year)// AND this->year  lessThan/equal to rhs.year
+            if (year <= rhs.year)// AND this->year  lessThan/equal to rhs.year
                 return true;
     // else if rhs.day lessThan/equal this->day
     if (month < rhs.month)// AND this->month lessThan rhs.month
@@ -96,7 +96,7 @@ bool MyDate::operator<(const MyDate &rhs) const {// comparing each value of each
 bool MyDate::operator>(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
     if (day > rhs.day)          // if  this->day   moreThan rhs.day
         if (month >= rhs.month) // AND this->month moreThan/equal to rhs.month
-            if(year >= rhs.year)// AND this->year  moreThan/equal to rhs.year
+            if (year >= rhs.year)// AND this->year  moreThan/equal to rhs.year
                 return true;
     // else if rhs.day moreThan/equal this->day
     if (month > rhs.month)// AND this->month moreThan rhs.month
