@@ -20,7 +20,7 @@ public:
 
     void setDate(int _day, int _month, int _year); //
 
-    MyDate &operator=(const MyDate &rhs);
+    MyDate& operator=(const MyDate &rhs);
     MyDate operator++(int trash);
     MyDate& operator++();
 
