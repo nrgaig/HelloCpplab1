@@ -7,8 +7,6 @@
 
 #include <iostream>
 #include "MyString.h"
-#include <String.h>
-
 int main() {
     int num;
     char char1;
@@ -22,7 +20,8 @@ int main() {
     cout << 'a';
     (a==b)? cout << '=': (a>b) ? cout << '>' : cout << '<';
     cout << 'b'<<endl;
-    MyString temp = a.insert(num, b.getStr());//applying insert() function
+    MyString temp;
+    temp = a.insert(num, b.getStr());//applying insert() function
 
     cout << temp << endl;// printing result
 

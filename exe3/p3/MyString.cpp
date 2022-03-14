@@ -60,11 +60,10 @@ MyString &MyString::operator=(MyString &&ms) { // move assignment operator
 
     if (str)
         delete[] str;
-
     len = ms.len;
     str = ms.str; // steal (dont copy) rvalue's data
     ms.str = nullptr;
-
+    cout << "move assign" <<endl;
     return *this;
 }
 
@@ -77,19 +76,15 @@ char &MyString::operator[](int index) {
 }
 
 MyString MyString::insert(int index, const char *_str) { // insert string into our string and return results
-    cout << "test0 " << str <<' '<<_str << endl;
-    char *newStr = new char[3];// creating new _str to copy all data to return
-    cout << "test1 " << newStr << endl;
-    if (index < 0 || index >= len){ // if index is not in bounds print error message
+    char *newStr = new char[index];// creating new _str to copy all data to return
+    if (index < 0 || index > len){ // if index is not in bounds print error message
         cout << "ERROR" << endl;
-        return newStr; // return empty stri
+        MyString temp(newStr);
+        return temp;// return newStr // return empty stri
     }
-    strncpy(newStr, str, index); // copy data from str
-//    strcpy(newStr, str); // copy data from str
-    cout << "after strncpy " << newStr <<endl;
-    strcat(newStr, _str); // subtract _str to the newStr
-    cout << "after strcat " << newStr<<endl;
-
+    strncpy(newStr, _str, index); // copy data from str
+    strcat(newStr, str); // subtract _str to the newStr
+    strcat(newStr, _str+index); // subtract _str to the newStr
     MyString temp(newStr);
     return temp;// return newStr
 }
