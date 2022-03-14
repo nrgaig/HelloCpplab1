@@ -84,15 +84,6 @@ void MyDate::setDate(int _day, int _month, int _year) { // update properties' va
     }
 
     bool MyDate::operator<(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
-//        if (day < rhs.day)          // if  this->day   lessThan rhs.day
-//            if (month <= rhs.month) // AND this->month lessThan/equal to rhs.month
-//                if (year <= rhs.year)// AND this->year  lessThan/equal to rhs.year
-//                    return true;
-//        // else if rhs.day lessThan/equal this->day
-//        if (month < rhs.month)// AND this->month lessThan rhs.month
-//            return true;
-//// else if rhs' day and month lessThan/equal this->day
-//        return year < rhs.year;//if this->year lessThan rhs.year return true else false
         if (year < rhs.year)
             return true;
         if (year > rhs.year)
