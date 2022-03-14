@@ -37,8 +37,6 @@ public:
     bool operator!=(const MyDate &rhs) const;
 
     void print() const;
-
-    void check(int _day, int _month, int _year);
 };
 
 
