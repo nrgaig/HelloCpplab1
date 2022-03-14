@@ -38,91 +38,83 @@ void MyDate::setDate(int _day, int _month, int _year) { // update properties' va
     }
 }
 
-    void MyDate::print() const { // printing date in format dd/mm/yy
-        cout << day << '/' << month << '/' << year;
-    }
+void MyDate::print() const { // printing date in format dd/mm/yy
+    cout << day << '/' << month << '/' << year;
+}
 
-    MyDate &MyDate::operator=(const MyDate &rhs) {// Assigning operator - coping values from 'rhs' to 'this'.
-        day = rhs.day;      //copy day value
-        month = rhs.month;  //copy month value
-        year = rhs.year;    //copy year value
-        return *this;
-    }
+MyDate &MyDate::operator=(const MyDate &rhs) {// Assigning operator - coping values from 'rhs' to 'this'.
+    day = rhs.day;      //copy day value
+    month = rhs.month;  //copy month value
+    year = rhs.year;    //copy year value
+    return *this;
+}
 
-    MyDate MyDate::operator++(int trash) {  //(postfix)
-        // i++ (increase date by 1 - postfix)
-        MyDate tmp = *this;  // creating new MyDate duplication
-        if (++day > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
-            day = 1;
-            if (++month > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
-                month = 1;
-                year++;
-            }
+MyDate MyDate::operator++(int trash) {  //(postfix)
+    // i++ (increase date by 1 - postfix)
+    MyDate tmp = *this;  // creating new MyDate duplication
+    if (++day > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
+        day = 1;
+        if (++month > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
+            month = 1;
+            year++;
         }
-        return tmp;
     }
+    return tmp;
+}
 
-    MyDate &MyDate::operator++() {// ++i (increase date by 1 - prefix)
-        if (++day > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
-            day = 1;
-            if (++month > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
-                month = 1;
-                year++;
-            }
+MyDate &MyDate::operator++() {// ++i (increase date by 1 - prefix)
+    if (++day > 30) {// if adding 1 to day value is not in bound, day is the 1st and increase month value
+        day = 1;
+        if (++month > 12) { // if adding 1 to mount value is not in bound, month is 1 and increase year value
+            month = 1;
+            year++;
         }
-        return *this;
     }
+    return *this;
+}
 
-    bool MyDate::operator==(const MyDate &rhs) const { // check if ths is same date like 'this'
-        return day == rhs.day &&
-               month == rhs.month &&
-               year == rhs.year; // comparing each value of each property of both this and rhs.
-    }
+bool MyDate::operator==(const MyDate &rhs) const { // check if ths is same date like 'this'
+    return day == rhs.day &&
+           month == rhs.month &&
+           year == rhs.year; // comparing each value of each property of both this and rhs.
+}
 
-    bool MyDate::operator!=(const MyDate &rhs) const {// check if ths is NOT same date like 'this'
-        return !(rhs == *this);
-    }
+bool MyDate::operator!=(const MyDate &rhs) const {// check if ths is NOT same date like 'this'
+    return !(rhs == *this);
+}
 
-    bool MyDate::operator<(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
-//        if (day < rhs.day)          // if  this->day   lessThan rhs.day
-//            if (month <= rhs.month) // AND this->month lessThan/equal to rhs.month
-//                if (year <= rhs.year)// AND this->year  lessThan/equal to rhs.year
-//                    return true;
-//        // else if rhs.day lessThan/equal this->day
-//        if (month < rhs.month)// AND this->month lessThan rhs.month
-//            return true;
-//// else if rhs' day and month lessThan/equal this->day
-//        return year < rhs.year;//if this->year lessThan rhs.year return true else false
-        if (year < rhs.year)
-            return true;
-        if (year > rhs.year)
-            return false;
-        if (month < rhs.month)
-            return true;
-        if (month > rhs.month)
-            return false;
-        return day < rhs.day;
-    }
+bool MyDate::operator<(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
+    if (year < rhs.year)
+        return true;
+    if (year > rhs.year)
+        return false;
+    if (month < rhs.month)
+        return true;
+    if (month > rhs.month)
+        return false;
+    return day < rhs.day;
+}
 
-    bool MyDate::operator>(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
-        if (day > rhs.day)          // if  this->day   moreThan rhs.day
-            if (month >= rhs.month) // AND this->month moreThan/equal to rhs.month
-                if (year >= rhs.year)// AND this->year  moreThan/equal to rhs.year
-                    return true;
-        // else if rhs.day moreThan/equal this->day
-        if (month > rhs.month)// AND this->month moreThan rhs.month
-            return true;
+bool MyDate::operator>(const MyDate &rhs) const {// comparing each value of each property of both this and rhs.
+    return rhs < *this;
+    if (day > rhs.day)          // if  this->day   moreThan rhs.day
+        if (month >= rhs.month) // AND this->month moreThan/equal to rhs.month
+            if (year >= rhs.year)// AND this->year  moreThan/equal to rhs.year
+                return true;
+    // else if rhs.day moreThan/equal this->day
+    if (month > rhs.month)// AND this->month moreThan rhs.month
+        return true;
 // else if rhs' day and month moreThan/equal this->day
-        return year > rhs.year;//if this->year moreThan rhs.year return true else false
-    }
+    return year > rhs.year;//if this->year moreThan rhs.year return true else false
+}
 
-    bool MyDate::operator<=(const MyDate &rhs) const {
-        return !(rhs < *this);
-    }
+bool MyDate::operator<=(const MyDate &rhs) const {
+    return !(rhs < *this);
+}
 
-    bool MyDate::operator>=(const MyDate &rhs) const {
-        return !(*this < rhs);
-    }
+bool MyDate::operator>=(const MyDate &rhs) const {
+    return !(*this < rhs);
+}
 
 
 
