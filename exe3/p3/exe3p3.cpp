@@ -12,22 +12,23 @@ int main() {
     char char1;
     MyString a;
     MyString b;
+    //getting from user two strings and number
     cin >> a;
-    cin >> b;//getting from user two strings and number
+    cin >> b;
     cin >> num;
 
     // printing ratio between two strings
     cout << 'a';
     (a==b)? cout << '=': (a>b) ? cout << '>' : cout << '<';
     cout << 'b'<<endl;
-    MyString temp;
+    MyString temp;  // creating temp string
     temp = a.insert(num, b.getStr());//applying insert() function
 
-    cout << temp << endl;// printing result
+    cout << temp << endl;   // printing result
 
-    cin >> char1 >> num;//getting from user character and number
-    temp[num] = char1;  // insert character into temp
-    cout << temp << endl;// printing result
+    cin >> char1 >> num;    // getting from user character and number
+    temp[num] = char1;      // insert character into temp
+    cout << temp << endl;   // printing result
 
 
 
