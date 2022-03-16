@@ -2,6 +2,7 @@
   Created by Maor Frost 206370231 and Itay Oren 318648482
   cpp lab - Meir Litman
   exercise 3 task 2
+  class representing date to understand some operators
 ****************************************************/
 #include <iostream>
 #include "MyDate.h"
