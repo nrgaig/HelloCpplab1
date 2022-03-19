@@ -22,7 +22,7 @@ int main() {
     (a==b)? cout << '=': (a>b) ? cout << '>' : cout << '<';
     cout << 'b'<<endl;
     MyString temp;  // creating temp string
-    temp = a.insert(num, b.getStr());//applying insert() function
+    temp = b.insert(num, a.getStr());//applying insert() function
 
     cout << temp << endl;   // printing result
 

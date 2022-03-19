@@ -83,9 +83,9 @@ MyString MyString::insert(int index, const char *_str) { // insert string into o
         MyString temp(newStr);
         return temp;// return newStr // return empty stri
     }
-    strncpy(newStr, _str, index); // copy data from str
-    strcat(newStr, str); // subtract _str to the newStr
-    strcat(newStr, _str+index); // subtract _str to the newStr
+    strncpy(newStr, str, index); // copy data from str
+    strcat(newStr, _str); // subtract _str to the newStr
+    strcat(newStr, str+index); // subtract _str to the newStr
     MyString temp(newStr);
     return temp;// return newStr
 }
