@@ -82,7 +82,7 @@ Clock Clock::operator+=(int minuteToAdd) {
             hour += 1;
             second = second - 60;
             if (hour > 24) {
-                throw "Invalid time - more than 24 hours.\n"; // TODO need this?
+                hour = 0;
             }
         }
     }
