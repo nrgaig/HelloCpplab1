@@ -57,7 +57,7 @@ istream &operator>>(istream &is, Account &ms) {
     if (locationOfShtrudel == string::npos)
         throw "ERROR: email must contain @!\n";
     size_t locationOfCom = _email.find(".com", locationOfShtrudel + 1);
-    size_t locationOfComIl = _email.find(".com,il", locationOfShtrudel + 1);
+    size_t locationOfComIl = _email.find(".co,il", locationOfShtrudel + 1);
     if (locationOfComIl == string::npos && locationOfCom == string::npos)
         throw "ERROR: email must end at .com or .co.il!\n";
     ms.accountNumber = _accountNumber;

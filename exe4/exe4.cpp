@@ -85,7 +85,7 @@ void checkAccount(Account bank[], int i) {
             throw "ERROR: account number must be unique!\n";
 }
 int main() {
-    const int SIZE = 3;
+    const int SIZE = 2;
     Clock c(8, 0, 0);
     Account bank[SIZE];
     cout << "enter account number, code and email for " << SIZE << " accounts:\n";
