@@ -22,7 +22,7 @@ public:
 
     Account();
 
-    Account(int _accountNumber, int _code, int _balance, string _email);
+    Account(int _accountNumber, int _code, int _balance, const string& _email);
 
     int getAccountNumber() const;
 
@@ -34,9 +34,9 @@ public:
 
     friend istream& operator>>(istream& is, Account& ms);// istream operator
 
-    void withdraw(int nis);
+    void withdraw(float nis);
 
-    void deposit(int nis);
+    void deposit(float nis);
     static int sumWithdraw;
     static int sumDeposit ;
 
