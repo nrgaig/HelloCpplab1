@@ -47,23 +47,21 @@ const string &Account::getEmail() const {
     return email;
 }
 
-istream &operator>>(istream &is, Account &ms) {
+istream &operator>>(istream &inStream, Account &account) {
     int _accountNumber, _code;
     string _email;
-    is >> _accountNumber >> _code >> _email;
-    if (_code < 1000)
+    inStream >> _accountNumber >> _code >> _email;
+    if (_code < 1000 || _code > 9999)
         throw "ERROR: code must be of 4 digits!\n";
-    size_t locationOfShtrudel = _email.find('@');
-    if (locationOfShtrudel == string::npos)
+    size_t atIndex = _email.find('@');
+    if (atIndex == string::npos)
         throw "ERROR: email must contain @!\n";
-    size_t locationOfCom = _email.find(".com", locationOfShtrudel + 1);
-    size_t locationOfComIl = _email.find(".co.il", locationOfShtrudel + 1);
-    if (locationOfComIl == string::npos && locationOfCom == string::npos)
+    if (_email.find(".com", atIndex + 1) == string::npos && _email.find(".co.il", atIndex + 1) == string::npos)
         throw "ERROR: email must end at .com or .co.il!\n";
-    ms.accountNumber = _accountNumber;
-    ms.code = _code;
-    ms.email = _email;
-    return is;
+    account.accountNumber = _accountNumber;
+    account.code = _code;
+    account.email = _email;
+    return inStream;
 }
 
 
