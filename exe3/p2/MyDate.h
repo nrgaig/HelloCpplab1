@@ -15,7 +15,7 @@ private:
     int month;
     int year;
 public:
-    explicit MyDate(int _day = 1, int _month = 1, int _year = 1920); // constructor
+    MyDate(int _day = 1, int _month = 1, int _year = 1920); // constructor
 
     MyDate(const MyDate &copy); // copy constructor
 
