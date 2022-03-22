@@ -39,13 +39,13 @@ int findAccount(Account* bank, int size) {
     throw "ERROR: wrong code!\n";
 }
 void printTransaction(Account a, ACTION ac, Clock& c) {
-    cout << c << "\t";
+    cout << c << "\n";
     switch (ac) {
-        case BALANCE: cout << "account #: " << a.getAccountNumber() << "\t";
+        case BALANCE: cout << "account #: " << a.getAccountNumber() << "\n";
             cout << "balance: " << a.getBalance() << endl;
             break;
         case DEPOSIT:
-        case WITHDRAW: cout << "account #: " << a.getAccountNumber() << "\t";
+        case WITHDRAW: cout << "account #: " << a.getAccountNumber() << "\n";
             cout << "new balance: " << a.getBalance() << endl;
             break;
         case SUM_DEPOSIT:
@@ -75,7 +75,13 @@ void cashWithdraw(Account* bank, int size, Clock& c) {
     float amount;
     cout << "enter the amount of money to withdraw:\n ";
     cin >> amount;
-    bank[i].withdraw(amount);
+    try {
+        bank[i].withdraw(amount);
+    }
+    catch (const char *error) {
+        cout << c << "\t" << error << "\n";
+        return;
+    }
     c += 50;
     printTransaction(bank[i], WITHDRAW, c);
 }

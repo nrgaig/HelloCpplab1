@@ -13,7 +13,7 @@ int Account::sumDeposit = 0;
 
 Account::Account() : accountNumber(0), code(0), balance(0), email("") {} // empty constructor
 
-Account::Account(int _accountNumber, int _code, int _balance, string _email) {
+Account::Account(int _accountNumber, int _code, int _balance, const string& _email) {
     if (_code < 1000)
         throw "ERROR: code must be of 4 digits!\n";
 
@@ -65,15 +65,15 @@ istream &operator>>(istream &inStream, Account &account) {
 }
 
 
-void Account::withdraw(int nis) {
-    if (balance - nis < -6000)
+void Account::withdraw(float nis) {
+    if ((float)balance - nis < -6000)
         throw "ERROR: cannot have less than - 6000 NIS!\n";
     if (nis > 2500)
         throw "ERROR: cannot withdraw more than 2500 NIS!\n";
     balance -= nis;
 }
 
-void Account::deposit(int nis) {
+void Account::deposit(float nis) {
     if (nis > 10000)
         throw "ERROR: cannot deposit more than 10000 NIS!\n";
     balance += nis;

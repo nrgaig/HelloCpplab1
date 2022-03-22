@@ -73,14 +73,14 @@ int Clock::getSecond() const {
 }
 
 
-Clock Clock::operator+=(int minuteToAdd) {
-    minute += minuteToAdd;
-    if (minute > 60) {
-        second += 1;
-        minute = minute - 60;
-        if (second > 60) {
+Clock Clock::operator+=(int secondToAdd) {
+    second += secondToAdd;
+    if (second > 60) {
+        minute += 1;
+        second = second - 60;
+        if (minute > 60) {
             hour += 1;
-            second = second - 60;
+            minute = minute - 60;
             if (hour > 24) {
                 hour = 0;
             }
