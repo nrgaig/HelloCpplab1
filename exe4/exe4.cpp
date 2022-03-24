@@ -61,11 +61,13 @@ void printTransaction(Account a, ACTION ac, Clock& c) {
     }
 }
 void getBalance(Account* bank, int size, Clock& c) {
-    try {//modified - add try-catch
-        int i = findAccount(bank, size);
-    } catch (const char* msg) {
-        //c += 20; TODO chek if needed
-        cout << c << '\t' << msg;
+    int i;
+    try {// try to find account - if there is error catch error message and
+        i= findAccount(bank, size);
+    }
+    catch (const char *msg) {
+        c += 20;
+        cout << c << "\t" << msg << "\n";
         return;
     }
     c += 20;
@@ -73,24 +75,46 @@ void getBalance(Account* bank, int size, Clock& c) {
 
 }
 void cashDeposit(Account* bank, int size, Clock& c) {
-    int i = findAccount(bank, size);
+    int i;
+    try {// try to find account - if there is error catch error message
+        i= findAccount(bank, size);
+    }
+    catch (const char *error) {
+        cout << c << "\t" << error << "\n";
+        return;
+    }
     float amount;
     cout << "enter the amount of the deposit:\n ";
     cin >> amount;
-    bank[i].deposit(amount);
+    try {// try to deposit amount into account - if there is error catch error message
+        bank[i].deposit(amount);
+    }
+    catch (const char *error) {
+        c += 30;
+        cout << c << "\t" << error << "\n";
+        return;
+    }
     c += 30;
     printTransaction(bank[i], DEPOSIT, c);
 }
 void cashWithdraw(Account* bank, int size, Clock& c) {
-    int i = findAccount(bank, size);
+    int i;
+    try {// try to find account - if there is error catch error message
+        i= findAccount(bank, size);
+    }
+    catch (const char *error) {
+        cout << c << "\t" << error << "\n";
+        return;
+    }
     float amount;
     cout << "enter the amount of money to withdraw:\n ";
     cin >> amount;
-    try {
+    try {// try to draw amount from account - if there is error catch error message
         bank[i].withdraw(amount);
     }
     catch (const char *error) {
         cout << c << "\t" << error << "\n";
+        c += 50;
         return;
     }
     c += 50;
@@ -102,7 +126,7 @@ void checkAccount(Account bank[], int i) {
             throw "ERROR: account number must be unique!\n";
 }
 int main() {
-    const int SIZE = 2;
+    const int SIZE = 2; //todo it might do some problems
     Clock c(8, 0, 0);
 
     Account bank[SIZE];// creating bank - (array of accounts) and getting accs values
@@ -139,3 +163,103 @@ int main() {
 
     return 0;
 }
+/*
+enter account number, code and email for 2 accounts:
+123  4444 me@gmail.com
+234 5555  you@walla.co.il
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+1
+please enter account number:
+123
+please enter the code:
+4445
+08:00:20	ERROR: wrong code!
+
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+1
+please enter account number:
+123
+please enter the code:
+4444
+08:00:40
+account #: 123
+balance: 0
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+2
+please enter account number:
+123
+please enter the code:
+4444
+enter the amount of the deposit:
+ 20000
+08:01:10	ERROR: cannot deposit more than 10000 NIS!
+
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+2
+please enter account number:
+12
+08:01:10	ERROR: no such account number
+
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+3
+please enter account number:
+123
+please enter the code:
+4444
+enter the amount of money to withdraw:
+ 500
+08:01:60
+account #: 123
+new balance: -500
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+4
+08:02:60
+sum of all deposits: 0
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+5
+08:03:60
+sum of all withdrawals: 1
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to stop
+0
+
+*/
