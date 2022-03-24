@@ -2,7 +2,7 @@
   Created by Maor Frost 206370231 and Itay Oren 318648482
   cpp lab - Meir Litman
   exercise 4
-
+  class implement clock/time
 ****************************************************/
 
 #include "Clock.h"
@@ -80,13 +80,13 @@ int Clock::getSecond() const {
 
 Clock Clock::operator+=(int secondToAdd) { // += operator, add some seconds to the current time.
     second += secondToAdd; // add the seconds to the current time
-    if (second > 60) { // if the seconds are greater than 60, need to add minute.
+    if (second >= 60) { // if the seconds are greater than 60, need to add minute.
         minute += 1; // add minute
         second = second - 60; // save the remains in second.
-        if (minute > 60) { // if the minutes are greater than 60, need to add hour.
+        if (minute >= 60) { // if the minutes are greater than 60, need to add hour.
             hour += 1; // add hour
             minute = minute - 60; // save the remains in minute.
-            if (hour > 24) { // if the hours are greater than 24, need to move to the next day.
+            if (hour >= 24) { // if the hours are greater than 24, need to move to the next day.
                 hour = 0;
             }
         }

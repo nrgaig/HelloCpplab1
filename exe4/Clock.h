@@ -36,10 +36,10 @@ public:
 
 
 private:
-    //**i think they mean to initialize in this section, check it - (maor)
-    int hour;//=0
-    int minute;//=0
-    int second;//=0
+    //// if there are no problems, set the values.
+    int hour;
+    int minute;
+    int second;
 };
 
 
