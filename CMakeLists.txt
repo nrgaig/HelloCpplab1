@@ -18,4 +18,9 @@ set(CMAKE_CXX_STANDARD 11)
 #add_executable(cpplab2 exe3/p3/exe3p3.cpp exe3/p3/MyString.cpp exe3/p3/MyString.h )
 
     # exe 4 #
-add_executable(cpplab2 exe4/Clock.cpp exe4/Clock.h exe4/exe4.cpp exe4/Account.cpp exe4/Account.h)
+#add_executable(cpplab2 exe4/Clock.cpp exe4/Clock.h exe4/exe4.cpp exe4/Account.cpp exe4/Account.h exe5/p1/List.cpp exe5/p1/List.h)
+
+    # exe 5 #
+
+add_executable(cpplab2 exe5/p1/List.cpp exe5/p1/List.h exe5/p1/exe5p1.cpp)
+#add_executable(cpplab2 exe5/p2/List.cpp exe5/p2/List.h exe5/p2/exe5p2.cpp)
