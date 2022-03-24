@@ -1,6 +1,9 @@
-//
-// Created by itayo on 20/03/2022.
-//
+/****************************************************
+  Created by Maor Frost 206370231 and Itay Oren 318648482
+  cpp lab - Meir Litman
+  exercise 4
+  class implement clock/time
+****************************************************/
 
 #include "Clock.h"
 
@@ -75,13 +78,13 @@ int Clock::getSecond() const {
 
 Clock Clock::operator+=(int secondToAdd) {
     second += secondToAdd;
-    if (second > 60) {
+    if (second >= 60) {
         minute += 1;
         second = second - 60;
-        if (minute > 60) {
+        if (minute >= 60) {
             hour += 1;
             minute = minute - 60;
-            if (hour > 24) {
+            if (hour >= 24) {
                 hour = 0;
             }
         }

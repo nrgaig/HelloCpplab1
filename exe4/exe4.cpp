@@ -1,6 +1,10 @@
-
-
-//main program we requested to modify - given by exercise author
+/****************************************************
+  Created by Maor Frost 206370231 and Itay Oren 318648482
+  cpp lab - Meir Litman
+  exercise 4
+  main program we requested to modify by adding try-catch blocks
+  - given by exercise author
+****************************************************/
 
 #include <iostream>
 #include "Clock.h"
@@ -22,7 +26,7 @@ ACTION menu() {
     cout << "enter 3 to withdraw money" << endl;
     cout << "enter 4 to see the sum of all deposits" << endl;
     cout << "enter 5 to see the sum of all withdrawals" << endl;
-    cout << "enter 0 to stop" << endl;
+    cout << "enter 0 to stop" << endl << endl;
     int x;
     cin >> x;
     return (ACTION)x;
@@ -43,13 +47,13 @@ int findAccount(Account* bank, int size) {
     throw "ERROR: wrong code!\n";
 }
 void printTransaction(Account a, ACTION ac, Clock& c) {
-    cout << c << "\n";
+    cout << c << "\t";
     switch (ac) {
-        case BALANCE: cout << "account #: " << a.getAccountNumber() << "\n";
+        case BALANCE: cout << "account #: " << a.getAccountNumber() << "\t";
             cout << "balance: " << a.getBalance() << endl;
             break;
         case DEPOSIT:
-        case WITHDRAW: cout << "account #: " << a.getAccountNumber() << "\n";
+        case WITHDRAW: cout << "account #: " << a.getAccountNumber() << "\t";
             cout << "new balance: " << a.getBalance() << endl;
             break;
         case SUM_DEPOSIT:
@@ -66,8 +70,7 @@ void getBalance(Account* bank, int size, Clock& c) {
         i= findAccount(bank, size);
     }
     catch (const char *msg) {
-        c += 20;
-        cout << c << "\t" << msg << "\n";
+        cout << c << "\t" << msg;
         return;
     }
     c += 20;
@@ -80,7 +83,7 @@ void cashDeposit(Account* bank, int size, Clock& c) {
         i= findAccount(bank, size);
     }
     catch (const char *error) {
-        cout << c << "\t" << error << "\n";
+        cout << c << "\t" << error;
         return;
     }
     float amount;
@@ -90,8 +93,7 @@ void cashDeposit(Account* bank, int size, Clock& c) {
         bank[i].deposit(amount);
     }
     catch (const char *error) {
-        c += 30;
-        cout << c << "\t" << error << "\n";
+        cout << c << "\t" << error;
         return;
     }
     c += 30;
@@ -103,7 +105,7 @@ void cashWithdraw(Account* bank, int size, Clock& c) {
         i= findAccount(bank, size);
     }
     catch (const char *error) {
-        cout << c << "\t" << error << "\n";
+        cout << c << "\t" << error;
         return;
     }
     float amount;
@@ -113,8 +115,7 @@ void cashWithdraw(Account* bank, int size, Clock& c) {
         bank[i].withdraw(amount);
     }
     catch (const char *error) {
-        cout << c << "\t" << error << "\n";
-        c += 50;
+        cout << c << "\t" << error;
         return;
     }
     c += 50;
@@ -126,11 +127,11 @@ void checkAccount(Account bank[], int i) {
             throw "ERROR: account number must be unique!\n";
 }
 int main() {
-    const int SIZE = 2; //todo it might do some problems
+    const int SIZE = 10;
     Clock c(8, 0, 0);
 
     Account bank[SIZE];// creating bank - (array of accounts) and getting accs values
-    cout << "enter account number, code and email for " << SIZE << " accounts:\n";
+    cout << "enter account number, code and email for " << SIZE << " accounts:\n"<< endl;
     for (int i = 0; i < SIZE; i++) {
         try {
             cin >> bank[i];

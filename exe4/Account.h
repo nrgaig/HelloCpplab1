@@ -1,7 +1,9 @@
-//
-// Created by itayo on 21/03/2022.
-// edited by maor
-//
+/****************************************************
+  Created by Maor Frost 206370231 and Itay Oren 318648482
+  cpp lab - Meir Litman
+  exercise 4
+  class header implementing bank account to mange
+****************************************************/
 
 #ifndef HELLOCPPLAB1_ACCOUNT_H
 #define HELLOCPPLAB1_ACCOUNT_H
