@@ -1,3 +1,7 @@
+
+
+//main program we requested to modify - given by exercise author
+
 #include <iostream>
 #include "Clock.h"
 #include "Account.h"
@@ -57,9 +61,16 @@ void printTransaction(Account a, ACTION ac, Clock& c) {
     }
 }
 void getBalance(Account* bank, int size, Clock& c) {
-    int i = findAccount(bank, size);
+    try {//modified - add try-catch
+        int i = findAccount(bank, size);
+    } catch (const char* msg) {
+        //c += 20; TODO chek if needed
+        cout << c << '\t' << msg;
+        return;
+    }
     c += 20;
     printTransaction(bank[i], BALANCE, c);
+
 }
 void cashDeposit(Account* bank, int size, Clock& c) {
     int i = findAccount(bank, size);
@@ -93,7 +104,8 @@ void checkAccount(Account bank[], int i) {
 int main() {
     const int SIZE = 2;
     Clock c(8, 0, 0);
-    Account bank[SIZE];
+
+    Account bank[SIZE];// creating bank - (array of accounts) and getting accs values
     cout << "enter account number, code and email for " << SIZE << " accounts:\n";
     for (int i = 0; i < SIZE; i++) {
         try {
@@ -104,7 +116,8 @@ int main() {
             cout << c << '\t' << msg;
             i--;
         }
-    }
+    }//end of creating bank
+
     ACTION ac = menu();
     while (ac) {
         switch (ac) {

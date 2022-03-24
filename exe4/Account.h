@@ -1,5 +1,6 @@
 //
 // Created by itayo on 21/03/2022.
+// edited by maor
 //
 
 #ifndef HELLOCPPLAB1_ACCOUNT_H
@@ -13,16 +14,18 @@ using namespace std;
 class Account {
 private:
     int accountNumber;
-    int code;
+    int code;// length of 4 digs and left dig not '0'
     int balance;
-    string email;
+    string email;// username@domain.locale = valid email
+    static int sumWithdraw; // static - counter of all draws of this account
+    static int sumDeposit ; // static - counter of all deposits of this account
 
 public:
 
 
-    Account();
+    Account();//empty constructor
 
-    Account(int _accountNumber, int _code, int _balance, const string& _email);
+    Account(int _accountNumber, int _code, int _balance, const string& _email);//constructor
 
     int getAccountNumber() const;
 
@@ -34,11 +37,9 @@ public:
 
     friend istream& operator>>(istream& is, Account& ms);// istream operator
 
-    void withdraw(float nis);
+    void withdraw(float nis);// active if account draw some cash from bank able to draw up to 2500 nis and credit up to 6000 nis
 
-    void deposit(float nis);
-    static int sumWithdraw;
-    static int sumDeposit ;
+    void deposit(float nis);// deposit checks in this account - able to deposit op to 10000 nis
 
     static int getSumWithdraw();
 
