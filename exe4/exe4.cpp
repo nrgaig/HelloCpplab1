@@ -126,7 +126,7 @@ void checkAccount(Account bank[], int i) {
             throw "ERROR: account number must be unique!\n";
 }
 int main() {
-    const int SIZE = 2; //todo it might do some problems
+    const int SIZE = 2; //todo it might do some problems, yes it need to be 10, שיניתי ל2 לצורכי בדיקות
     Clock c(8, 0, 0);
 
     Account bank[SIZE];// creating bank - (array of accounts) and getting accs values

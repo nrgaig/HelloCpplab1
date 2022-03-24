@@ -25,6 +25,7 @@ public:
     void setSecond(int _second);
 
     Clock operator+=(int _minuteToAdd);
+    Clock& operator= (const Clock& copy);
 
 
     friend ostream& operator<<(ostream& os, const Clock& ms); // ostream operator
