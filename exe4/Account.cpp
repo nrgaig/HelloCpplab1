@@ -1,7 +1,9 @@
-//
-// Created by itayo on 21/03/2022.
-// edited by maor
-//
+/****************************************************
+  Created by Maor Frost 206370231 and Itay Oren 318648482
+  cpp lab - Meir Litman
+  exercise 4
+  class implementing bank account to mange
+****************************************************/
 
 #include "Account.h"
 #include <iostream>
@@ -79,14 +81,14 @@ void Account::withdraw(float nis) {
     if (nis > 2500)//checking requested value to draw
         throw "ERROR: cannot withdraw more than 2500 NIS!\n";
     balance -= nis;// decrease value of available nis in 'this' account
-    sumWithdraw++;// counting up draws
+    sumWithdraw+= nis;// counting up draws
 }
 
 void Account::deposit(float nis) {// deposit checks in this account - able to deposit op to 10000 nis
     if (nis > 10000)//checking requested value to deposit
         throw "ERROR: cannot deposit more than 10000 NIS!\n";
     balance += nis;// increase value of available nis in 'this' account as it deposit new check
-    sumDeposit++;// counting up deposits
+    sumDeposit += nis;// counting up deposits
 }
 
 int Account::getSumWithdraw() {
