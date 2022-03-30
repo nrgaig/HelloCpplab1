@@ -7,6 +7,8 @@
 
 #ifndef HELLOCPPLAB1_LIST_H
 #define HELLOCPPLAB1_LIST_H
+#include <iostream>
+using namespace std;
 
 
 class List {
@@ -20,9 +22,7 @@ protected:
 // constructor
         Link(int linkValue, Link *nextPtr);
 
-        Link(const Link &amp;
-
-        );
+        Link(const Link &);
 // data areas
         int value;
         Link *next;
@@ -31,9 +31,7 @@ public:
 // constructors
     List();
 
-    List(const List &amp;
-
-    );
+    List(const List &);
 
     ~List();
 
@@ -50,11 +48,11 @@ public:
 
     void clear();
 
+    friend ostream& operator<<(ostream& os, const List& ms);
+
 protected:
 // data field
     Link *head;
-};
-
 };
 
 

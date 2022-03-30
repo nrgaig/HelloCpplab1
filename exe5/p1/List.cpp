@@ -100,3 +100,8 @@ void List::removeFirst() {
     // recover memory used by the first element
     delete p;
 }
+
+ostream &operator<<(ostream &os, const List &ms) {
+
+    return os;
+}
