@@ -25,14 +25,14 @@ List::List() : head(nullptr) {
 
 List::List(const List &l) {
     Link *src, *trg;
-    if (l.head == nullptr)
-        head = nullptr;
-    else {
-        head = new Link((l.head)->value, nullptr);
-        src = l.head;
-        trg = head;
-        while (src->next != nullptr) {
-            trg->next = new Link((src->next)->value, nullptr);
+    if (l.head == nullptr)// if there are NO links in the list
+        head = nullptr;// make new list head point to null
+    else {// if there are SOME links in the list
+        head = new Link((l.head)->value, nullptr);//create new link in the list and make head point to it
+        src = l.head; //make src point to first link in l
+        trg = head; //make trg point to this->head
+        while (src->next != nullptr) { //while we not in the last link copy data (value, next) from l to this
+            trg->next = new Link((src->next)->value, nullptr);//creating new link in 'this'
             src = src->next;
             trg = trg->next;
         }
@@ -102,6 +102,33 @@ void List::removeFirst() {
 }
 
 ostream &operator<<(ostream &os, const List &ms) {
+        //todo fix next line problem
+    if (head != nullptr){// if there are SOME links in the list
+        Link *lst;
 
+        lst = head; //make trg point to this->head
+        while (lst->next != nullptr) { //while we not in the last link stream values to os
+            os << lst->value << " ";
+        }
+    }
     return os;
+}
+
+List &List::operator=(const List &l) {//copy assignment method for operator =
+    Link *src, *trg;
+    if (l.head == nullptr)// if there are NO links in the list
+        head = nullptr;// make new list head point to null
+    else {// if there are SOME links in the list
+        head = new Link((l.head)->value, nullptr);//create new link in the list and make head point to it
+        src = l.head; //make src point to first link in l
+        trg = head; //make trg point to this->head
+        while (src->next != nullptr) { //while we not in the last link copy data (value, next) from l to this
+            trg->next = new Link((src->next)->value, nullptr);//creating new link in 'this'
+            src = src->next;
+            trg = trg->next;
+        }
+    }
+
+
+    return *this;
 }

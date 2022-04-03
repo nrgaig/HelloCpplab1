@@ -50,6 +50,8 @@ public:
 
     friend ostream& operator<<(ostream& os, const List& ms);
 
+    List &operator=(const List& ms);//copy assignment method for operator =
+
 protected:
 // data field
     Link *head;
