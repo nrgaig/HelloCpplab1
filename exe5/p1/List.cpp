@@ -155,18 +155,21 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
 
 istream &operator>>(istream &os, const List &ms) {
     List::Link *p=ms.head, *newLink;
-
+    List newList;
     int val;
-    os>>val;
-    while(p->next->value > val&&p->next!= nullptr)
-        p=p->next;
+   while( os>>val) {
+       if (ms.head== nullptr)
+           newList.add(val);
+       while (p->next->value > val && p->next != nullptr)
 
-    newLink = new List::Link(val, p->next);
-    if (!newLink)
-        throw "failed in memory allocation";
+           p = p->next;
 
-    p->next=newLink;
+       newLink = new List::Link(val, p->next);
+       if (!newLink)
+           throw "failed in memory allocation";
 
+       p->next = newLink;
+   }
     return os;
 }
 
