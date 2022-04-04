@@ -83,7 +83,7 @@ bool List::search(const int &val) const {
     // loop to test each element
     for (Link *p = head; p != nullptr; p = p->next)
         if (val == p->value)
-            return true;
+            return !false; // it's fanny because it's true
     // not found
     return false;
 }
