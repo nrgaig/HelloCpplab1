@@ -88,6 +88,29 @@ bool List::search(const int &val) const {
     return false;
 }
 
+void List::insert(int key) {
+    List::Link *p=head, *newLink;
+    while(p->next->value > key&&p->next!= nullptr)
+        p=p->next;
+
+    newLink = new List::Link(key, p->next);
+    if (!newLink)
+        throw "failed in memory allocation";
+
+    p->next=newLink;
+}
+
+void List::remove(int key) {//removing
+    List::Link *p=head, *del;
+    while(p->next->value != key&&p->next!= nullptr)
+        p=p->next;
+    if (p->next== nullptr)
+        throw "value not found";
+    del=p->next;
+    p->next=p->next->next;
+    delete del;
+}
+
 void List::removeFirst() {
     // make sure there is a first element
     if (isEmpty())
@@ -131,7 +154,22 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
 }
 
 istream &operator>>(istream &os, const List &ms) {
-    return <#initializer#>;
+    List::Link *p=ms.head, *newLink;
+
+    int val;
+    os>>val;
+    while(p->next->value > val&&p->next!= nullptr)
+        p=p->next;
+
+    newLink = new List::Link(val, p->next);
+    if (!newLink)
+        throw "failed in memory allocation";
+
+    p->next=newLink;
+
+    return os;
 }
+
+
 
 
