@@ -102,11 +102,10 @@ void List::removeFirst() {
 }
 
 ostream &operator<<(ostream &os, const List &ms) {
-        //todo fix next line problem
-    if (head != nullptr){// if there are SOME links in the list
-        Link *lst;
+    if (ms.head != nullptr){// if there are SOME links in the list
+        List::Link *lst;
 
-        lst = head; //make trg point to this->head
+        lst = ms.head; //make lst point to this->head
         while (lst->next != nullptr) { //while we not in the last link stream values to os
             os << lst->value << " ";
         }
@@ -128,7 +127,11 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
             trg = trg->next;
         }
     }
-
-
     return *this;
 }
+
+istream &operator>>(istream &os, const List &ms) {
+    return <#initializer#>;
+}
+
+

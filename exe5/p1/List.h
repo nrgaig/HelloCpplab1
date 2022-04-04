@@ -49,6 +49,8 @@ public:
     void clear();
 
     friend ostream& operator<<(ostream& os, const List& ms);
+    friend istream& operator>>(istream& os, const List& ms);
+
 
     List &operator=(const List& ms);//copy assignment method for operator =
 
