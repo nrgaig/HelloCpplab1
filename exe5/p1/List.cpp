@@ -89,25 +89,25 @@ bool List::search(const int &val) const {
 }
 
 void List::insert(int key) {
-    List::Link *p=head, *newLink;
-    while(p->next->value > key&&p->next!= nullptr)
-        p=p->next;
+    List::Link *p = head, *newLink;
+    while (p->next->value > key && p->next != nullptr)
+        p = p->next;
 
     newLink = new List::Link(key, p->next);
     if (!newLink)
         throw "failed in memory allocation";
 
-    p->next=newLink;
+    p->next = newLink;
 }
 
 void List::remove(int key) {//removing
-    List::Link *p=head, *del;
-    while(p->next->value != key&&p->next!= nullptr)
-        p=p->next;
-    if (p->next== nullptr)
+    List::Link *p = head, *del;
+    while (p->next->value != key && p->next != nullptr)
+        p = p->next;
+    if (p->next == nullptr)
         throw "value not found";
-    del=p->next;
-    p->next=p->next->next;
+    del = p->next;
+    p->next = p->next->next;
     delete del;
 }
 
@@ -125,7 +125,7 @@ void List::removeFirst() {
 }
 
 ostream &operator<<(ostream &os, const List &ms) {
-    if (ms.head != nullptr){// if there are SOME links in the list
+    if (ms.head != nullptr) {// if there are SOME links in the list
         List::Link *lst;
 
         lst = ms.head; //make lst point to this->head
@@ -153,23 +153,26 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
     return *this;
 }
 
-istream &operator>>(istream &os, const List &ms) {
-    List::Link *p=ms.head, *newLink;
+istream &operator>>(istream &os, List &ms) {
+    List::Link *p, *newLink;
     List newList;
     int val;
-   while( os>>val) {
-       if (ms.head== nullptr)
-           newList.add(val);
-       while (p->next->value > val && p->next != nullptr)
+    while (os >> val) {
+        p = ms.head;
+        if (ms.head == nullptr) {
+            ms.add(val);
 
-           p = p->next;
+        } else {
+            while (p->next != nullptr && p->next->value > val)
+                p = p->next;
 
-       newLink = new List::Link(val, p->next);
-       if (!newLink)
-           throw "failed in memory allocation";
+            newLink = new List::Link(val, p->next);
+            if (!newLink)
+                throw "failed in memory allocation";
 
-       p->next = newLink;
-   }
+            p->next = newLink;
+        }
+    }
     return os;
 }
 
