@@ -127,11 +127,13 @@ void List::removeFirst() {
 ostream &operator<<(ostream &os, const List &ms) {
     if (ms.head != nullptr) {// if there are SOME links in the list
         List::Link *lst;
-
         lst = ms.head; //make lst point to this->head
         while (lst->next != nullptr) { //while we not in the last link stream values to os
             os << lst->value << " ";
+            lst ->value = lst->next->value;
+            lst->next = lst->next->next;
         }
+        os<< endl;
     }
     return os;
 }
@@ -154,24 +156,22 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
 }
 
 istream &operator>>(istream &os, List &ms) {
-    List::Link *p, *newLink;
-    List newList;
+
+    bool flag = true;
     int val;
-    while (os >> val) {
-        p = ms.head;
-        if (ms.head == nullptr) {
-            ms.add(val);
+    os >> val;
+    ms.head = new List::Link(val, nullptr);
+    if (ms.head == nullptr)
+        throw "failed in memory allocation";
+    List::Link *lst = ms.head;
+    while (val <= lst->value) {
 
-        } else {
-            while (p->next != nullptr && p->next->value > val)
-                p = p->next;
-
-            newLink = new List::Link(val, p->next);
-            if (!newLink)
-                throw "failed in memory allocation";
-
-            p->next = newLink;
-        }
+        lst->next = new List::Link(val, nullptr);
+        if (lst->next == nullptr)
+            throw "failed in memory allocation";
+        lst = lst->next;
+        lst->value = val;
+        os >> val;
     }
     return os;
 }
