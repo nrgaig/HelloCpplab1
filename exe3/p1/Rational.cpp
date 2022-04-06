@@ -171,7 +171,7 @@ void Rational::reduction()
         {
             numerator /= i;
             denominator /= i;
-            // TODO break?????
+            
         }
     }
     if (numerator == 0)

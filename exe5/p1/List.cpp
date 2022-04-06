@@ -90,7 +90,15 @@ bool List::search(const int &val) const {
 
 void List::insert(int key) {
     List::Link *p = head, *newLink;
-    while (p->next->value > key && p->next != nullptr)
+    if( p->value < key){
+        p = new List::Link(key, head);
+        if (!p)
+            throw "failed in memory allocation";
+        head=p;
+        return;
+    }
+
+    while (p->next != nullptr&&p->next->value > key)
         p = p->next;
 
     newLink = new List::Link(key, p->next);
@@ -102,7 +110,7 @@ void List::insert(int key) {
 
 void List::remove(int key) {//removing
     List::Link *p = head, *del;
-    while (p->next->value != key && p->next != nullptr)
+    while (p->next != nullptr&&p->next->value != key)
         p = p->next;
     if (p->next == nullptr)
         throw "value not found";
@@ -133,7 +141,7 @@ ostream &operator<<(ostream &os, const List &ms) {
             lst ->value = lst->next->value;
             lst->next = lst->next->next;
         }
-        os<< endl;
+        os << lst->value;
     }
     return os;
 }
@@ -155,15 +163,16 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
     return *this;
 }
 
-istream &operator>>(istream &os, List &ms) {
+istream &operator>>(istream &is, List &ms) {
 
     bool flag = true;
     int val;
-    os >> val;
+    is >> val;
     ms.head = new List::Link(val, nullptr);
-    if (ms.head == nullptr)
-        throw "failed in memory allocation";
+//    if (ms.head == nullptr)
+//        throw "failed in memory allocation";
     List::Link *lst = ms.head;
+    is >> val;
     while (val <= lst->value) {
 
         lst->next = new List::Link(val, nullptr);
@@ -171,9 +180,9 @@ istream &operator>>(istream &os, List &ms) {
             throw "failed in memory allocation";
         lst = lst->next;
         lst->value = val;
-        os >> val;
+        is >> val;
     }
-    return os;
+    return is;
 }
 
 
