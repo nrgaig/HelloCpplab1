@@ -1,7 +1,7 @@
 /***********************************************************
  * Created by Maor Frost 206370231 and Itay Oren 318648482 *
  * cpp lab - Meir Litman                                   *
- * exercise 5 task 2                                       *
+ * exercise 5 task 1                                       *
  *    *
 ************************************************************/
 
@@ -90,7 +90,7 @@ bool List::search(const int &val) const {
 
 void List::insert(int key) {
     List::Link *p = head, *newLink;
-    if (p->value < key) {
+    if (p==nullptr||p->value < key) {
         p = new List::Link(key, head);
         if (!p)
             throw "failed in memory allocation";
@@ -109,21 +109,20 @@ void List::insert(int key) {
 }
 
 void List::remove(int key) {//removing
-    List::Link *p = head, *del;
+
     if (head->value == key){// handling deletion for first element
-        del=head;
         head = head->next;
-        delete del;
         return;
     }
-
+        List::Link *p = head, *del;
     while (p->next != nullptr && p->next->value != key)
         p = p->next;
     if (p->next == nullptr)
         throw "value not found";
-    del = p->next;
+
     p->next = p->next->next;
-    delete del;
+
+
 }
 
 void List::removeFirst() {
@@ -137,6 +136,20 @@ void List::removeFirst() {
     p->next = nullptr;
     // recover memory used by the first element
     delete p;
+}
+
+ostream &operator<<(ostream &os, const List &ms) {
+    List::Link *ptr = ms.head;
+    if (ms.head != nullptr) {// if there are SOME links in the list
+        List::Link *lst;
+        lst = ptr; //make lst point to this->head
+        while (lst->next != nullptr) { //while we not in the last link stream values to os
+            os << lst->value << " ";
+            lst = lst->next;
+        }
+        os << lst->value;
+    }
+    return os;
 }
 
 List &List::operator=(const List &l) {//copy assignment method for operator =
@@ -175,18 +188,4 @@ istream &operator>>(istream &is, List &ms) {
         is >> val;
     }
     return is;
-}
-
-ostream &operator<<(ostream &os, const List &ms) {
-    if (ms.head != nullptr) {// if there are SOME links in the list
-        List::Link *lst;
-        lst = ms.head; //make lst point to this->head
-        while (lst->next != nullptr) { //while we not in the last link stream values to os
-            os << lst->value << " ";
-            lst ->value = lst->next->value;
-            lst->next = lst->next->next;
-        }
-        os << lst->value;
-    }
-    return os;
 }
