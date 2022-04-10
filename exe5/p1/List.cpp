@@ -90,15 +90,15 @@ bool List::search(const int &val) const {
 
 void List::insert(int key) {
     List::Link *p = head, *newLink;
-    if( p->value < key){
+    if (p->value < key) {
         p = new List::Link(key, head);
         if (!p)
             throw "failed in memory allocation";
-        head=p;
+        head = p;
         return;
     }
 
-    while (p->next != nullptr&&p->next->value > key)
+    while (p->next != nullptr && p->next->value > key)
         p = p->next;
 
     newLink = new List::Link(key, p->next);
@@ -109,8 +109,13 @@ void List::insert(int key) {
 }
 
 void List::remove(int key) {//removing
-    List::Link *p = head, *del;
-    while (p->next != nullptr&&p->next->value != key)
+
+    if (head->value == key){// handling deletion for first element
+        head = head->next;
+        return;
+    }
+        List::Link *p = head, *del;
+    while (p->next != nullptr && p->next->value != key)
         p = p->next;
     if (p->next == nullptr)
         throw "value not found";
@@ -165,7 +170,6 @@ List &List::operator=(const List &l) {//copy assignment method for operator =
 
 istream &operator>>(istream &is, List &ms) {
 
-    bool flag = true;
     int val;
     is >> val;
     ms.head = new List::Link(val, nullptr);
@@ -184,7 +188,3 @@ istream &operator>>(istream &is, List &ms) {
     }
     return is;
 }
-
-
-
-

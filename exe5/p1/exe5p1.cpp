@@ -34,7 +34,7 @@ int main() {
                 break;
             case ASSIGN:
                 lst2 = lst;
-                cout << "list 2: " << lst2;
+                cout << "list 2: " << lst2 << endl;
                 cout << "list 1: ";
             case PRINT:
                 cout << lst << endl;
