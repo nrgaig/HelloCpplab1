@@ -22,5 +22,5 @@ set(CMAKE_CXX_STANDARD 11)
 
     # exe 5 #
 
-add_executable(cpplab2 exe5/p1/List.cpp exe5/p1/List.h exe5/p1/exe5p1.cpp)
-#add_executable(cpplab2 exe5/p2/List.cpp exe5/p2/List.h exe5/p2/exe5p2.cpp)
+#add_executable(cpplab2 exe5/p1/List.cpp exe5/p1/List.h exe5/p1/exe5p1.cpp)
+add_executable(cpplab2 exe5/p2/List.cpp exe5/p2/List.h exe5/p2/exe5p2.cpp)
