@@ -25,10 +25,6 @@ List merge(const List &lst1, const List &lst2) {
     return newList;
 }
 
-void makeSet(List &lst) {
-
-}
-
 void reverse(List &lst) {
     List temp = lst;  //create temporary list to play with it
     lst.clear();     //clear the list
@@ -38,6 +34,24 @@ void reverse(List &lst) {
     }
 }
 
+//delete duplicate nodes from lst
+void makeSet(List &lst) {
+    List newList, tmp = lst;// creating new empty list and temp list to play with it
+    reverse(tmp);        // reverse temp to insert reversely
+    newList.add(tmp.firstElement()); // adding the first element to newList
+    tmp.removeFirst();      //remove the first element from tmp as we saved it in newList
+
+    while (!tmp.isEmpty())  //running on tmp until tmp empty
+    {
+        if (tmp.firstElement() == newList.firstElement())// if first element is duplicate remove it
+            tmp.removeFirst();
+        newList.add(tmp.firstElement());// and so... adding the first element to newList
+        tmp.removeFirst();// and so... remove the first element from tmp as we saved it in newList
+    }
+    lst=newList; //assigning newList into our lst
+}
+
+//main function
 int main() {
     List lst1, lst2, mergedList;
 
