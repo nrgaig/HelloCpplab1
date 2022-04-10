@@ -139,20 +139,6 @@ void List::removeFirst() {
     delete p;
 }
 
-ostream &operator<<(ostream &os, const List &ms) {
-    if (ms.head != nullptr) {// if there are SOME links in the list
-        List::Link *lst;
-        lst = ms.head; //make lst point to this->head
-        while (lst->next != nullptr) { //while we not in the last link stream values to os
-            os << lst->value << " ";
-            lst ->value = lst->next->value;
-            lst->next = lst->next->next;
-        }
-        os << lst->value;
-    }
-    return os;
-}
-
 List &List::operator=(const List &l) {//copy assignment method for operator =
     Link *src, *trg;
     if (l.head == nullptr)// if there are NO links in the list
@@ -189,4 +175,18 @@ istream &operator>>(istream &is, List &ms) {
         is >> val;
     }
     return is;
+}
+
+ostream &operator<<(ostream &os, const List &ms) {
+    if (ms.head != nullptr) {// if there are SOME links in the list
+        List::Link *lst;
+        lst = ms.head; //make lst point to this->head
+        while (lst->next != nullptr) { //while we not in the last link stream values to os
+            os << lst->value << " ";
+            lst ->value = lst->next->value;
+            lst->next = lst->next->next;
+        }
+        os << lst->value;
+    }
+    return os;
 }

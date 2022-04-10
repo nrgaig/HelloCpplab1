@@ -7,7 +7,8 @@
 
 #include "List.h"
 
-enum CHOICES {
+enum CHOICES
+{
     EXIT, INSERT, REMOVE, ASSIGN, PRINT
 };
 
@@ -20,8 +21,10 @@ int main() {
     cin >> lst;
     cout << "choose 0-4\n";
     cin >> choice;
-    while (choice != EXIT) {
-        switch (choice) {
+    while (choice != EXIT)
+    {
+        switch (choice)
+        {
             case INSERT:
                 cout << "enter a value to insert\n";
                 cin >> val;
@@ -30,7 +33,13 @@ int main() {
             case REMOVE:
                 cout << "enter a value to remove\n";
                 cin >> val;
-                lst.remove(val);
+                try
+                {
+                    lst.remove(val);
+                } catch (const char *error)
+                {
+                    cout << error << endl;
+                }
                 break;
             case ASSIGN:
                 lst2 = lst;

@@ -9,7 +9,28 @@
 #include "List.h"
 
 using namespace std;
-//הגדרת ומימוש הפונקציות
+
+// getting two lists and merge them into one. return new merged list.
+List merge(const List& lst1, const  List& lst2){
+    List newList, temp1 = lst1, temp2 = lst2;// create new list, temporary lists to play with them and insert to new list
+
+    while(!temp2.isEmpty()){ //running on lst2 values and insert into new list
+        newList.insert(temp2.firstElement());
+        temp2.removeFirst();
+    }
+    while(!temp1.isEmpty()){//running on lst1 values and insert into new list
+        newList.insert(temp1.firstElement());
+        temp1.removeFirst();
+    }
+    return newList;
+}
+
+void makeSet(List& lst){
+
+}
+void reverse(List& lst){
+
+}
 
 int main() {
     List lst1, lst2, mergedList;
