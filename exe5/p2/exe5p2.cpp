@@ -26,14 +26,15 @@ List merge(const List &lst1, const List &lst2) {
 }
 
 void makeSet(List &lst) {
+
 }
 
 void reverse(List &lst) {
-    List temp = lst;
-    lst.clear();
-    while (!temp.isEmpty()) {
-        lst.add(temp.firstElement());
-        temp.removeFirst();
+    List temp = lst;  //create temporary list to play with it
+    lst.clear();     //clear the list
+    while (!temp.isEmpty()) { //running on temp values and insert into source list
+        lst.add(temp.firstElement()); //add to the head of the list
+        temp.removeFirst(); //remove the first element
     }
 }
 
