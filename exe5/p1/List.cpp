@@ -121,9 +121,10 @@ void List::remove(int key) {//removing
         p = p->next;
     if (p->next == nullptr)
         throw "value not found";
-    del = p->next;
+
     p->next = p->next->next;
-    delete del;
+
+
 }
 
 void List::removeFirst() {
@@ -178,13 +179,13 @@ istream &operator>>(istream &is, List &ms) {
 }
 
 ostream &operator<<(ostream &os, const List &ms) {
+    List::Link *ptr = ms.head;
     if (ms.head != nullptr) {// if there are SOME links in the list
         List::Link *lst;
-        lst = ms.head; //make lst point to this->head
+        lst = ptr; //make lst point to this->head
         while (lst->next != nullptr) { //while we not in the last link stream values to os
             os << lst->value << " ";
-            lst ->value = lst->next->value;
-            lst->next = lst->next->next;
+            lst = lst->next;
         }
         os << lst->value;
     }
