@@ -25,6 +25,7 @@ List merge(const List &lst1, const List &lst2) {
     return newList;
 }
 
+// reverse the list
 void reverse(List &lst) {
     List temp = lst;  //create temporary list to play with it
     lst.clear();     //clear the list
@@ -48,7 +49,7 @@ void makeSet(List &lst) {
         newList.add(tmp.firstElement());// and so... adding the first element to newList
         tmp.removeFirst();// and so... remove the first element from tmp as we saved it in newList
     }
-    lst=newList; //assigning newList into our lst
+    lst = newList; //assigning newList into our lst
 }
 
 //main function
