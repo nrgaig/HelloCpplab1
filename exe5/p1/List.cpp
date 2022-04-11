@@ -166,8 +166,7 @@ istream &operator>>(istream &is, List &ms) {
 //        throw "failed in memory allocation";
     List::Link *lst = ms.head;
     is >> val;
-    while (val <= lst->value) {
-
+    while (val < lst->value) {
         lst->next = new List::Link(val, nullptr);
         if (lst->next == nullptr)
             throw "failed in memory allocation";
