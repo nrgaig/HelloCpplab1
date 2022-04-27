@@ -4,9 +4,11 @@
 
 using namespace std;
 
+const int FULL_SIZE = 3, PART_SIZE = 3;
+
 int main() {
-    FullTime arrF[3];
-    for (int i = 0; i < 3; i++) {
+    FullTime arrF[FULL_SIZE];
+    for (int i = 0; i < FULL_SIZE; i++) {
         try {
             cin >> arrF[i];
         }
@@ -17,8 +19,8 @@ int main() {
     }
 
 
-    PartTime arrP[3];
-    for (int i = 0; i < 3; i++) {
+    PartTime arrP[PART_SIZE];
+    for (int i = 0; i < PART_SIZE; i++) {
         try {
             cin >> arrP[i];
         }
@@ -29,13 +31,13 @@ int main() {
     }
 
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < FULL_SIZE; i++) {
         cout << arrF[i];
         cout << "After Bonus: " << arrF[i].salaryAfterBonus() << endl;
     }
 
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < PART_SIZE; i++) {
         cout << arrP[i];
         cout << "After Bonus: " << arrP[i].salaryAfterBonus() << endl;
     }

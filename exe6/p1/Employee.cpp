@@ -1,6 +1,11 @@
-//
-// Created by itayo on 25/04/2022.
-//
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 6 task 1                                       *
+ * class represent an Employee in "Learn to Fun" College   *
+************************************************************/
+
+
 
 #ifndef HELLOCPPLAB1_EMPLOYEE_CPP
 #define HELLOCPPLAB1_EMPLOYEE_CPP
