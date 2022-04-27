@@ -1,5 +1,5 @@
-#include "FullTime.h"
-#include "PartTime.h"
+#include "FullTime.cpp"
+#include "PartTime.cpp"
 #include <iostream>
 
 using namespace std;
