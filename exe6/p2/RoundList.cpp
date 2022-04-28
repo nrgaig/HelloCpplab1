@@ -1,8 +1,9 @@
-/* Created by Maor Frost 206370231 and Itay Oren 318648482
- * cpp lab - Meir Litman
- * exercise  task 
- * 
- */
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 6 task 2                                       *
+ * class implement Rounded List                            *
+************************************************************/
 #ifndef HELLOCPPLAB1_ROUNDLIST_H
 #define HELLOCPPLAB1_ROUNDLIST_H
 #include "List.h"
@@ -11,7 +12,9 @@ class RoundList : public List {
 
 
 public:
-    RoundList() : List() {}
+    RoundList() : List() {}  // empty ctor
+    //RoundList(const RoundList &l){} //ctor
+    ~RoundList() {clear();}  // dtor
 
 
     void addToEnd(int val) {//Add a new value to the end  of a Round List
@@ -58,6 +61,27 @@ public:
         return *this;
     }
 
+   friend istream &operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
+        int val; // value to be read
+        is >> val; // read the value
+        ms.head = new List::Link(val, nullptr); // create a new link
+        List::Link *lst = ms.head; // make lst point to the new link
+        is >> val; // read the next value
+        while (val < lst->value) { // while the value is less than the previous value
+            //todo: check if it correct
+            ms.addToEnd(val); // adding value to end of list
+            is >> val; // read the next value
+
+
+//            lst->next = new List::Link(val, nullptr); // create a new link
+//            if (lst->next == nullptr) // if the new link is not created
+//                throw "failed in memory allocation"; // throw an exception
+//            lst = lst->next; // make lst point to the new link
+//            lst->value = val; // assign the value to the new link
+//            is >> val; // read the next value
+        }
+        return is;
+    }
 
     friend ostream &operator<<(ostream &os, const List &ms) { //overloading operator << printing values of link in our list
         if (ms.head != nullptr) {// if there are SOME links in the list
@@ -71,6 +95,9 @@ public:
         }
         return os;
     }
+
+
+    // List::add(int key) not needed. replaced by: addToEnd(int val)
 };
 
 

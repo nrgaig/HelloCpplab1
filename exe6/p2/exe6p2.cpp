@@ -1,8 +1,9 @@
-/* Created by Maor Frost 206370231 and Itay Oren 318648482
- * cpp lab - Meir Litman
- * exercise  task 
- * 
- */
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 6 task 2                                       *
+ * main program that check class correctness               *
+************************************************************/
 #include "RoundList.cpp"
 #include <iostream>
 using namespace std;
