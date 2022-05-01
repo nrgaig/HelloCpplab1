@@ -38,7 +38,7 @@ public:
     ~List();
 
 // operations
-    void add(int value);
+    virtual void add(int value);
 
     int firstElement() const;
 
@@ -46,7 +46,7 @@ public:
 
     bool isEmpty() const;
 
-    void removeFirst();
+    virtual void removeFirst();
 
     void clear();
 
@@ -55,7 +55,7 @@ public:
 
     void insert(int key);
 
-    void remove (int key);
+    virtual void remove (int key);
 
     List &operator=(const List &ms);//copy assignment method for operator =
 

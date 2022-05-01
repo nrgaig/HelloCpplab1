@@ -6,6 +6,7 @@
 ************************************************************/
 #ifndef HELLOCPPLAB1_ROUNDLIST_H
 #define HELLOCPPLAB1_ROUNDLIST_H
+
 #include "List.h"
 
 class RoundList : public List {
@@ -14,7 +15,7 @@ class RoundList : public List {
 public:
     RoundList() : List() {}  // empty ctor
     //RoundList(const RoundList &l){} //ctor
-    ~RoundList() {clear();}  // dtor
+    ~RoundList() { clear(); }  // dtor
 
 
     void addToEnd(int val) {//Add a new value to the end  of a Round List
@@ -34,13 +35,56 @@ public:
         head = head->next;
     }
 
-    int search(int n){// search the link in index n in our list and return its value
-        if (head== nullptr)// if list is empty return -1
+    void add(int val) override {
+        //Add a new value to the front of a Linked List
+        head = new Link(val, head);
+        if (head == nullptr)
+            throw "failed in memory allocation";
+    }
+
+    void remove(int key) override {//removing the first element with the value key todo complete
+
+        if (head->value == key) {// handling deletion for first element
+            removeFromEnd();
+            //head = head->next; // make head point to the next element
+            return;
+        }
+
+        List::Link *p = head, *del; // p is the pointer to the element before the element we want to delete
+        while (p->next != head && p->next->value !=
+                                  key) { // while we not in the last link and the next element is not the one we want to delete
+            p = p->next; // make p point to the next element
+        }
+        if (p->next == head)
+            throw "value not found";
+
+        p->next = p->next->next; // make p point to the next element
+
+
+    }
+
+    void removeFromEnd() { // as the name say
+        // make sure there is a first element
+        if (isEmpty())
+            throw "the List is empty, no Elements to remove";
+        // save pointer to the removed node
+        Link *p = head;
+        while(head->next!=p)// reassign the first node
+            head=head->next;
+
+        head->next = p->next; //detach p
+        p->next = nullptr;
+        // recover memory used by the first element
+        delete p;
+    }
+
+    int search(int n) {// search the link in index n in our list and return its value
+        if (head == nullptr)// if list is empty return -1
             return -1;
 
-        Link *p =head;
+        Link *p = head;
         for (int i = 0; i <= n; ++i) {//running on our RoundList links n times
-            p=p->next;
+            p = p->next;
         }
         return p->value; //return the value of p (link in index n)
     }
@@ -61,7 +105,8 @@ public:
         return *this;
     }
 
-   friend istream &operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
+    friend istream &
+    operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
         int val; // value to be read
         is >> val; // read the value
         ms.head = new List::Link(val, nullptr); // create a new link
@@ -73,17 +118,18 @@ public:
             is >> val; // read the next value
 
 
-//            lst->next = new List::Link(val, nullptr); // create a new link
-//            if (lst->next == nullptr) // if the new link is not created
-//                throw "failed in memory allocation"; // throw an exception
-//            lst = lst->next; // make lst point to the new link
-//            lst->value = val; // assign the value to the new link
-//            is >> val; // read the next value
+            //            lst->next = new List::Link(val, nullptr); // create a new link
+            //            if (lst->next == nullptr) // if the new link is not created
+            //                throw "failed in memory allocation"; // throw an exception
+            //            lst = lst->next; // make lst point to the new link
+            //            lst->value = val; // assign the value to the new link
+            //            is >> val; // read the next value
         }
         return is;
     }
 
-    friend ostream &operator<<(ostream &os, const List &ms) { //overloading operator << printing values of link in our list
+    friend ostream &
+    operator<<(ostream &os, const List &ms) { //overloading operator << printing values of link in our list
         if (ms.head != nullptr) {// if there are SOME links in the list
             List::Link *lst;
             lst = ms.head->next; //make lst point to this->head->next

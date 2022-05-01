@@ -37,7 +37,7 @@ public:
         cout << "Enter employee details:" << endl;
         string new_name;
         int new_id, new_seniority;
-        float new_pay, new_salary;
+        float new_salary;
         is >> new_name >> new_id >> new_seniority  >> new_salary; //get inputs in constructing format
 
         if(new_seniority < 0 )// if new_seniority negative exception
