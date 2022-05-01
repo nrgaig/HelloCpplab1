@@ -47,9 +47,9 @@ public:
             throw "ERROR";
 
         //set each property
-        ms.name = new_name;
-        ms.id = new_id;
-        ms.seniority = new_seniority;
+        ms.name = new_name; //set name
+        ms.id = new_id; //set id
+        ms.seniority = new_seniority; //set seniority
         ms.hoursOfWork = new_hours;
         ms.payPerHour=new_pay;
         ms.pay = ms.salary();
@@ -61,6 +61,7 @@ public:
         "\nHours: "<<ms.hoursOfWork<<"\nSalary per Month: "<<ms.pay<< endl;
         return os;
     }
+
 
 };
 
