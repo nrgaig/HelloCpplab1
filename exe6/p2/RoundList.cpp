@@ -105,8 +105,7 @@ public:
         return *this;
     }
 
-    friend istream &
-    operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
+    friend istream &operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
         int val; // value to be read
         is >> val; // read the value
         ms.head = new List::Link(val, nullptr); // create a new link
@@ -128,8 +127,7 @@ public:
         return is;
     }
 
-    friend ostream &
-    operator<<(ostream &os, const List &ms) { //overloading operator << printing values of link in our list
+    friend ostream &operator<<(ostream &os, const RoundList &ms) { //overloading operator << printing values of link in our list
         if (ms.head != nullptr) {// if there are SOME links in the list
             List::Link *lst;
             lst = ms.head->next; //make lst point to this->head->next
