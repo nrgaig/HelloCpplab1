@@ -31,21 +31,50 @@ public:
          * after that make head->next (the former last element) point to the new last element.
          * and finally make head point to the new last element.
         */
-        head->next = new Link(val, head->next);
-        head = head->next;
+//        head->next = new Link(val, head->next);
+//        head = head->next;
+        if (head == nullptr) {
+            head = new Link(val, nullptr);
+            head->next = head;
+        } else {
+            Link *temp = head->next;
+            head->next = new Link(val, temp);
+            head = head->next;
+        }
     }
 
     void add(int val) override {
         //Add a new value to the front of a Linked List
         if (head == nullptr) {
-            head = new Link(val, head);
+            head = new Link(val, nullptr);
+            head->next = head;
             if (head == nullptr)
                 throw "failed in memory allocation";
+        } else {
+//            Link *temp = head->next;
+            Link *newLink = new Link(val, head->next);
+            head->next = newLink;
+//            head->next = new Link(val, head);
+//            if (head->next == nullptr)
+//                throw "failed in memory allocation";
+//            head = head->next;
+//            head->next = temp;
         }
+    }
+
+    void removeFirst() override {
+        //Remove the first element of a Linked List
+        if (head == nullptr)
+            throw "list is empty";
         else {
-            head->next = new Link(val, head);
-            if (head == nullptr)
-                throw "failed in memory allocation";
+            if (head->next == head) {
+                delete head;
+                head = nullptr;
+            } else {
+                Link *temp = head->next->next;
+                delete head->next;
+                head->next = temp;
+            }
         }
     }
 
@@ -76,8 +105,8 @@ public:
             throw "the List is empty, no Elements to remove";
         // save pointer to the removed node
         Link *p = head;
-        while(head->next!=p)// reassign the first node
-            head=head->next;
+        while (head->next != p)// reassign the first node
+            head = head->next;
 
         head->next = p->next; //detach p
         p->next = nullptr;
@@ -96,6 +125,19 @@ public:
         return p->value; //return the value of p (link in index n)
     }
 
+    void clear() {
+        //Clear a Linked List
+        if (head == nullptr)
+            return;
+        Link *p = head;
+        while (p->next != head) {
+            p = p->next;
+            delete p->next;
+        }
+        delete p;
+        head = nullptr;
+    }
+
     RoundList &operator=(const RoundList &l) {//copy assignment method for operator =
         Link *src;
         if (l.head == nullptr)// if there are NO links in the list
@@ -112,7 +154,8 @@ public:
         return *this;
     }
 
-    friend istream &operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
+    friend istream &
+    operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
         int val; // value to be read
         is >> val; // read the value
         ms.head = new List::Link(val, nullptr); // create a new link
@@ -134,7 +177,8 @@ public:
         return is;
     }
 
-    friend ostream &operator<<(ostream &os, const RoundList &ms) { //overloading operator << printing values of link in our list
+    friend ostream &
+    operator<<(ostream &os, const RoundList &ms) { //overloading operator << printing values of link in our list
         if (ms.head != nullptr) {// if there are SOME links in the list
             List::Link *lst;
             lst = ms.head->next; //make lst point to this->head->next
