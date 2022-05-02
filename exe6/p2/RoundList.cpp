@@ -19,46 +19,27 @@ public:
 
 
     void addToEnd(int val) {//Add a new value to the end  of a Round List
-        /* pseudo code:
-         * newLink=creatLink()
-         * newLink.setKey(val)
-         * newLink.next()=head.next()
-         * head.next() = newLink
-         * head=head.next()
-         *
-         * at the start, head->next point to the first element.
-         * now we creat a new link that points to the first element and hold the value.
-         * after that make head->next (the former last element) point to the new last element.
-         * and finally make head point to the new last element.
-        */
-//        head->next = new Link(val, head->next);
-//        head = head->next;
-        if (head == nullptr) {
-            head = new Link(val, nullptr);
-            head->next = head;
-        } else {
-            Link *temp = head->next;
-            head->next = new Link(val, temp);
-            head = head->next;
+        if (head == nullptr) { //if the list is empty
+            head = new Link(val, nullptr); //create a new head
+            head->next = head;  //make the head point to itself
+        } else { //if the list is not empty
+            Link *temp = head->next; //create a temp pointer to the head
+            head->next = new Link(val, temp); //make the head point to a new link
+            head = head->next; //make the head point to the new link
         }
     }
 
     void add(int val) override {
         //Add a new value to the front of a Linked List
-        if (head == nullptr) {
-            head = new Link(val, nullptr);
-            head->next = head;
-            if (head == nullptr)
-                throw "failed in memory allocation";
-        } else {
-//            Link *temp = head->next;
-            Link *newLink = new Link(val, head->next);
-            head->next = newLink;
-//            head->next = new Link(val, head);
-//            if (head->next == nullptr)
-//                throw "failed in memory allocation";
-//            head = head->next;
-//            head->next = temp;
+        if (head == nullptr) { //if the list is empty
+            head = new Link(val, nullptr); //create a new head
+            head->next = head;  //make the head point to itself
+            if (head == nullptr) { //if the list is empty
+                throw "failed in memory allocation";    //throw exception
+            } else { //if the list is not empty
+                Link *newLink = new Link(val, head->next); //create a new link
+                head->next = newLink; //make the head point to the new link
+            }
         }
     }
 
@@ -154,8 +135,7 @@ public:
         return *this;
     }
 
-    friend istream &
-    operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
+    friend istream &operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
         int val; // value to be read
         is >> val; // read the value
         ms.head = new List::Link(val, nullptr); // create a new link
@@ -165,14 +145,6 @@ public:
             //todo: check if it correct
             ms.addToEnd(val); // adding value to end of list
             is >> val; // read the next value
-
-
-            //            lst->next = new List::Link(val, nullptr); // create a new link
-            //            if (lst->next == nullptr) // if the new link is not created
-            //                throw "failed in memory allocation"; // throw an exception
-            //            lst = lst->next; // make lst point to the new link
-            //            lst->value = val; // assign the value to the new link
-            //            is >> val; // read the next value
         }
         return is;
     }
@@ -190,9 +162,6 @@ public:
         }
         return os;
     }
-
-
-    // List::add(int key) not needed. replaced by: addToEnd(int val)
 };
 
 
