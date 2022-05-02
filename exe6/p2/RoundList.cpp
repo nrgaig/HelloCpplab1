@@ -37,9 +37,16 @@ public:
 
     void add(int val) override {
         //Add a new value to the front of a Linked List
-        head = new Link(val, head);
-        if (head == nullptr)
-            throw "failed in memory allocation";
+        if (head == nullptr) {
+            head = new Link(val, head);
+            if (head == nullptr)
+                throw "failed in memory allocation";
+        }
+        else {
+            head->next = new Link(val, head);
+            if (head == nullptr)
+                throw "failed in memory allocation";
+        }
     }
 
     void remove(int key) override {//removing the first element with the value key todo complete
