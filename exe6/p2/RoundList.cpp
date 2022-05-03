@@ -14,7 +14,6 @@ class RoundList : public List {
 
 public:
     RoundList() : List() {}  // empty ctor
-    //RoundList(const RoundList &l){} //ctor
     ~RoundList() { clear(); }  // dtor
 
 
@@ -106,7 +105,7 @@ public:
         return p->value; //return the value of p (link in index n)
     }
 
-    void clear() {
+    void clear() override {
         //Clear a Linked List
         if (head == nullptr)
             return;
