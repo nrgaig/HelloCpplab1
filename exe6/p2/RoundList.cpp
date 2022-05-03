@@ -36,10 +36,10 @@ public:
             head->next = head;  //make the head point to itself
             if (head == nullptr) { //if the list is empty
                 throw "failed in memory allocation";    //throw exception
-            } else { //if the list is not empty
-                Link *newLink = new Link(val, head->next); //create a new link
-                head->next = newLink; //make the head point to the new link
             }
+        } else { //if the list is not empty
+            Link *newLink = new Link(val, head->next); //create a new link
+            head->next = newLink; //make the head point to the new link
         }
     }
 
@@ -135,7 +135,8 @@ public:
         return *this;
     }
 
-    friend istream &operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
+    friend istream &
+    operator>>(istream &is, RoundList &ms) { //overloading >> operator - adding new values in not ascended order
         int val; // value to be read
         is >> val; // read the value
         ms.head = new List::Link(val, nullptr); // create a new link
