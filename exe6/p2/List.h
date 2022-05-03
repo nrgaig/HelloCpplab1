@@ -48,7 +48,7 @@ public:
 
     virtual void removeFirst();
 
-    virtual void clear();
+   virtual  void clear();
 
     friend ostream &operator<<(ostream &os, const List &ms);
     friend istream &operator>>(istream& os,  List& ms);
