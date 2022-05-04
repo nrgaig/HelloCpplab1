@@ -1,3 +1,10 @@
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 6 task 1                                       *
+ * main program that check class correctness               *
+************************************************************/
+
 #include "FullTime.cpp"
 #include "PartTime.cpp"
 #include <iostream>

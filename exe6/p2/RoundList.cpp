@@ -107,15 +107,16 @@ public:
 
     void clear() override {
         //Clear a Linked List
-        if (head == nullptr)
+        if (head == nullptr)  // if the list is empty there is no need to do anything
             return;
-        Link *p = head;
-        while (p->next != head) {
-            p = p->next;
-            delete p->next;
+        Link *p = head->next; // pointing to first on the list
+        while (p != head) {   // running on the list untill pointing to head
+            head->next=p->next; // detach first link p pointing on
+            delete p;         // deleting p
+            p = head->next;   //
         }
-        delete p;
         head = nullptr;
+        delete p;
     }
 
     RoundList &operator=(const RoundList &l) {//copy assignment method for operator =
