@@ -57,3 +57,51 @@ int main() {
     }
     return 0;
 }
+/******* run example *******
+Enter your choice:
+1
+Enter a number:
+1
+Enter your choice:
+1
+Enter a number:
+2
+Enter your choice:
+1
+Enter a number:
+3
+Enter your choice:
+1
+Enter a number:
+4
+Enter your choice:
+2
+Enter a number:
+5
+Enter your choice:
+7
+4 3 2 1 5
+Enter your choice:
+3
+Enter your choice:
+7
+3 2 1 5
+Enter your choice:
+4
+Enter a number: 5
+2
+Enter your choice:
+6
+Not empty
+Enter your choice:
+5
+Enter your choice:
+6
+Empty
+Enter your choice:
+7
+
+Enter your choice:
+0
+
+***************************/
