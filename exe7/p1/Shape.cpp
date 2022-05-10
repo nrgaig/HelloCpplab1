@@ -87,7 +87,7 @@ public:
         return os;
     }//end of operator<<
 
-    virtual float area() const = 0; //return area of shape
+    virtual double area() const = 0; //return area of shape
 
     virtual bool isSpecial() const = 0;// return true if shape has special feature
 
