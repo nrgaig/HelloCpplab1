@@ -7,7 +7,7 @@ enum SHAPES {
 };
 
 int main() {
-    Point p;
+//    Point p;
 
     int numShapes, choice;
     cout << "How many shapes you would like to define?\n";
@@ -24,10 +24,10 @@ int main() {
                 shapes[i] = new Circle(radius);
                 break;
             case TRIANGLE:
-
+                shapes[i] = new Triangle();
                 break;
             case RECTANGLE:
-
+                shapes[i] = new Rectangle();
                 break;
             default:
                 cout << "invalid input\n";
@@ -37,12 +37,7 @@ int main() {
     }
 
     for (int i = 0; i < numShapes; i++) {
-
-
+        cout << (Shape &) shapes[i] << " area is " << shapes[i]->area() << endl;
+        shapes[i]->printSpecial();
     }
-
-}
-
-
-return 0;
 }

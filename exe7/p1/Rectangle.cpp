@@ -11,7 +11,7 @@ class Rectangle : public Shape {
 public:
     Rectangle() : Shape(4) {};
 
-    bool isSpecial() const override{
+    bool isSpecial() const override {
         double oneSide = points[0].distance(points[1]);
         for (int i = 1; i < 3; ++i) {
             if (points[i].distance(points[(i + 1)]) != oneSide)
@@ -19,12 +19,15 @@ public:
         }
         return (points[3].distance(points[(0)]) == oneSide);
     }
+
     void printSpecial() const override {
         if (isSpecial())
             cout << "Square with side length " << points[0].distance(points[1]) << endl;
     }
+
     double area() const override {
         return points[0].distance(points[1]) * points[1].distance(points[2]);
+    }
 };
 
 #endif //HELLOCPPLAB1_RECTANGLE_H

@@ -17,19 +17,29 @@ public:
     explicit Circle(float _radius) : Shape(1) {
         radius = _radius;
     }
+
     // copy constructor
     Circle(const Circle &other) : Shape(other) {
         radius = other.radius;
     }
+
     bool isSpecial() const override {
         return this->points->getX() == 0 && this->points->getY() == 0;
     }
-    void printSpecial() const override{
+
+    void printSpecial() const override {
         if (this->isSpecial())
             cout << "A canonical circle with a radius " << radius << endl;
     }
-    float area() const override {
+
+    double area() const override {
         return PI * radius * radius;
+    }
+
+    // overloaded << operator
+    friend ostream &operator<<(ostream &os, const Circle &circle) {
+        os << (Shape &) circle;
+        return os;
     }
 
 protected:

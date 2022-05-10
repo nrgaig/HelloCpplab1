@@ -10,32 +10,33 @@
 
 #include <cmath>
 #include <iostream>
+
 using namespace std;
 
 class Shape {
 protected:
     class Point {
     public:
-        Point():x(0), y(0) {}//empty constructor
+        Point() : x(0), y(0) {}//empty constructor
 
-        Point(int inX, int inY): x(inX), y(inY) {} // constructor
+        Point(int inX, int inY) : x(inX), y(inY) {} // constructor
 
-        Point(const Point &copy):x(copy.x), y(copy.y) {} // copy constructor
+        Point(const Point &copy) : x(copy.x), y(copy.y) {} // copy constructor
 
-        double distance(const Point& point) const {
-            return sqrt(pow(point.x- this->x,2)+pow(point.y- this->y,2));
+        double distance(const Point &point) const {
+            return sqrt(pow(point.x - this->x, 2) + pow(point.y - this->y, 2));
         }
 
-        int getX() const  {return x;}
+        int getX() const { return x; }
 
-        int getY() const  {return y;}
+        int getY() const { return y; }
 
-        void setX(int newX) { this->x = newX;}
+        void setX(int newX) { this->x = newX; }
 
-        void setY(int newY) { this->y = newY;}
+        void setY(int newY) { this->y = newY; }
 
-        friend istream & operator>>(istream &is, Point &ms) { //overloading >> operator
-            int newX,newY;
+        friend istream &operator>>(istream &is, Point &ms) { //overloading >> operator
+            int newX, newY;
             char trash;
             is >> trash >> newX >> trash >> newY >> trash;//input format: "(newX,newY)"
             ms.setX(newX);
@@ -52,38 +53,37 @@ protected:
 
 protected: //properties
     int numOfPoints;
-    Point * points;
+    Point *points;
 
 public:
     explicit Shape(int numOfPoints) : numOfPoints(numOfPoints), points(new Point[numOfPoints]) {// ctor
-        cout<<"Enter values of  "<< numOfPoints <<" points: \n"; //asking input from user
-        for (int i = 0; i <numOfPoints; ++i) {//running on array of points
-            cin>>
-               points[i]; //getting values from user
+        cout << "Enter values of  " << numOfPoints << " points: \n"; //asking input from user
+        for (int i = 0; i < numOfPoints; ++i) {//running on array of points
+            cin >>
+                points[i]; //getting values from user
         }
     }//end ctor
 
 
-    Shape() : numOfPoints(0), points(nullptr){} // empty ctor
+    Shape() : numOfPoints(0), points(nullptr) {} // empty ctor
 
-    Shape(const Shape &copy) : numOfPoints(copy.numOfPoints),points(new Point[numOfPoints]){ // deep copy ctor
-        for (int i = 0; i <numOfPoints; ++i) {//running on array of points
+    Shape(const Shape &copy) : numOfPoints(copy.numOfPoints), points(new Point[numOfPoints]) { // deep copy ctor
+        for (int i = 0; i < numOfPoints; ++i) {//running on array of points
             points[i].setX(copy.points[i].getX()); //copy x values
             points[i].setY(copy.points[i].getY()); //copy y values
         }
     }// end of copy ctor
 
-    Shape(const Shape &&copy)  noexcept : numOfPoints(copy.numOfPoints) ,points(copy.points){}// move ctor
+    Shape(const Shape &&copy) noexcept: numOfPoints(copy.numOfPoints), points(copy.points) {}// move ctor
 
-    virtual ~Shape() {delete [] points;} // dtor
+    virtual ~Shape() { delete[] points; } // dtor
 
-    friend ostream & operator<<(ostream &os, Shape & shape){ // output for all points values in specific format
+    friend ostream &operator<<(ostream &os, Shape &shape) { // output for all points values in specific format
         // format: "points: (x1,y1) (x2, y2)... (xn,yn)"
         os << "points:";
         for (int i = 0; i < shape.numOfPoints; ++i) {
-            os << " (" <<shape.points[i].getX()<<","<<shape.points[i].getY()<<")";
+            os << " (" << shape.points[i].getX() << "," << shape.points[i].getY() << ")";
         }
-        os<<"\n";
         return os;
     }//end of operator<<
 
