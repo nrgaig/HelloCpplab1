@@ -13,7 +13,7 @@
 using namespace std;
 
 class Shape {
-private:
+protected:
     class Point {
     public:
         Point():x(0), y(0) {}//empty constructor

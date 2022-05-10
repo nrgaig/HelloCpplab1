@@ -1,6 +1,6 @@
-#include "Rectangle.h"
-#include "Circle.h"
-#include "Triangle.h"
+#include "Rectangle.cpp"
+#include "Circle.cpp"
+#include "Triangle.cpp"
 
 enum SHAPES {
     CIRCLE = 1, TRIANGLE = 3, RECTANGLE
