@@ -1,6 +1,9 @@
-//
-// Created by itayo on 10/05/2022.
-//
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 7                                              *
+ * class implement Rectangle based on Shape abstract class *
+************************************************************/
 
 #ifndef HELLOCPPLAB1_RECTANGLE_H
 #define HELLOCPPLAB1_RECTANGLE_H

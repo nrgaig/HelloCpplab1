@@ -37,7 +37,7 @@ int main() {
     }
 
     for (int i = 0; i < numShapes; i++) {
-        cout << (Shape &) shapes[i] << " area is " << shapes[i]->area() << endl;
+        cout << *shapes[i] << " area is " << shapes[i]->area() << endl;
         shapes[i]->printSpecial();
     }
 }

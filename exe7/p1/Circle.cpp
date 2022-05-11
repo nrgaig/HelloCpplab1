@@ -2,7 +2,7 @@
  * Created by Maor Frost 206370231 and Itay Oren 318648482 *
  * cpp lab - Meir Litman                                   *
  * exercise 7 task 1                                       *
- *                          *
+ * class implement Circle based on Shape abstract class    *
 ************************************************************/
 
 #ifndef HELLOCPPLAB1_CIRCLE_H

@@ -1,8 +1,8 @@
 /***********************************************************
  * Created by Maor Frost 206370231 and Itay Oren 318648482 *
  * cpp lab - Meir Litman                                   *
- * exercise # task #                                       *
- * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$               *
+ * exercise 7                                              *
+ * class implement Triangle based on Shape abstract class  *
 ************************************************************/
 
 #ifndef HELLOCPPLAB1_TRIANGLE_CPP
