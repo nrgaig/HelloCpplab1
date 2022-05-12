@@ -30,4 +30,7 @@ set(CMAKE_CXX_STANDARD 11)
 #add_executable(cpplab2 exe6/p2/exe6p2.cpp exe6/p2/List.h exe6/p2/List.cpp exe6/p2/RoundList.cpp)
 
 # exe 7 #
-add_executable(cpplab2 exe7/p1/Shape.cpp exe7/p1/Circle.cpp exe7/p1/Rectangle.cpp exe7/p1/exe7.cpp exe7/p1/Triangle.cpp)
+#add_executable(cpplab2 exe7/p1/Shape.cpp exe7/p1/Circle.cpp exe7/p1/Rectangle.cpp exe7/p1/exe7.cpp exe7/p1/Triangle.cpp exe8/Vector.h)
+
+# exe 8 #
+add_executable(cpplab2 exe8/p1/Vector.h exe8/p1/StackVector.cpp exe8/p1/StackVector.h exe8/p1/exe8p1.cpp)
