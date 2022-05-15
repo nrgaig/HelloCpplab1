@@ -34,3 +34,4 @@ set(CMAKE_CXX_STANDARD 11)
 
 # exe 8 #
 add_executable(cpplab2 exe8/p1/Vector.h exe8/p1/StackVector.cpp exe8/p1/StackVector.h exe8/p1/exe8p1.cpp)
+#add_executable(cpplab2 exe8/p1/Vector.h exe8/p1/StackVector.cpp exe8/p1/StackVector.h exe8/p1/exe8p1.cpp exe8/p2/QueueStack.cpp exe8/p2/QueueStack.h exe8/p2/exe8p2.cpp)

@@ -90,8 +90,7 @@ void Vector<T>::clear() {
 template<class T>
 T &Vector<T>::operator[](int index) {
     if (index < 0 || index >= size)
-        throw
-        "vector overflow";
+        throw "vector overflow";
     return data[index];
 }
 

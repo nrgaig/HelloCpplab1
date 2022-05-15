@@ -12,58 +12,69 @@
 using namespace std;
 
 
-string infixToPostfix(string exp){
-    string str;
-    StackVector<char> stk;
+string infixToPostfix(string exp) {
+    string str; // creating new blank string
+    StackVector<char> stk; // creating new blank char-stack
     char ch;
+
     //ch=exp[0];
-    int i=0;
-    while (i<exp.length()){
-        if (exp[i]=='(')
+    int i = 0; //
+    while (i < exp.length()) {
+        if (exp[i] == '(') // (
             stk.push(exp[i]);
-        if (exp[i]==')'){
+
+        if (exp[i] == ')') { // )
             str.push_back(32);//adding space between every character
-            while(stk.top()!='(') {
-                str.push_back(stk.pop());
-                str.push_back(32);//adding space between every character
-            }
-            stk.pop();
-        }
-        if (exp[i]=='+'||exp[i]=='-'||exp[i]=='*'||exp[i]=='/'){
-            if (exp[i]=='+'||exp[i]=='-'){
-                while(stk.top()!='(' && stk.top()!='+'&&stk.top()!='-') {
-                    str.push_back(stk.pop());
+            if (!stk.isEmpty()) {
+                while (stk.top() != '(') {
+                    str.push_back(stk.top());
+                    stk.pop();
                     str.push_back(32);//adding space between every character
                 }
-                stk.push(exp[i]);
+                stk.pop();
             }
 
-                while(stk.top()!='(' && stk.top()!='+'&&stk.top()!='-') {
-                    str.push_back(stk.pop());
-                    str.push_back(32);//adding space between every character
+        }
+        if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/') { // operation
+            str.push_back(32);//adding space between every character
+            if (exp[i] == '+' || exp[i] == '-') {
+                if (!stk.isEmpty()) {
+                    while (stk.top() != '(' && stk.top() != '+' && stk.top() != '-') {
+                        str.push_back(stk.top());
+                        stk.pop();
+                        str.push_back(32);//adding space between every character
+                    }
+                }
+                stk.push(exp[i]);
+
+            } else {
+                if (!stk.isEmpty()) {
+                    while (stk.top() != '(') {
+                        str.push_back(stk.top());
+                        stk.pop();
+                        str.push_back(32);//adding space between every character
+                    }
                 }
                 stk.push(exp[i]);
             }
-        if(47<exp[i]&&exp[i]<58) {
+        }
+        if (47 < exp[i] && exp[i] < 58) { // digit
             str.push_back(exp[i]);
 
         }
-
-
-
         i++;
     }
 
-return str;
+    return str;
 }
 
-int main() {
+int main() { //main function from Exercise's writer
 
     string exp;
     cout << "enter an infix expression as a string" << endl;
     cin >> exp;
     string postfix = infixToPostfix(exp);
     cout << "in postfix form: " << postfix << endl;
-//    cout << "calculated value: " << calcPostfix(postfix) << endl;
+    //    cout << "calculated value: " << calcPostfix(postfix) << endl;
     return 0;
-}
+}//end main

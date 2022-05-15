@@ -81,7 +81,8 @@ template <class T>
 T StackVector<T>::pop()
 {
     // return and remove the intopmost element in the Stack
-    if (isEmpty()) throw "Stack is empty";
+    if (isEmpty())
+        throw "Stack is empty";
     return data.delLast();
 }
 
@@ -94,7 +95,8 @@ void StackVector<T>::push(int val)
 template <class T>
 T StackVector<T>::top()  {
     // return the intopmost element in the Stack
-    if (isEmpty()) throw "Stack is empty";
+    if (isEmpty())
+        throw "Stack is empty";
     return data[data.getSize() - 1];
 }
 
