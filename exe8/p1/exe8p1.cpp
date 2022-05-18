@@ -11,68 +11,102 @@
 
 using namespace std;
 
-
+//Convert infix expression to postfix expression:
 string infixToPostfix(string exp) {
-    string str; // creating new blank string
-    StackVector<char> stk; // creating new blank char-stack
+    string str;
+    StackVector<char> stack;
     char ch;
-
-    //ch=exp[0];
-    int i = 0; //
+    int i = 0;
     while (i < exp.length()) {
-        if (exp[i] == '(') // (
-            stk.push(exp[i]);
-
-        if (exp[i] == ')') { // )
-            str.push_back(32);//adding space between every character
-            if (!stk.isEmpty()) {
-                while (stk.top() != '(') {
-                    str.push_back(stk.top());
-                    stk.pop();
-                    str.push_back(32);//adding space between every character
-                }
-                stk.pop();
-            }
-
+        ch = exp[i];
+        if (ch == '(') {
+            stack.push(ch);
         }
-        if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/') { // operation
+        else if (ch == ')') {
             str.push_back(32);//adding space between every character
-            if (exp[i] == '+' || exp[i] == '-') {
-                if (!stk.isEmpty()) {
-                    while (stk.top() != '(' && stk.top() != '+' && stk.top() != '-') {
-                        str.push_back(stk.top());
-                        stk.pop();
-                        str.push_back(32);//adding space between every character
-                    }
-                }
-                stk.push(exp[i]);
-
-            } else {
-                if (!stk.isEmpty()) {
-                    while (stk.top() != '(') {
-                        str.push_back(stk.top());
-                        stk.pop();
-                        str.push_back(32);//adding space between every character
-                    }
-                }
-                stk.push(exp[i]);
+            while (stack.top() != '(') {
+                str += stack.top();
+                stack.pop();
+                str.push_back(32);//adding space between every character
             }
+            stack.pop();
         }
-        if (47 < exp[i] && exp[i] < 58) { // digit
-            str.push_back(exp[i]);
-
+        else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+            while (!stack.isEmpty() && stack.top() != '(' && (stack.top() == '+' || stack.top() == '-' || stack.top() == '*' || stack.top() == '/')) {
+                str += stack.top();
+                stack.pop();
+                str.push_back(32);//adding space between every character
+            }
+            stack.push(ch);
+        }
+        else {
+            str += ch;
+            str.push_back(32);//adding space between every character
         }
         i++;
     }
-
+    while (!stack.isEmpty()) {
+        str += stack.top();
+        stack.pop();
+    }
     return str;
+
+
+//    string str; // creating new blank string
+//    StackVector<char> stk; // creating new blank char-stack
+//    char ch;
+//
+//    //ch=exp[0];
+//    int i = 0; //
+//    while (i < exp.length()) {
+//        if (exp[i] == '(') // (
+//            stk.push(exp[i]);
+//
+//        if (exp[i] == ')') { // )
+//            str.push_back(32);//adding space between every character
+//            if (!stk.isEmpty()) {
+//                while (stk.top() != '(') {
+//                    str.push_back(stk.top());
+//                    stk.pop();
+//                    str.push_back(32);//adding space between every character
+//                }
+//                stk.pop();
+//            }
+//
+//        }
+//        if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/') { // operation
+//            str.push_back(32);//adding space between every character
+//            if (exp[i] == '+' || exp[i] == '-') {
+//                if (!stk.isEmpty()) {
+//                    while (stk.top() != '(' && stk.top() != '+' && stk.top() != '-') {
+//                        str.push_back(stk.top());
+//                        stk.pop();
+//                        str.push_back(32);//adding space between every character
+//                    }
+//                }
+//                stk.push(exp[i]);
+//
+//            } else {
+//                if (!stk.isEmpty()) {
+//                    while (stk.top() != '(') {
+//                        str.push_back(stk.top());
+//                        stk.pop();
+//                        str.push_back(32);//adding space between every character
+//                    }
+//                }
+//                stk.push(exp[i]);
+//            }
+//        }
+//        if (47 < exp[i] && exp[i] < 58) { // digit
+//            str.push_back(exp[i]);
+//
+//        }
+//        i++;
+//    }
+//
+//    return str;
 }
-// calculate the result of the postfix expression:
-//1. Start with an empty stack
-//2. Go for each expression from left to right:
-//3. If the next organ is an operand - insert it into the stack
-//4. If it is an action - Run the action on the two organs at the top of the stack and insert The result for the stack
-// example: if the postfix string is: 5 3 + 20 10 / 8 6 - + * the function return 32 (the infix term is: "(5+3)*((20/10)+(8-6))")
+// calculate the result of the postfix expression
 string calcPostfix(string postfix) {
     StackVector<int> stk;
     int i = 0;
