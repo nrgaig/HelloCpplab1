@@ -67,6 +67,43 @@ string infixToPostfix(string exp) {
 
     return str;
 }
+// calculate the result of the postfix expression:
+//1. Start with an empty stack
+//2. Go for each expression from left to right:
+//3. If the next organ is an operand - insert it into the stack
+//4. If it is an action - Run the action on the two organs at the top of the stack and insert The result for the stack
+// example: if the postfix string is: 5 3 + 20 10 / 8 6 - + * the function return 32 (the infix term is: "(5+3)*((20/10)+(8-6))")
+string calcPostfix(string postfix) {
+    StackVector<int> stk;
+    int i = 0;
+    int num1, num2, result;
+    while (i < postfix.length()) {
+        if (47 < postfix[i] && postfix[i] < 58) { // digit
+            stk.push(postfix[i] - '0');
+        }
+        if (postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/') { // operation
+            num1 = stk.top();
+            stk.pop();
+            num2 = stk.top();
+            stk.pop();
+            if (postfix[i] == '+') {
+                result = num1 + num2;
+            }
+            if (postfix[i] == '-') {
+                result = num1 - num2;
+            }
+            if (postfix[i] == '*') {
+                result = num1 * num2;
+            }
+            if (postfix[i] == '/') {
+                result = num1 / num2;
+            }
+            stk.push(result);
+        }
+        i++;
+    }
+    return to_string(stk.top());
+}
 
 int main() { //main function from Exercise's writer
 
@@ -75,6 +112,6 @@ int main() { //main function from Exercise's writer
     cin >> exp;
     string postfix = infixToPostfix(exp);
     cout << "in postfix form: " << postfix << endl;
-    //    cout << "calculated value: " << calcPostfix(postfix) << endl;
+    cout << "calculated value: " << calcPostfix(postfix) << endl;
     return 0;
 }//end main

@@ -107,3 +107,7 @@ StackVector<T>::StackVector(const StackVector &s) : data(s.data){
 
 
 #endif //HELLOCPPLAB1_STACKVECTOR_H
+
+
+
+
