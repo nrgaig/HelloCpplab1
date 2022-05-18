@@ -2,10 +2,10 @@
  * Created by Maor Frost 206370231 and Itay Oren 318648482 *
  * cpp lab - Meir Litman                                   *
  * exercise 8 task 2                                       *
- * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$               *
+ * main program checkin classes correctness               *
 ************************************************************/
 #include <iostream>
-#include "QueueStack.h"
+#include "QueueStack.cpp"
 using namespace std;
 int main() {
     Queue* Q;
