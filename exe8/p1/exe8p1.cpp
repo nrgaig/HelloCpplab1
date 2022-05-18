@@ -114,7 +114,7 @@ string calcPostfix(string postfix) {
     while (i < postfix.length()) {
         if (47 < postfix[i] && postfix[i] < 58) { // digit
             stk.push(stoi(postfix.substr(i, postfix.find(' ', i) - i)));
-            i = postfix.find(' ', i);
+            i = (int) postfix.find(' ', i);
 //            stk.push(postfix[i] - '0');
         }
         if (postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/') { // operation
