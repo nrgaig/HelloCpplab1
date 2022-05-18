@@ -35,13 +35,13 @@ string infixToPostfix(string exp) {
             while (!stack.isEmpty() && stack.top() != '(' && (stack.top() == '+' || stack.top() == '-' || stack.top() == '*' || stack.top() == '/')) {
                 str += stack.top();
                 stack.pop();
-                str.push_back(32);//adding space between every character
             }
             stack.push(ch);
+            str.push_back(32);//adding space between every character
+
         }
         else {
             str += ch;
-            str.push_back(32);//adding space between every character
         }
         i++;
     }
@@ -113,7 +113,9 @@ string calcPostfix(string postfix) {
     int num1, num2, result;
     while (i < postfix.length()) {
         if (47 < postfix[i] && postfix[i] < 58) { // digit
-            stk.push(postfix[i] - '0');
+            stk.push(stoi(postfix.substr(i, postfix.find(' ', i) - i)));
+            i = postfix.find(' ', i);
+//            stk.push(postfix[i] - '0');
         }
         if (postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/') { // operation
             num1 = stk.top();
