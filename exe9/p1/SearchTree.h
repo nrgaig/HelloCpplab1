@@ -20,8 +20,11 @@ public:
     bool search(T value) {
         return search(Tree<T>::root, value);
     }
+
     void remove(T val);
+
     T successor(T val);
+
     void deleteDuplicates();
 
 private:
