@@ -6,7 +6,7 @@
 #define HELLOCPPLAB1_TREE_H
 
 #include  <iostream>
-
+using namespace std;
 //-----------------------------------
 //  class Tree (Binary Trees)
 // process nodes in Pre/In/Post  order

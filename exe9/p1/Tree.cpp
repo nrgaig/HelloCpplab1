@@ -3,6 +3,9 @@
 //
 
 #include "Tree.h"
+#include "Queue.h"
+#include "QueueVector.h"
+
 
 
 //----------------------------------------------------------
@@ -71,14 +74,37 @@ int Tree<T>::height() {
         return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
     }
 }
-
+// reflect the tree
 template<class T>
 void Tree<T>::reflect() {
+    if (root == nullptr)
+        return;
+    else {
+        Node *temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+        reflect(root->left);
+        reflect(root->right);
+    }
 }
 
+//A method that scans the tree nodes laterally and prints the node values level by level (starting from the root) from left to right. This method will use an queue data structure (the queue data structure should be included in its generic definition as well as the class that inherits a queue that implements a queue by a vector or list)template<class T>template<class T>
 template<class T>
 void Tree<T>::breadthScan() {
-
+    if (root == nullptr)
+        return;
+    else {
+        Queue *q = new QueueVector(height());
+        q->enqueue(root);
+        while (!q->isEmpty()) {
+            Node *current = q->dequeue();
+            process(current->value);
+            if (current->left)
+                q->enqueue(current->left);
+            if (current->right)
+                q->enqueue(current->right);
+        }
+    }
 }
 
 

@@ -39,3 +39,45 @@ bool SearchTree<T>::search(typename Tree<T>::Node *current, T val) {
         return search(current->right, val);
     else
         return search(current->left, val);
+}
+
+template<class T>
+void SearchTree<T>::remove(T val) {
+    if (!Tree<T>::root)
+        return;
+    remove(Tree<T>::root, val);
+    if (val == Tree<T>::root->value) {
+        typename Tree<T>::Node *temp = Tree<T>::root;
+        Tree<T>::root = Tree<T>::root->right;
+        delete temp;
+    }
+}
+
+template<class T>
+T SearchTree<T>::successor(T val) {
+    if (!Tree<T>::root)
+        throw "no successor";
+    typename Tree<T>::Node *current = Tree<T>::root;
+    while (current) {
+        if (current->value == val) {
+            if (current->right) {
+                current = current->right;
+                while (current->left)
+                    current = current->left;
+                return current->value;
+            } else {
+                throw "no successor";
+            }
+        } else if (current->value < val)
+            current = current->right;
+        else
+            current = current->left;
+    }
+    throw "no successor";
+}
+
+template<class T>
+void SearchTree<T>::deleteDuplicates() {
+}
+
+
