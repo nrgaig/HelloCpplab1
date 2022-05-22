@@ -57,6 +57,12 @@ public:
 
     virtual void remove(T val) = 0;
 
+    int height();
+
+    void reflect();
+
+    void breadthScan();
+
 
 private:
     //private function for not give acsses to user

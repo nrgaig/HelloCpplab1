@@ -33,5 +33,8 @@ set(CMAKE_CXX_STANDARD 11)
 #add_executable(cpplab2 exe7/p1/Shape.cpp exe7/p1/Circle.cpp exe7/p1/Rectangle.cpp exe7/p1/exe7.cpp exe7/p1/Triangle.cpp exe8/Vector.h)
 
 # exe 8 #
-add_executable(cpplab2 exe8/p1/Vector.h exe8/p1/StackVector.cpp exe8/p1/StackVector.h exe8/p1/exe8p1.cpp)
+#add_executable(cpplab2 exe8/p1/Vector.h exe8/p1/StackVector.cpp exe8/p1/StackVector.h exe8/p1/exe8p1.cpp)
 #add_executable(cpplab2  exe8/p2/QueueStack.cpp exe8/p2/QueueStack.h exe8/p2/exe8p2.cpp exe8/p2/Queue.h exe8/p2/StackVector.h exe8/p2/Vector.h exe8/p2/Vector.cpp exe8/p2/StackVector.cpp exe8/p2/Stack.h)
+
+# exe 9 #
+add_executable(cpplab2 exe9/p1/exe9p1.cpp exe9/p1/Queue.h exe9/p1/QueueVector.cpp exe9/p1/QueueVector.h exe9/p1/SearchTree.cpp exe9/p1/SearchTree.h exe9/p1/Tree.cpp exe9/p1/Tree.h)

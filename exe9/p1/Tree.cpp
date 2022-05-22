@@ -61,3 +61,25 @@ void Tree<T>::postOrder(Node *current) {    // visit left child, right child, no
         process(current->value);
     }
 }
+template<class T>
+int Tree<T>::height() {
+    if (root == nullptr)
+        return 0;
+    else {
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+    }
+}
+
+template<class T>
+void Tree<T>::reflect() {
+}
+
+template<class T>
+void Tree<T>::breadthScan() {
+
+}
+
+
+
