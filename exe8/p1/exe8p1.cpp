@@ -97,3 +97,10 @@ int main() { //main function from Exercise's writer
     cout << "calculated value: " << calcPostfix(postfix) << endl;
     return 0;
 }//end main
+
+/*********************************************
+    enter an infix expression as a string
+    (5+4)*(35/7)-7
+    in postfix form: 5 4 + 35 7 /* 7 -
+    calculated value: 38
+*/

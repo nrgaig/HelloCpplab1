@@ -78,6 +78,7 @@ T SearchTree<T>::successor(T val) {
 
 template<class T>
 void SearchTree<T>::deleteDuplicates() {
+    Tree::Node *p
 }
 
 
