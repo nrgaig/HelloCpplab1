@@ -15,6 +15,28 @@ class Commander : public PrivateSoldier {
 public:
     Commander(int id, const string &firstName, const string &lastName, int numOfOps, int *grades, bool isBelligerent)
             : PrivateSoldier(id, firstName, lastName, numOfOps, grades), isBelligerent(isBelligerent) {}
+    bool medal() override {
+        if (getNumOfOps() < 7)
+            return false;
+        if (!isBelligerent)
+            return false;
+        int sum = 0;
+        for (int i = 0; i < getNumOfOps(); i++) {
+            sum += grades[i];
+        }
+        return (float) sum / (float) getNumOfOps() > 90;
+    }
+    void print() override {
+        cout << soldierType() << endl;
+        cout << "ID: " << getId() << endl;
+        cout << "first name: " << getFirstName() << endl;
+        cout << "last name: " << getLastName() << endl;
+        cout << "num of operations: " << getNumOfOps() << endl;
+        cout << "combat: "; isBelligerent ? cout << "yes" : cout << "no"; cout << endl;
+    }
+    string soldierType() override {
+        return "Commander";
+    }
 
 private:
     bool isBelligerent;

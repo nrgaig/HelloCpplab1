@@ -9,7 +9,7 @@
 #define HELLOCPPLAB1_SOLDIER_H
 
 #include <string>
-
+#include <iostream>
 using namespace std;
 
 class Soldier {
@@ -21,7 +21,18 @@ public:
     virtual ~Soldier() {
 
     }
-
+    int getId() const {
+        return id;
+    }
+    string getFirstName() const {
+        return firstName;
+    }
+    string getLastName() const {
+        return lastName;
+    }
+    int getNumOfOps() const {
+        return numOfOps;
+    }
     virtual bool medal() = 0; // boolean method return if soldier eligible for commendation
     virtual void print() = 0; //printing soldier's details
     virtual string soldierType() = 0;

@@ -82,8 +82,36 @@ void add(vector<Soldier *> SoldierList) {
 
 }
 
-void printMedalList();   //השלם\י פרמטר- ווקטור או רשימה
-Soldier *highesttSociometricScore();   //השלם\י פרמטר- ווקטור או רשימה
+void printMedalList(vector<Soldier*>SoldierList){
+    // print all soldiers that deserve a medal
+
+    for (auto & i : SoldierList) {
+        if (i->medal()) {
+            i->print();
+        }
+    }
+}   //השלם\י פרמטר- ווקטור או רשימה
+Soldier *highesttSociometricScore(vector<Soldier*>SoldierList){
+    // return the soldier with the highest sociometric score
+    int max = 0;
+    Soldier *maxSoldier = nullptr;
+    for (int i = 0; i < SoldierList.size(); i++) {
+        if (SoldierList[i]->getSociometric() > max) {
+            max = SoldierList[i]->getSociometric();
+            maxSoldier = SoldierList[i];
+        }
+    }
+//    for (auto &i : SoldierList) {
+//        if (i->soldierType()== "officer") {
+//            //((Officer *) soldier)->getSociometric();
+//            if ((Officer *) i->getSociometry() > max) {
+//                max = i->getSociometry();
+//                maxSoldier = i;
+//            }
+//        }
+//    }
+    return maxSoldier;
+}   //השלם\י פרמטר- ווקטור או רשימה
 
 int main() {
 

@@ -17,10 +17,34 @@ public:
     PrivateSoldier(int id, const std::string &firstName, const std::string &lastName, int numOfOps, int *grades)
             : Soldier(id, firstName, lastName, numOfOps), grades(grades) {}
 
-private:
+    bool medal() override {
+        if (getNumOfOps() < 10)
+            return false;
+        int sum = 0;
+        for (int i = 0; i < getNumOfOps(); i++) {
+            sum += grades[i];
+        }
+        return (float) sum / (float) getNumOfOps() > 95;
+    }
+    void print() override {
+        cout << soldierType() << endl;
+        cout << "ID: " << getId() << endl;
+        cout << "first name: " << getFirstName() << endl;
+        cout << "last name: " << getLastName() << endl;
+        cout << "num of operations: " << getNumOfOps() << endl;
+        cout << "grades: ";
+        for (int i = 0; i < getNumOfOps(); i++) {
+            cout << this->grades[i] << " ";
+        }
+        cout << endl;
+    }
+    string soldierType() override {
+        return "Private";
+    }
+
+
+protected:
     int *grades;
-
 };
-
 
 #endif //HELLOCPPLAB1_PRIVATESOLDIER_CPP
