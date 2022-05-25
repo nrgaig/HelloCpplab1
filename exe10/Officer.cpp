@@ -6,14 +6,15 @@
 ************************************************************/
 #ifndef HELLOCPPLAB1_OFFICER_CPP
 #define HELLOCPPLAB1_OFFICER_CPP
+
 #include "Soldier.h"
 
 using namespace std;
-class Officer : public Soldier{
+
+class Officer : public Soldier {
 public:
     Officer(int id, const string &firstName, const string &lastName, int numOfOps, int sociometry)
-    : Soldier(id, firstName, lastName, numOfOps), sociometry(sociometry) {}
-
+            : Soldier(id, firstName, lastName, numOfOps), sociometry(sociometry) {}
 
 
 private:

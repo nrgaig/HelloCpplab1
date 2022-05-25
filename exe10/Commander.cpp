@@ -10,7 +10,8 @@
 #include "PrivateSoldier.cpp"
 
 using namespace std;
-class Commander: public PrivateSoldier {
+
+class Commander : public PrivateSoldier {
 public:
     Commander(int id, const string &firstName, const string &lastName, int numOfOps, int *grades, bool isBelligerent)
             : PrivateSoldier(id, firstName, lastName, numOfOps, grades), isBelligerent(isBelligerent) {}

@@ -7,16 +7,18 @@
 
 #ifndef HELLOCPPLAB1_PRIVATESOLDIER_CPP
 #define HELLOCPPLAB1_PRIVATESOLDIER_CPP
+
 #include "Soldier.h"
 
 using namespace std;
+
 class PrivateSoldier : public Soldier {
 public:
     PrivateSoldier(int id, const std::string &firstName, const std::string &lastName, int numOfOps, int *grades)
-    : Soldier(id,firstName,lastName,numOfOps),grades(grades) {}
+            : Soldier(id, firstName, lastName, numOfOps), grades(grades) {}
 
 private:
-    int * grades;
+    int *grades;
 
 };
 
