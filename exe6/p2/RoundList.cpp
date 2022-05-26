@@ -58,7 +58,7 @@ public:
         }
     }
 
-    void remove(int key) override {//removing the first element with the value key todo complete
+    void remove(int key) override {//removing the first element with the value key
 
         if (head->value == key) {// handling deletion for first element
             removeFromEnd();
@@ -143,7 +143,7 @@ public:
         List::Link *lst = ms.head; // make lst point to the new link
         is >> val; // read the next value
         while (val < lst->value) { // while the value is less than the previous value
-            //todo: check if it correct
+            // correct in moodle
             ms.addToEnd(val); // adding value to end of list
             is >> val; // read the next value
         }
