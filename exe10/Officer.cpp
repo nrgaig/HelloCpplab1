@@ -14,12 +14,14 @@ using namespace std;
 class Officer : public Soldier {
 public:
     Officer(int id, const string &firstName, const string &lastName, int numOfOps, int sociometry)
-            : Soldier(id, firstName, lastName, numOfOps), sociometry(sociometry) {}
-    bool medal() override {
+    : Soldier(id, firstName, lastName, numOfOps), sociometry(sociometry) {}
+
+    bool medal() override { // boolean method return if soldier eligible for commendation
         if (getNumOfOps() < 2)
             return false;
         return sociometry >= 92;
     }
+
     void print() override {
         cout << soldierType() << endl;
         cout << "ID: " << getId() << endl;
@@ -31,7 +33,7 @@ public:
     string soldierType() override {
         return "Officer";
     }
-    int getSociometry() const {
+    int getSociometric() const {
         return sociometry;
     }
 

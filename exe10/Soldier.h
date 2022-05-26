@@ -14,9 +14,8 @@ using namespace std;
 
 class Soldier {
 public:
-    Soldier(int _id, const string &_firstName, const string &_lastName, int _numOfOps) : id(_id), firstName(_firstName),
-                                                                                         lastName(_lastName),
-                                                                                         numOfOps(_numOfOps) {}
+    Soldier(int _id, const string &_firstName, const string &_lastName, int _numOfOps)
+    : id(_id), firstName(_firstName),lastName(_lastName),numOfOps(_numOfOps) {}
 
     virtual ~Soldier() {
 

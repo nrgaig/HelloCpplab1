@@ -91,7 +91,7 @@ void printMedalList(vector<Soldier*>SoldierList){
         }
     }
 }   //השלם\י פרמטר- ווקטור או רשימה
-Soldier *highesttSociometricScore(vector<Soldier*>SoldierList){
+Soldier *highesttSociometricScore(vector<Officer*>SoldierList){
     // return the soldier with the highest sociometric score
     int max = 0;
     Soldier *maxSoldier = nullptr;
