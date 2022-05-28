@@ -63,7 +63,7 @@ void add(vector<Soldier *> SoldierList) {
             cin >> id >> firstName >> lastName >> numOfOps;
             cout << "enter 1 if the soldier is combat and 0 if not" << endl;
             cin >> isBelligerent;
-            SoldierList.push_back(new Commander(id, firstName, lastName, numOfOps, isBelligerent));
+            SoldierList.push_back(new Commander(id, firstName, lastName, numOfOps,0, isBelligerent));
             break;
         }
         case OFFICER: {
@@ -91,15 +91,16 @@ void printMedalList(vector<Soldier*>SoldierList){
         }
     }
 }   //השלם\י פרמטר- ווקטור או רשימה
-Soldier *highesttSociometricScore(vector<Officer*>SoldierList){
+Soldier *highestSociometricScore(vector<Soldier*>SoldierList){
     // return the soldier with the highest sociometric score
     int max = 0;
     Soldier *maxSoldier = nullptr;
-    for (int i = 0; i < SoldierList.size(); i++) {
-        if (SoldierList[i]->getSociometric() > max) {
-            max = SoldierList[i]->getSociometric();
+    for (int i = 0; i < SoldierList.size(); i++) { // running on SoldierList
+        if (SoldierList[i]->soldierType().compare("officer")==0) // if our soldier is Officer check if he has the highest stoichiometry
+            if (((Officer *)SoldierList[i])->getSociometric() > max){ // if he has made him  maxSoldier
+            max = ((Officer *)SoldierList[i])->getSociometric();
             maxSoldier = SoldierList[i];
-        }
+            }
     }
 //    for (auto &i : SoldierList) {
 //        if (i->soldierType()== "officer") {
@@ -129,7 +130,7 @@ int main() {
                 printMedalList(____________);  //הדפסת פרטי הזכאים לצל"ש
                 break;
             case HIGHEST_SOCIOMETRIC:   //הדפסת שם הקצין בעל ציון סוציומטרי גבוה ביותר
-                s = highestSociometricScore(_____); // השלם\י פרמטר-וקטור או רשימה
+                s = highestSociometricScore(soldierList); // השלם\י פרמטר-וקטור או רשימה
                 cout << "Officer with the highest sociometric score: ";
                 cout << s->getFirstName() << ' ' << s->getLastName() << endl;
 
