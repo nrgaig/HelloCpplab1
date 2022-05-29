@@ -136,7 +136,10 @@ int main() {
                 break;
             case PRIVATE_MEDAL_COUNT:
                 cout << "number of privates that received medals: ";
-                ________________ //הדפסת מספר הזכאים לצל"ש בטירונים
+                // print the number of privates that received medals
+                cout << count_if(soldierList.begin(), soldierList.end(), [](Soldier *i) {
+                    return i->medal();
+                });
                 cout << endl;
                 break;
             case NONCOMBAT_COMMANDER:
