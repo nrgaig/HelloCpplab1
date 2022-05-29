@@ -27,8 +27,8 @@ public:
         cout << "ID: " << getId() << endl;
         cout << "first name: " << getFirstName() << endl;
         cout << "last name: " << getLastName() << endl;
-        cout << "num of operations: " << getNumOfOps() << endl;
-        cout << "sociometry: " << sociometry << endl;
+        cout << "num operations: " << getNumOfOps() << endl;
+        cout << "sociometric score: " << sociometry << endl;
     }
     string soldierType() override {
         return "officer";
