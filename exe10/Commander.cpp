@@ -31,11 +31,19 @@ public:
         cout << "ID: " << getId() << endl;
         cout << "first name: " << getFirstName() << endl;
         cout << "last name: " << getLastName() << endl;
-        cout << "num of operations: " << getNumOfOps() << endl;
+        cout << "num operations: " << getNumOfOps() << endl;
+        cout << "grades: ";
+        for (int i = 0; i < getNumOfOps(); i++) {
+            cout << this->grades[i] << " ";
+        }
+        cout << endl;
         cout << "combat: "; isBelligerent ? cout << "yes" : cout << "no"; cout << endl;
     }
     string soldierType() override {
-        return "Commander";
+        return "commander";
+    }
+    bool getIsBelligerent(){
+        return isBelligerent;
     }
 
 private:

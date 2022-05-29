@@ -31,7 +31,7 @@ public:
         cout << "sociometry: " << sociometry << endl;
     }
     string soldierType() override {
-        return "Officer";
+        return "officer";
     }
     int getSociometric() const {
         return sociometry;

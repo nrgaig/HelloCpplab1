@@ -31,7 +31,7 @@ public:
         cout << "ID: " << getId() << endl;
         cout << "first name: " << getFirstName() << endl;
         cout << "last name: " << getLastName() << endl;
-        cout << "num of operations: " << getNumOfOps() << endl;
+        cout << "num operations: " << getNumOfOps() << endl;
         cout << "grades: ";
         for (int i = 0; i < getNumOfOps(); i++) {
             cout << this->grades[i] << " ";
@@ -39,7 +39,7 @@ public:
         cout << endl;
     }
     string soldierType() override {
-        return "Private";
+        return "private";
     }
 
 
