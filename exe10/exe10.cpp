@@ -146,7 +146,7 @@ int main() {
                 cout << "list of noncombat commanders: ";    //print a list of noncombat commanders
                 for_each(soldierList.begin(), soldierList.end(), [](Soldier *i) {
                     if (i->soldierType() == "commander" &&
-                        !((Commander *) i)->getIsBelligerent()) { i->print(); }
+                        !((Commander *) i)->getIsBelligerent()) { cout << i->getFirstName() << " " << i->getLastName() << " "; }
                 });
                 cout << endl;
                 break;
