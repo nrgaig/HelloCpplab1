@@ -17,9 +17,9 @@ public:
     : Soldier(id, firstName, lastName, numOfOps), sociometry(sociometry) {}
 
     bool medal() override { // boolean method return if soldier eligible for commendation
-        if (getNumOfOps() < 2)
+        if (getNumOfOps() < 3)
             return false;
-        return sociometry >= 92;
+        return sociometry > 92;
     }
 
     void print() override {
