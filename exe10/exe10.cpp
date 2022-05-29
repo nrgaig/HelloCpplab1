@@ -43,28 +43,33 @@ void add(vector<Soldier *> &SoldierList) {
     };
     switch (type) {
         case PRIVATE: {
-            int id, numOfOperations, *grades;
+            int id, numOfOperations, *grades = nullptr;
             string firstName, lastName;
             cout << "enter id, first name, last name and number of operations" << endl;
             cin >> id >> firstName >> lastName >> numOfOperations;
-            cout << "enter " << numOfOperations << " grades\n";
-            grades = new int[numOfOperations];
-            for (int i = 0; i < numOfOperations; i++) {
-                cin >> grades[i];
+            if (numOfOperations > 0) {
+                cout << "enter " << numOfOperations << " grades\n";
+                grades = new int[numOfOperations];
+                for (int i = 0; i < numOfOperations; i++) {
+                    cin >> grades[i];
+                }
             }
             SoldierList.push_back(new PrivateSoldier(id, firstName, lastName, numOfOperations, grades));
             break;
         }
         case COMMANDER: {
-            int id, numOfOps, *grades;
+            int id, numOfOps, *grades = nullptr;
             string firstName, lastName;
             bool isBelligerent;
             cout << "enter id, first name, last name and number of operations" << endl;
             cin >> id >> firstName >> lastName >> numOfOps;
-            cout << "enter " << numOfOps << " grades\n";
-            grades = new int[numOfOps];
-            for (int i = 0; i < numOfOps; i++) {
-                cin >> grades[i];
+
+            if (numOfOps > 0) {
+                cout << "enter " << numOfOps << " grades\n";
+                grades = new int[numOfOps];
+                for (int i = 0; i < numOfOps; i++) {
+                    cin >> grades[i];
+                }
             }
             cout << "enter 1 if the soldier is combat and 0 if not" << endl;
             cin >> isBelligerent;
@@ -138,7 +143,7 @@ int main() {
                 cout << "number of privates that received medals: ";
                 // print the number of privates that received medals
                 cout << count_if(soldierList.begin(), soldierList.end(), [](Soldier *i) {
-                    return i->medal();
+                    return i->soldierType() == "private" && i->medal();
                 });
                 cout << endl;
                 break;
@@ -161,7 +166,7 @@ int main() {
             case REMOVE_OFFICER://remove all the solders that did not fight in combat
                 vector<Soldier *>::iterator pend;
                 pend = remove_if(soldierList.begin(), soldierList.end(),
-                                 [](Soldier *i) { return i->getNumOfOps() < 1; });
+                                 [](Soldier *i) { return i->soldierType() == "officer" && i->getNumOfOps() < 1; });
                 for_each(soldierList.begin(), pend, [](Soldier *i) {
                     i->print();
                 });      // printing vector after removing
