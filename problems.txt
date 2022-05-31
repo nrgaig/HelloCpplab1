@@ -1,9 +1,8 @@
---- Input ---
-
-1
-2
-111 aaa aaa 8
-100 100 90 95 98 100 100 100
-1
-2
-0
+successor ( p )
+if right(p) != null
+  return minimum(right(p))
+p1 = parent(p)
+While p1 != null AND p == right(p1)
+	p = p1
+	p1 = parent(p)
+return  p1
