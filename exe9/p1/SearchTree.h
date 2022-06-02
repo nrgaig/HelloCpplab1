@@ -47,10 +47,12 @@ void SearchTree<T>::add(typename Tree<T>::Node *current, T val) {
     if (current->value < val)
 
         if (!current->right) {
+            current->right->parent=current;
             current->right = new typename Tree<T>::Node(val);
             return;
         } else add(current->right, val);
     else if (!current->left) {
+        current->left->parent=current;
         current->left = new typename Tree<T>::Node(val);
         return;
     } else add(current->left, val);

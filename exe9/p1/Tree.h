@@ -24,6 +24,7 @@ protected:
     public:
         Node *left;
         Node *right;
+        Node *parent;
         T value;
 
         Node(T val) : value(val), left(nullptr) {}
@@ -134,36 +135,34 @@ void Tree<T>::postOrder(Node *current) {    // visit left child, right child, no
     }
 }
 template<class T>
-int Tree<T>::height() {
+int Tree<T>::height() {//return the height of the Tree
     if (root == nullptr)
-        return 0;
-    else {
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
-        return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
-    }
+        return -1;
+    root= root->left;
+    int leftHeight= height();
+    root=root->parent->right;
+    int rightHeight= height();
+    root=root->parent;
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);//1+max(leftHeight,rightHeight);
 }
 // reflect the tree
 template<class T>
 void Tree<T>::reflect() {
-    if (root == nullptr)
-        return;
-    else {
+    if (root){
         Node *temp = root->left;
         root->left = root->right;
-        root->right = temp;
-        reflect(root->left);
+        reflect();
+        root->parent->right = temp;
         reflect(root->right);
+        root = root->parent;
     }
 }
 
 template<class T>
 void Tree<T>::breadthScan() {
-    if (root == nullptr)
-        return;
-    else {
-        Queue *q = new QueueVector(height());
-        q->enqueue(root);
+    if (root){
+        Queue<Node*> *q = new QueueVector<Node*>(height());// Create an empty queue for level order traversal
+        q->enqueue(root->value);
         while (!q->isEmpty()) {
             Node *current = q->dequeue();
             process(current->value);

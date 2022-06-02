@@ -8,62 +8,70 @@
 
 #include "Queue.h"
 template<class T>
-class QueueVector<T> : public Queue {
+class QueueVector : public Queue<T> {
 public:
     QueueVector(int max);
 
     //QueueVector(const QueueVector&);
     void clear() override;
 
-    int dequeue() override;
+    T dequeue() override;
 
-    void enqueue(int value) override;
+    void enqueue(T value) override;
 
-    int front() override;
+    T front() override;
 
     bool isEmpty() const override;
 
 private:
-    int *data;
+    T *data;
     int capacity;
-    int nextSlot;
-    int firstUse;
+    //int nextSlot;
+    //int firstUse;
+    int size;
 };
 
-
-QueueVector::QueueVector(int size) {
-    capacity = size + 1;
-    data = new int[capacity];
+template<class T>
+QueueVector<T>::QueueVector(int _size) {
+    capacity = _size ;
+    size=0;
+    data = new T[capacity];
     clear();
 }
-
-void QueueVector::clear() {
-    nextSlot = 0;
-    firstUse = 0;
+template<class T>
+void QueueVector<T>::clear() {
+    for (T i:data) {
+        i=NULL;
+    }
+    size = 0;
+}
+template<class T>
+T QueueVector<T>::dequeue() {
+    T tmp=data[0];
+    for (int i = 0; i <size; ++i) {
+    data[i]=data[i+1];
+    }
+    data[size]=NULL;
+    return tmp;
+}
+template<class T>
+void QueueVector<T>::enqueue(T val) {
+    if (size==capacity)
+        throw "Vector is full";
+    data[size]=val;
+    size++;
 }
 
-int QueueVector::dequeue() {
-    if (isEmpty()) throw "Queue is empty\n";
-    int dataloc = firstUse;
-    ++firstUse %= capacity;
-    return data[dataloc];
-}
-
-void QueueVector::enqueue(int val) {
-    if ((nextSlot + 1) % capacity == firstUse)
-        throw "the Queue is full\n";
-    data[nextSlot] = val;
-    ++nextSlot %= capacity;
-}
-
-int QueueVector::front() {
+template<class T>
+T QueueVector<T>::front() {
     if (isEmpty())
         throw "Queue is empty\n";
-    return data[firstUse];
+    return data[0];
 }
 
-bool QueueVector::isEmpty() const {
-    return nextSlot == firstUse;
+template<class T>
+bool QueueVector<T>::isEmpty() const {
+    return size==0;
 }
 
 
