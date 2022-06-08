@@ -90,11 +90,9 @@ void check_valid(char ans) {
     }
 }
 
-void reg(fstream &file, Family& family, queue<Family>& q , int activity){
+bool if_less_than_10(fstream &file, int activity) {
     if (count(file, activity) < 10) {
-        family.setActivityList(family.getActivityList() + activity);
-    } else {
-
+        return true;
     }
 }
 
