@@ -1,3 +1,9 @@
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 9 task 1                                       *
+ * main program tests BST class correctness                *
+************************************************************/
 #include <iostream>
 
 using namespace std;

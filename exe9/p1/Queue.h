@@ -1,6 +1,9 @@
-//
-// Created by itayo on 19/05/2022.
-//
+/***********************************************************
+ * Created by Maor Frost 206370231 and Itay Oren 318648482 *
+ * cpp lab - Meir Litman                                   *
+ * exercise 9 task 1                                       *
+ * abstract template class implements Queue for any type   *
+************************************************************/
 
 #ifndef HELLOCPPLAB1_QUEUE_H
 #define HELLOCPPLAB1_QUEUE_H
