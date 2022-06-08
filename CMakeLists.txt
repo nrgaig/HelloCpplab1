@@ -37,8 +37,11 @@ set(CMAKE_CXX_STANDARD 11)
 #add_executable(cpplab2  exe8/p2/QueueStack.cpp exe8/p2/QueueStack.h exe8/p2/exe8p2.cpp exe8/p2/Queue.h exe8/p2/StackVector.h exe8/p2/Vector.h exe8/p2/Vector.cpp exe8/p2/StackVector.cpp exe8/p2/Stack.h)
 
 # exe 9 #
-add_executable(cpplab2 exe9/p1/exe9p1.cpp exe9/p1/Queue.h exe9/p1/QueueVector.cpp exe9/p1/QueueVector.h exe9/p1/SearchTree.h exe9/p1/Tree.h exe9/p2/Book.cpp exe9/p2/Book.h)
-#add_executable(cpplab2 exe9/p1/exe9p1.cpp exe9/p1/Queue.h exe9/p1/QueueVector.cpp exe9/p1/QueueVector.h exe9/p1/SearchTree.cpp exe9/p1/SearchTree.h exe9/p1/Tree.cpp exe9/p1/Tree.h)
+#add_executable(cpplab2 exe9/p1/exe9p1.cpp exe9/p1/Queue.h exe9/p1/QueueVector.cpp exe9/p1/QueueVector.h exe9/p1/SearchTree.h exe9/p1/Tree.h)
+#add_executable(cpplab2 exe9/p1/exe9p1.cpp exe9/p1/Queue.h exe9/p1/QueueVector.cpp exe9/p1/QueueVector.h exe9/p1/SearchTree.cpp exe9/p1/SearchTree.h exe9/p1/Tree.cpp exe9/p1/Tree.h exe9/p2/Book.cpp exe9/p2/Book.h)
 
 # exe 10 #
 #add_executable(cpplab2 exe10/Soldier.h exe10/exe10.cpp exe10/PrivateSoldier.cpp exe10/Commander.cpp exe10/Officer.cpp)
+
+# exe 11 #
+add_executable(cpplab2 exe11/exe11.cpp exe11/Family.cpp exe11/Family.h)
