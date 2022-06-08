@@ -15,6 +15,8 @@ enum {
 };
 
 class InvalidResponse:public exception { const char *what() const throw() { return "ERROR: Invalid response";}} invalidResponse;
+class InvalidFamilyNumber:public exception { const char *what() const throw() { return "ERROR: Invalid family number";}} InvalidFamilyNum;
+class fFamilyInTheFile:public exception { const char *what() const throw() { return "ERROR: Family is already in the file";}} familyInTheFile;
 
 enum ACTIVITY {
     NONE, //  טרם בחר חוג
@@ -36,24 +38,29 @@ void setFile(fstream &file) {
 }
 
 void add(fstream &file) { //adding family to the file
-    int _familyId, _numOfFamilyMembers, _phoneNumber;
+    int _familyId, _numOfFamilyMembers, _phoneNumber, writeOffset;
     char _familyName[21]{};
     short _activityList;
+
     Family tmp;
-
     cin >> _familyId >> _familyName >> _numOfFamilyMembers >> _phoneNumber;//input info
-    while (!file.eof()) {
-        file.read((char *) &tmp, sizeof(Family));
+    if (_familyId < 1 || 100 < _familyId)
+        throw InvalidFamilyNum;   //throw "ERROR: Invalid family number"
+        file.seekg(0);// pointing read to start of file
+        while (!file.eof()) {//check if famId is not already in file
+        file.read((char *) &tmp, sizeof(Family));//reading family from file
         if (tmp.getFamilyId() == _familyId) {
-            globError.setMessage("ERROR: Invalid family number");
-            throw globError;
+            throw familyInTheFile;   //throw "ERROR: Family is already in the file";
         }
-        //throw "ERROR: Invalid family number";   //throw "ERROR: Invalid family number"
-
-
     }
-    //check if famId is not already in file
-    //    throw "ERROR: Family is already in the file";
+    // insert new family into file
+    writeOffset= sizeof(Family)*(_familyId-1);// prepare offset from beginning
+    Family input{_familyId, _familyName, _numOfFamilyMembers, _phoneNumber,NONE};
+    file.seekp(writeOffset);
+    file.write((char*)&input,sizeof (Family));//writing into file in place
+
+
+
 
 }
 
@@ -84,16 +91,16 @@ int count(fstream &file, int activityType) {
     return sum;
 }
 
-void check_valid(char ans) {
+bool check_valid(char ans) {
     if (ans != 'n' && ans != 'N' && ans != 'y' && ans != 'Y') {
         //“ERROR: Invalid response”
+        return false;
     }
+    return true;
 }
 
-bool if_less_than_10(fstream &file, int activity) {
-    if (count(file, activity) < 10) {
-        return true;
-    }
+bool canReg(fstream &file, int activity) {
+    return (count(file, activity) < 10);
 }
 
 void update(fstream &file, int id, queue<Family> whaitingList) {
@@ -113,38 +120,26 @@ void update(fstream &file, int id, queue<Family> whaitingList) {
         //“ERROR: Family is not in the file”
     }
     file.clear();
-    char swimming, gymnastics, dance, art, self_defense, music, drama, basketball;
-    cout << "Do you want to register for swimming?" << endl;
-    cin >> swimming;
-    check_valid(swimming);
+    char msg[8][43] = {
+            {"Do you want to register for swimming?\n"},
+            {"Do you want to register for gymnastics?\n"},
+            {"Do you want to register for dance?\n"},
+            {"Do you want to register for art?\n"},
+            {"Do you want to register for self defense?\n"},
+            {"Do you want to register for music?\n"},
+            {"Do you want to register for drama?\n"},
+            {"Do you want to register basketball?\n"}};
+    char choice[9];
+    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) {
+        cout << msg[i];
+        cin >> choice[i];
+        if(check_valid(choice[i]) &&  && canReg(file, _activity)){
+            temp.setActivityList(temp.getActivityList()+_activity);
+        }
+    }
 
-    cout << "Do you want to register for gymnastics?" << endl;
-    cin >> gymnastics;
-    check_valid(gymnastics);
 
-    cout << "Do you want to register for dance?" << endl;
-    cin >> dance;
-    check_valid(dance);
 
-    cout << "Do you want to register for art?" << endl;
-    cin >> art;
-    check_valid(art);
-
-    cout << "Do you want to register for self defense?" << endl;
-    cin >> self_defense;
-    check_valid(self_defense);
-
-    cout << "Do you want to register for music?" << endl;
-    cin >> music;
-    check_valid(music);
-
-    cout << "Do you want to register for drama?" << endl;
-    cin >> drama;
-    check_valid(drama);
-
-    cout << "Do you want to register basketball?" << endl;
-    cin >> basketball;
-    check_valid(basketball);
 }
 
 void handleCount(fstream &file) {

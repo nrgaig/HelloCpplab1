@@ -22,8 +22,8 @@ Family::Family() {
     activityList = 0;
 }
 
-Family::Family(int familyId, char family_Name[21], int numOfFamilyMembers, int phoneNumber, short activityList) : familyId(
-        familyId), numOfFamilyMembers(numOfFamilyMembers), phoneNumber(phoneNumber), activityList(activityList) {
+Family::Family(int familyId, char family_Name[21], int numOfFamilyMembers, int phoneNumber,short activityList) : familyId(
+        familyId), numOfFamilyMembers(numOfFamilyMembers), phoneNumber(phoneNumber), activityList(0) {
     strcpy(familyName,family_Name);
 }
 
