@@ -76,46 +76,46 @@ void add(fstream &file) { //adding family to the file
 
 }
 
-void del(fstream &file, int id) {
-    Family temp;
-    if (id < 1 || id > 100) {
+void del(fstream &file, int id) { //deleting family from the file
+    Family temp; //temp family
+    if (id < 1 || id > 100) { //check if id is valid
         throw InvalidFamilyNum;
     }
-    while (!file.eof()) {
-        file.read((char *) &temp, sizeof(Family));
+    while (!file.eof()) { //check if id is in file
+        file.read((char *) &temp, sizeof(Family)); //reading family from file
         if (temp.getFamilyId() == id) {
-            temp.setFamilyId(0);
+            temp.setFamilyId(0); //set family id to 0
             return;
         }
     }
     throw FamilyIsNotInFile;
 }
 
-int count(fstream &file, int activityType) {
+int count(fstream &file, int activityType) { //counting families that have activityType
     Family temp;
     int sum = 0;
     while (!file.eof()) {
         file.read((char *) &temp, sizeof(Family));
-        if ((temp.getActivityList() & activityType) == 0) {
-            sum++;
+        if ((temp.getActivityList() & activityType) == 0) { //check if family has activityType
+            sum++;  //increment sum
         }
     }
     return sum;
 }
 
-bool check_valid(char ans) {
+bool check_valid(char ans) { //check if answer is valid
     if (ans != 'n' && ans != 'N' && ans != 'y' && ans != 'Y') {
         throw invalidResponse;
     }
     return true;
 }
 
-bool canReg(fstream &file, int activity) {
+bool canReg(fstream &file, int activity) { //check if family can register to activity
     return (count(file, activity) < 10);
 }
 
-void update(fstream &file, int id, queue<Family> whaitingList) {
-    if (id < 1 || id > 100) {
+void update(fstream &file, int id, queue<Family> whaitingList) { //updating family activity list
+    if (id < 1 || id > 100) { //check if id is valid
         throw InvalidFamilyNum;
     }
     Family temp;
@@ -131,7 +131,7 @@ void update(fstream &file, int id, queue<Family> whaitingList) {
         throw FamilyIsNotInFile;
     }
 
-    char msg[8][43] = {
+    char msg[8][43] = { //messages for user
             {"Do you want to register for swimming?\n"},
             {"Do you want to register for gymnastics?\n"},
             {"Do you want to register for dance?\n"},
@@ -140,19 +140,17 @@ void update(fstream &file, int id, queue<Family> whaitingList) {
             {"Do you want to register for music?\n"},
             {"Do you want to register for drama?\n"},
             {"Do you want to register basketball?\n"}};
-    char choice[9];
-    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) {
-        cout << msg[i];
-        cin >> choice[i];
-        if (check_valid(choice[i]) && (choice[i] == 'y' || choice[i] == 'Y') && canReg(file, _activity)) {
+    char choice[9]; //user choice
+    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) { //loop for all activities
+        cout << msg[i]; //print message
+        cin >> choice[i]; //input choice
+        if (check_valid(choice[i]) && (choice[i] == 'y' || choice[i] == 'Y') && canReg(file, _activity)) { //check if answer is valid and if family can register
             temp.setActivityList(temp.getActivityList() + _activity);
         }
     }
     file.write((char *) &temp, sizeof(Family));//writing into file in place
 
-    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) {
-        cout << msg[i];
-        cin >> choice[i];
+    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) { //loop for all activities
         if ((choice[i] == 'y' || choice[i] == 'Y') && !canReg(file, _activity)) {
             whaitingList.push(temp);
         }
