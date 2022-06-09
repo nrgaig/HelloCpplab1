@@ -7,9 +7,6 @@
 
 using namespace std;
 
-
-using namespace std;
-
 enum {
     EXIT, ADD, DEL, COUNT, UPDATE, WAITING, PRINT
 };
@@ -49,42 +46,41 @@ void setFile(fstream &file) {
     }
 }
 
-void add(fstream &file) { //adding family to the file
+void add(fstream &file) { //adding family to the file, if the family is already in the file, throw exception
     int _familyId, _numOfFamilyMembers, _phoneNumber, writeOffset;
     char _familyName[21]{};
-    short _activityList;
-
+    cout << "enter the family's:  id, name, amount of people and a phone number: "<<endl;
     Family tmp;
     cin >> _familyId >> _familyName >> _numOfFamilyMembers >> _phoneNumber;//input info
     if (_familyId < 1 || 100 < _familyId)
         throw InvalidFamilyNum;   //throw "ERROR: Invalid family number"
-    file.seekg(0);// pointing read to start of file
-    while (!file.eof()) {//check if famId is not already in file
-        file.read((char *) &tmp, sizeof(Family));//reading family from file
-        if (tmp.getFamilyId() == _familyId) {
-            throw familyInTheFile;   //throw "ERROR: Family is already in the file";
-        }
+        //check if the family is already in the file, throw exception
+    for (int i = 0; i < 100; ++i) {
+        file.seekg(i * sizeof(Family));
+        file.read((char *) &tmp, sizeof(Family));
+        if (tmp.getFamilyId() == _familyId)
+            throw familyInTheFile;
     }
-    // insert new family into file
-    writeOffset = sizeof(Family) * (_familyId - 1);// prepare offset from beginning
     Family input{_familyId, _familyName, _numOfFamilyMembers, _phoneNumber, NONE};
-    file.seekp(writeOffset);
-    file.write((char *) &input, sizeof(Family));//writing into file in place
-
-
-
-
+    writeOffset = (_familyId - 1) * sizeof(Family);
+    file.seekp(writeOffset, ios::beg);
+    file.write((char *) &input, sizeof(Family));
 }
+
+
 
 void del(fstream &file, int id) { //deleting family from the file
     Family temp; //temp family
     if (id < 1 || id > 100) { //check if id is valid
         throw InvalidFamilyNum;
     }
-    while (!file.eof()) { //check if id is in file
-        file.read((char *) &temp, sizeof(Family)); //reading family from file
+    for (int i = 0; i < 100; ++i) {
+        file.seekg(i * sizeof(Family));
+        file.read((char *) &temp, sizeof(Family));
         if (temp.getFamilyId() == id) {
-            temp.setFamilyId(0); //set family id to 0
+            file.seekp(i * sizeof(Family));
+            temp.setFamilyId(0);
+            file.write((char *) &temp, sizeof(Family));
             return;
         }
     }
@@ -94,20 +90,17 @@ void del(fstream &file, int id) { //deleting family from the file
 int count(fstream &file, int activityType) { //counting families that have activityType
     Family temp;
     int sum = 0;
-    while (!file.eof()) {
+    for (int i = 0; i < 100; ++i) {
+        file.seekg(i * sizeof(Family));
         file.read((char *) &temp, sizeof(Family));
-        if ((temp.getActivityList() & activityType) == 0) { //check if family has activityType
-            sum++;  //increment sum
-        }
+        if (temp.getActivityList() & activityType)
+            ++sum;
     }
     return sum;
 }
 
 bool check_valid(char ans) { //check if answer is valid
-    if (ans != 'n' && ans != 'N' && ans != 'y' && ans != 'Y') {
-        throw invalidResponse;
-    }
-    return true;
+    return ans == 'n' || ans == 'N' || ans == 'y' || ans == 'Y';
 }
 
 bool canReg(fstream &file, int activity) { //check if family can register to activity
@@ -120,7 +113,8 @@ void update(fstream &file, int id, queue<Family> whaitingList) { //updating fami
     }
     Family temp;
     bool isInFile = false;
-    while (!file.eof()) {
+    for (int i = 0; i < 100; ++i) {// todo i<id???
+        file.seekg(i * sizeof(Family));
         file.read((char *) &temp, sizeof(Family));
         if (temp.getFamilyId() == id) {
             isInFile = true;
@@ -140,18 +134,26 @@ void update(fstream &file, int id, queue<Family> whaitingList) { //updating fami
             {"Do you want to register for music?\n"},
             {"Do you want to register for drama?\n"},
             {"Do you want to register basketball?\n"}};
-    char choice[9]; //user choice
+    char choice[8]; //user choice
     for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) { //loop for all activities
         cout << msg[i]; //print message
         cin >> choice[i]; //input choice
-        if (check_valid(choice[i]) && (choice[i] == 'y' || choice[i] == 'Y') && canReg(file, _activity)) { //check if answer is valid and if family can register
+        if (!check_valid(choice[i]))  //check if answer is valid
+            throw invalidResponse;
+        if ((choice[i] == 'y' || choice[i] == 'Y') &&
+            canReg(file, _activity)) { //check if answer is valid and if family can register
             temp.setActivityList(temp.getActivityList() + _activity);
         }
     }
-    file.write((char *) &temp, sizeof(Family));//writing into file in place
-
-    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) { //loop for all activities
-        if ((choice[i] == 'y' || choice[i] == 'Y') && !canReg(file, _activity)) {
+    file.seekp((id - 1) * sizeof(Family));
+    file.write((char *) &temp, sizeof(Family));
+    // add all the activities that can not be registered to the waiting list
+    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) {
+        if ((choice[i] == 'y' || choice[i] == 'Y') &&
+            canReg(file, _activity)) {
+            Family temp;
+            file.seekg((id - 1) * sizeof(Family));
+            file.read((char *) &temp, sizeof(Family));
             whaitingList.push(temp);
         }
     }
@@ -201,7 +203,9 @@ void print(fstream &file, int id) {
     }
     Family temp;
     bool isInFile = false;
-    while (!file.eof()) {
+    // check if id is in file
+    for (int i = 0; i < 100; ++i) { // todo i<id???
+        file.seekg(i * sizeof(Family));
         file.read((char *) &temp, sizeof(Family));
         if (temp.getFamilyId() == id) {
             isInFile = true;
@@ -211,11 +215,36 @@ void print(fstream &file, int id) {
     if (!isInFile) {
         throw FamilyIsNotInFile;
     }
-    cout << "Family ID: " << temp.getFamilyId() << endl;
-    cout << "Family Name: " << temp.getFamilyName() << endl;
-    cout << "Family Members: " << temp.getNumOfFamilyMembers() << endl;
-    cout << "Phone Number: " << temp.getPhoneNumber() << endl;
-    cout << "Activity List: " << temp.getActivityList() << endl;
+    cout << "family name: " << temp.getFamilyName() << endl;
+    cout << "number of persons: " << temp.getNumOfFamilyMembers() << endl;
+    cout << "phone number: " << temp.getPhoneNumber() << endl;
+    // if activity list is not empty
+
+        if ((temp.getActivityList() & SWIMMING) != 0) {
+            cout << "SWIMMING" << endl;
+        }
+        if ((temp.getActivityList() & GYMNATSTICS) != 0) {
+            cout << "GYMNATSTICS" << endl;
+        }
+        if ((temp.getActivityList() & DANCE) != 0) {
+            cout << "DANCE" << endl;
+        }
+        if ((temp.getActivityList() & ART) != 0) {
+            cout << "ART" << endl;
+        }
+        if ((temp.getActivityList() & SELF_DEFENSE) != 0) {
+            cout << "SELF DEFENSE" << endl;
+        }
+        if ((temp.getActivityList() & MUSIC) != 0) {
+            cout << "MUSIC" << endl;
+        }
+        if ((temp.getActivityList() & DRAMA) != 0) {
+            cout << "DRAMA" << endl;
+        }
+        if ((temp.getActivityList() & BASKETBALL) != 0) {
+            cout << "BASKETBALL" << endl;
+        }
+
 }
 
 

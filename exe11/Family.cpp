@@ -63,6 +63,10 @@ void Family::setActivityList(short activityList) {
     Family::activityList = activityList;
 }
 
+void Family::setFamilyName(char *string) {
+    strcpy(familyName,string);
+}
+
 
 
 

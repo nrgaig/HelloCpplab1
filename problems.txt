@@ -71,3 +71,25 @@ int main()
 	return 0;
 }
 
+void add(fstream &file) { //adding family to the file
+    int _familyId, _numOfFamilyMembers, _phoneNumber, writeOffset;
+    char _familyName[21]{};
+    cout << "enter the family's:  id, name, amount of people and a phone number: "<<endl;
+    Family tmp;
+    cin >> _familyId >> _familyName >> _numOfFamilyMembers >> _phoneNumber;//input info
+    if (_familyId < 1 || 100 < _familyId)
+        throw InvalidFamilyNum;   //throw "ERROR: Invalid family number"
+//    file.seekg(0, ios::beg);// pointing read to start of file
+    file.clear();
+    while (!file.eof()) {//check if famId is not already in file
+        file.read((char *) &tmp, sizeof(Family));//reading family from file
+        if (tmp.getFamilyId() == _familyId) {
+            throw familyInTheFile;   //throw "ERROR: Family is already in the file";
+        }
+    }
+    // insert new family into file
+    writeOffset = sizeof(Family) * (_familyId - 1);// prepare offset from beginning
+    Family input{_familyId, _familyName, _numOfFamilyMembers, _phoneNumber, NONE};
+    file.seekp(writeOffset);
+    file.write((char *) &input, sizeof(Family));//writing into file in place
+}

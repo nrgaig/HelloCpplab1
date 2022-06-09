@@ -30,6 +30,8 @@ public:
 
     void setActivityList(short activityList);
 
+    void setFamilyName(char string[21]);
+
 protected:
     int familyId;
     char familyName[21]{};
