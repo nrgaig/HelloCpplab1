@@ -107,13 +107,13 @@ bool canReg(fstream &file, int activity) { //check if family can register to act
     return (count(file, activity) < 10);
 }
 
-void update(fstream &file, int id, queue<Family> whaitingList) { //updating family activity list
+void update(fstream &file, int id, queue<Family> &whaitingList) { //updating family activity list
     if (id < 1 || id > 100) { //check if id is valid
         throw InvalidFamilyNum;
     }
     Family temp;
     bool isInFile = false;
-    for (int i = 0; i < 100; ++i) {// todo i<id???
+    for (int i = 0; i < 100; ++i) {//  i<id???  id n is in place n-1 in file.
         file.seekg(i * sizeof(Family));
         file.read((char *) &temp, sizeof(Family));
         if (temp.getFamilyId() == id) {
@@ -164,34 +164,34 @@ void waiting(queue<Family> &q) {
     while (!q.empty()) {
         Family temp = q.front();
         q.pop();
-        cout << "Family ID: " << temp.getFamilyId() << endl;
-        cout << "Family Name: " << temp.getFamilyName() << endl;
-        cout << "Family Members: " << temp.getNumOfFamilyMembers() << endl;
+        //cout << "Family ID: " << temp.getFamilyId() << endl;
+        cout << "family name: " << temp.getFamilyName() << endl;
+        cout << "number of persons: " << temp.getNumOfFamilyMembers() << endl;
         cout << "Phone Number: " << temp.getPhoneNumber() << endl;
-        cout << "Activity List: ";
+        //cout << "Activity List: ";
         if (temp.getActivityList() & SWIMMING) {
-            cout << "swimming ";
+            cout << "SWIMMING ";
         }
         if (temp.getActivityList() & GYMNATSTICS) {
-            cout << "gymnastics ";
+            cout << "GYMNASTICS ";
         }
         if (temp.getActivityList() & DANCE) {
-            cout << "dance ";
+            cout << "DANCE ";
         }
         if (temp.getActivityList() & ART) {
-            cout << "art ";
+            cout << "ART ";
         }
         if (temp.getActivityList() & SELF_DEFENSE) {
-            cout << "self defense ";
+            cout << "SELF DEFENSE ";
         }
         if (temp.getActivityList() & MUSIC) {
-            cout << "music ";
+            cout << "MUSIC ";
         }
         if (temp.getActivityList() & DRAMA) {
-            cout << "drama ";
+            cout << "DRAMA ";
         }
         if (temp.getActivityList() & BASKETBALL) {
-            cout << "basketball ";
+            cout << "BASKETBALL ";
         }
         cout << endl;
     }
@@ -204,7 +204,7 @@ void print(fstream &file, int id) {
     Family temp;
     bool isInFile = false;
     // check if id is in file
-    for (int i = 0; i < 100; ++i) { // todo i<id???
+    for (int i = 0; i < 100; ++i) { //  i<id??? id n is in place n-1 in file.
         file.seekg(i * sizeof(Family));
         file.read((char *) &temp, sizeof(Family));
         if (temp.getFamilyId() == id) {
@@ -252,7 +252,7 @@ void handleCount(fstream &file) {
     int snum;
     cout << "enter activity number to count:\n";
     cout
-            << "Choices are:\n1 SWIMMING\n2 GYMNASTICS\n3 DANCE\n4 ART\n5 SELF DEFENSE \n6 MUSIC \n7 DRAMA\n8 BASKETBALL\n";
+            << "Choices are:\n1 SWIMMING\n2 GYMNASTICS\n3 DANCE\n4 ART\n5 SELF DEFENSE \n6 MUSIC \n7 DRAMA\n8 BASKETBALL\n" << endl;
     cin >> snum;
     cout << "there are ";
     switch (snum) {
@@ -281,7 +281,7 @@ void handleCount(fstream &file) {
             cout << count(file, BASKETBALL);
             break;
     }
-    cout << " families registered\n";
+    cout << " families registered\n" << endl;
 }
 
 
@@ -320,7 +320,7 @@ int main() {
                     handleCount(file);
                     break;
                 case UPDATE://update the list of classes of a family
-                    cout << "enter number of family to update:\n";
+                    cout << "enter number of family to update:\n"<<endl;
                     cin >> snum;
                     update(file, snum, jv);
                     break;
