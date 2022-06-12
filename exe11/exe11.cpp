@@ -11,21 +11,6 @@ enum {
     EXIT, ADD, DEL, COUNT, UPDATE, WAITING, PRINT
 };
 
-class InvalidResponse : public exception {
-    const char *what() const throw() { return "ERROR: Invalid response"; }
-} invalidResponse;
-
-class InvalidFamilyNumber : public exception {
-    const char *what() const throw() { return "ERROR: Invalid family number"; }
-} InvalidFamilyNum;
-
-class FamilyInTheFile : public exception {
-    const char *what() const throw() { return "ERROR: Family is already in the file"; }
-} familyInTheFile;
-
-class FamilyIsNotInFile : public exception {
-    const char *what() const throw() { return "ERROR: Family is not in the file"; }
-} FamilyIsNotInFile;
 
 enum ACTIVITY {
     NONE, //  טרם בחר חוג
@@ -53,14 +38,14 @@ void add(fstream &file) { //adding family to the file, if the family is already 
     Family tmp;
     cin >> _familyId >> _familyName >> _numOfFamilyMembers >> _phoneNumber;//input info
     int offset = _familyId * sizeof(Family);
-    if (_familyId < 1 || 100 < _familyId){
-        throw InvalidFamilyNum;   //throw "ERROR: Invalid family number"
+    if (_familyId < 1 || 100 < _familyId) {
+        throw "ERROR: Invalid family number";   //throw "ERROR: Invalid family number"
     }
     //check if the family is already in the file, throw exception
-    file.seekg(offset,ios::beg);
+    file.seekg(offset, ios::beg);
     file.read((char *) &tmp, sizeof(Family));
     if (tmp.getFamilyId() == _familyId)
-        throw familyInTheFile;
+        throw "ERROR: Family is already in the file";
 
     tmp.setFamilyId(_familyId);
     tmp.setFamilyName(_familyName);
@@ -69,7 +54,7 @@ void add(fstream &file) { //adding family to the file, if the family is already 
     tmp.setActivityList(NONE);
 
 
-    file.seekp(offset,ios::beg);
+    file.seekp(offset, ios::beg);
     file.write((char *) &tmp, sizeof(Family));
 
 }
@@ -78,25 +63,25 @@ void add(fstream &file) { //adding family to the file, if the family is already 
 void del(fstream &file, int id) { //deleting family from the file
     Family temp; //temp family
     if (id < 1 || id > 100) { //check if id is valid
-        throw InvalidFamilyNum;
+        throw "ERROR: Invalid family number";
     }
-    int offset=id * sizeof(Family);
-    file.seekg(offset,ios::beg);
+    int offset = id * sizeof(Family);
+    file.seekg(offset, ios::beg);
     file.read((char *) &temp, sizeof(Family));
     if (temp.getFamilyId() == id) {
-        file.seekp(offset,ios::beg);
+        file.seekp(offset, ios::beg);
         temp.setFamilyId(0);
         file.write((char *) &temp, sizeof(Family));
         return;
     }
-    throw FamilyIsNotInFile;
+    throw "ERROR: Family is not in the file";
 }
 
 int count(fstream &file, int activityType) { //counting families that have activityType
     Family temp;
-    int sum = 0 ;
+    int sum = 0;
     for (int i = 1; i < 101; ++i) {
-        int offset =i * sizeof(Family);
+        int offset = i * sizeof(Family);
         file.seekg(offset, ios::beg);
         file.read((char *) &temp, sizeof(Family));
         if (temp.getActivityList() & activityType)
@@ -107,18 +92,20 @@ int count(fstream &file, int activityType) { //counting families that have activ
 
 bool checkValid(char ans) { return ans == 'n' || ans == 'N' || ans == 'y' || ans == 'Y'; }//check if answer is valid
 
-bool canRegister(fstream &file, int activity) { return (count(file, activity) < 10); }//check if family can register to activity
+bool canRegister(fstream &file, int activity) {
+    return (count(file, activity) < 10);
+}//check if family can register to activity
 
 void update(fstream &file, int id, queue<Family> &whaitingList) { //updating family activity list
     if (id < 1 || id > 100) { //check if id is valid
-        throw InvalidFamilyNum;
+        throw "ERROR: Invalid family number";
     }
-    int offset =id * sizeof(Family);
+    int offset = id * sizeof(Family);
     Family temp;
     file.seekg(offset);
     file.read((char *) &temp, sizeof(Family));
     if (temp.getFamilyId() == 0) {
-        throw FamilyIsNotInFile;
+        throw "ERROR: Family is not in the file";
     }
 
     char msg[8][43] = { //messages for user
@@ -137,8 +124,9 @@ void update(fstream &file, int id, queue<Family> &whaitingList) { //updating fam
         cout << msg[i]; //print message
         cin >> choice[i]; //input choice
         if (!checkValid(choice[i]))  //check if answer is valid
-            throw invalidResponse;
-        if ((choice[i] == 'y' || choice[i] == 'Y') && canRegister(file, _activity)) { //check if answer is valid and if family can register
+            throw "ERROR: Invalid response";
+        if ((choice[i] == 'y' || choice[i] == 'Y') &&
+            canRegister(file, _activity)) { //check if answer is valid and if family can register
             temp.setActivityList(temp.getActivityList() + _activity);
         }
     }
@@ -151,10 +139,11 @@ void update(fstream &file, int id, queue<Family> &whaitingList) { //updating fam
     file.seekg(offset);
     file.read((char *) &k, sizeof(Family));
     k.setActivityList(0);
-    for (int i = 0, _activity = 1; i < 8; ++i, _activity *= 2) {
-        if ((choice[i] == 'y' || choice[i] == 'Y') && !canRegister(file, _activity)){
-            k.setActivityList(k.getActivityList()+_activity);
-       }
+    _activity = 1;
+    for (int i = 0; i < 8; ++i, _activity *= 2) {
+        if ((choice[i] == 'y' || choice[i] == 'Y') && !canRegister(file, _activity)) {
+            k.setActivityList(k.getActivityList() + _activity);
+        }
     }
     whaitingList.push(k);
 }
@@ -199,15 +188,15 @@ void waiting(queue<Family> &q) {
 
 void print(fstream &file, int id) {
     if (id < 1 || id > 100)
-        throw InvalidFamilyNum;
+        throw "ERROR: Invalid family number";
     Family temp;
 
 
-    int offset=id * sizeof(Family);
+    int offset = id * sizeof(Family);
     file.seekg(offset, ios::beg);//   id n is in place n-1 in file.
     file.read((char *) &temp, sizeof(Family));
     if (temp.getFamilyId() == 0) // check if id is in file
-        throw FamilyIsNotInFile;
+        throw "ERROR: Family is not in the file";
     cout << "family name: " << temp.getFamilyName() << endl;
     cout << "number of persons: " << temp.getNumOfFamilyMembers() << endl;
     cout << "phone number: " << temp.getPhoneNumber() << endl;
@@ -280,18 +269,20 @@ void handleCount(fstream &file) {
 
 
 int main() {
-    queue<Family> q;
 
-    queue<Family> jv;
+
+    queue<Family> q;
     fstream file;
-    file.open("families.txt", ios::binary | ios::in | ios::out);
+    file.open("families.txt", ios::binary | ios::out);
+
     if (!file) {
         cout << "ERROR: couldn't open file\n";
         return 0;
     }
     setFile(file);
-    file.clear();
+    file.close();
 
+    file.open("families.txt", ios::binary | ios::in | ios::out);
     int choice;
     int snum;
     int cnum;
@@ -314,12 +305,12 @@ int main() {
                     handleCount(file);
                     break;
                 case UPDATE://update the list of classes of a family
-                    cout << "enter number of family to update:\n" << endl;
+                    cout << "enter number of family to update:\n";
                     cin >> snum;
-                    update(file, snum, jv);
+                    update(file, snum, q);
                     break;
-                case WAITING://update the list of classes of a waiting family
-                    waiting(jv);
+                case WAITING://update the list of classes for waiting fam
+                    waiting(q);
                     break;
 
                 case PRINT://print the details of a specific family
@@ -332,8 +323,8 @@ int main() {
 
             }
         }// try
-        catch (exception &e) {
-            cout << e.what();
+        catch (const char *msg) {
+            cout << msg;
         }
         cout << "\nenter 0-6:\n";
         cin >> choice;
@@ -342,3 +333,5 @@ int main() {
     file.close();
     return 0;
 }
+
+
